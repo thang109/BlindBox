@@ -26,6 +26,28 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        @if (ViewBag.IsUserLoggedIn == null ? false : (bool)ViewBag.IsUserLoggedIn)
+                        {
+                            <!-- Hiển thị nút đăng xuất khi đã đăng nhập -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Hiển thị nút đăng nhập và đăng ký khi chưa đăng nhập -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/SignIn">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/SignUp">Sign Up</a>
+                            </li>
+                        }
+                    </ul>
+                    <form id="logoutForm" method="post" action="/Account/Logout" style="display: none;">
+                        <button type="submit" id="logoutButton">Logout</button>
+                    </form>
                 </div>
             </div>
         </nav>

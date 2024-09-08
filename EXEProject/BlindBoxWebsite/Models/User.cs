@@ -23,6 +23,10 @@ public partial class User
 
     public DateTime? UpdatedAt { get; set; }
 
+    public bool IsEmailConfirmed { get;  set; }
+
+    public string? ResetToken { get;  set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual ICollection<Quiz> Quizzes { get; set; } = new List<Quiz>();

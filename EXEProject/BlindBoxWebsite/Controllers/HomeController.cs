@@ -15,6 +15,8 @@ namespace BlindBoxWebsite.Controllers
 
         public IActionResult Index()
         {
+            bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
+            ViewBag.IsUserLoggedIn = isUserLoggedIn;
             return View();
         }
 
