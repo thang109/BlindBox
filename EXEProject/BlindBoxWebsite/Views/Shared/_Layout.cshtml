@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var message = ViewBag.Message as string;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,6 +13,25 @@
     <link rel="stylesheet" href="~/BlindBoxWebsite.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @if (!string.IsNullOrEmpty(message))
+    {
+        <div class="alert alert-success">
+            @message
+        </div>
+
+        <script>
+            setTimeout(function () {
+                var alertDiv = document.querySelector('.alert');
+                if (alertDiv) {
+                    alertDiv.style.transition = 'opacity 1s';
+                    alertDiv.style.opacity = '0';
+                    setTimeout(function () {
+                        alertDiv.remove();
+                    }, 1000);
+                }
+            }, 5000);
+        </script>
+    }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">

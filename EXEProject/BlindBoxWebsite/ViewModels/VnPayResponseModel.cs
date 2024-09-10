@@ -1,4 +1,7 @@
-﻿namespace BlindBoxWebsite.ViewModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace BlindBoxWebsite.ViewModels
 {
     public class VnPayResponseModel
     {

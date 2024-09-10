@@ -1,7 +1,10 @@
 ﻿@model BlindBoxWebsite.DTO.AccountDTOs.SignUpRequest
 
-@{
-    ViewData["Title"] = "Sign Up";
+@if (TempData["ConfirmMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ConfirmMessage"]
+    </div>
 }
 
 <h2>Sign Up</h2>

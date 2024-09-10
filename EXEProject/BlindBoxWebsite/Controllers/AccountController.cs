@@ -50,7 +50,7 @@ namespace BlindBoxWebsite.Controllers
             await _userRepository.CreateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.UserId }, Request.Scheme);
+            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.UserId, message = "Email confirmed successfully, please log in." }, Request.Scheme);
 
             var emailContent = new DTO.MailDTOs.MailContent
             {
@@ -60,7 +60,9 @@ namespace BlindBoxWebsite.Controllers
             };
             await _sendMailService.SendMail(emailContent);
 
-            return Ok("Please check your email to confirm your account.");
+            TempData["ConfirmMessage"] = "Please check your email to confirm your account.";
+
+            return RedirectToAction("SignIn");
         }
 
         [HttpGet]
@@ -82,16 +84,13 @@ namespace BlindBoxWebsite.Controllers
             await _userRepository.UpdateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            return RedirectToAction("SignIn", new { message = "Email confirmed successfully, please log in." });
+
+            return RedirectToAction("SignIn");
         }
 
         [HttpGet]
-        public IActionResult SignIn(string message)
+        public IActionResult SignIn()
         {
-            if (!string.IsNullOrEmpty(message))
-            {
-                ViewBag.Message = message;  
-            }
             return View();
         }
 
@@ -114,7 +113,8 @@ namespace BlindBoxWebsite.Controllers
 
             if (!user.IsEmailConfirmed)
             {
-                return Ok("Please confirm your email before logging in.");
+                TempData["Message"] = "Please confirm your email before logging in.";
+                return RedirectToAction("SignIn");
             }
             HttpContext.Session.SetString("UserId", user.UserId.ToString());
 
@@ -211,7 +211,9 @@ namespace BlindBoxWebsite.Controllers
             };
 
             await _sendMailService.SendMail(emailContent);
-            return Ok("Please check your email for a link to reset your password.");
+            TempData["Message"] = "Please check your email for a link to reset your password.";
+
+            return RedirectToAction("ForgotPassword");
         }
 
         [HttpGet]
@@ -247,7 +249,9 @@ namespace BlindBoxWebsite.Controllers
             await _userRepository.UpdateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            return Ok("Your password has been reset successfully.");
+            ViewBag.Message = "Password reset successfully. You will be redirected shortly.";
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
