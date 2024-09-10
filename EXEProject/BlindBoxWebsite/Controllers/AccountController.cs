@@ -125,7 +125,6 @@ namespace BlindBoxWebsite.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-
             return RedirectToAction("Index", "Home");
         }
 

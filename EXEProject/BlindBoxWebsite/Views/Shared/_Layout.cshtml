@@ -29,14 +29,12 @@
                     <ul class="navbar-nav">
                         @if (ViewBag.IsUserLoggedIn == null ? false : (bool)ViewBag.IsUserLoggedIn)
                         {
-                            <!-- Hiển thị nút đăng xuất khi đã đăng nhập -->
                             <li class="nav-item">
                                 <a class="nav-link" href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
                             </li>
                         }
                         else
                         {
-                            <!-- Hiển thị nút đăng nhập và đăng ký khi chưa đăng nhập -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/Account/SignIn">Login</a>
                             </li>
