@@ -6,6 +6,7 @@ using BlindBoxWebsite.Interfaces;
 using BlindBoxWebsite.Repositories;
 using BlindBoxWebsite.Services;
 using BlindBoxWebsite.DTO.MailDTOs;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlindBoxContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BlindBox")));
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.LoginPath = "/Account/SignIn";
+                    option.LogoutPath = "/Account/Logout";
+                });
 builder.Services.AddSession(options =>
 {
     options.IOTimeout = TimeSpan.FromMinutes(30);

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GBOX - Gift Store</title>
+    <link rel="stylesheet" href="~/css/subscription.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="product-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSelBxhNhxOSOK35uGV91DXwBaHltKGhFc8Zw&s"
+                 alt="Blind Box"
+                 width="70%" />
+        </div>
+        <div class="product-details">
+            <h2 class="discount">Save 20%</h2>
+            <h1 class="product-title">Blind-Box</h1>
+            <p class="price">100.000 VND</p>
+            <div class="price-slider">
+                <input type="range"
+                       min="0"
+                       max="100000"
+                       value="100000"
+                       id="priceRange" />
+                <span id="priceValue">100.000 VND</span>
+            </div>
+            <button class="add-to-cart" onclick="window.location.href='@Url.Action("CheckoutBlindBox", "Payment")'">Add to Cart</button>
+            <ul class="extra-info">
+                <li>
+                    <i class="fas fa-tags"></i><strong> Unlock 10% discount for this order</strong>
+                </li>
+                <li>
+                    <i class="fas fa-shield-alt"></i><strong> 30-day satisfaction guarantee</strong>
+                </li>
+            </ul>
+            <details>
+                <summary>Description</summary>
+                <p>Detailed description of the Blind-Box product.</p>
+            </details>
+            <details>
+                <summary>Gifts?</summary>
+                <p>Can be used as a gift.</p>
+            </details>
+            <details>
+                <summary>Our Commitment</summary>
+                <p>We offer the best quality products.</p>
+            </details>
+            <details>
+                <summary>Free Shipping</summary>
+                <p>Applies to all orders.</p>
+            </details>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <div class="quiz-content">
+            <h1 class="quiz-title">Gift Guide Quiz</h1>
+            <p class="quiz-subtitle">
+                Bạn muốn mua quà? Chúng tôi sẽ giúp bạn tìm được món quà phù hợp
+            </p>
+            <ul class="quiz-steps">
+                <li>→ Hãy trả lời 5 câu hỏi nhanh</li>
+                <li>→ Nhận các gợi ý về món quà của bạn</li>
+            </ul>
+            <button class="quiz-button">Take Our Quiz</button>
+        </div>
+        <div class="quiz-image">
+            <img src="https://www.sunset.com/wp-content/uploads/medium_2x/small-trees-weeping-fig-getty-0318.jpg"
+                 alt="Gift Guide Quiz" />
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll("nav ul li a").forEach((item) => {
+          item.addEventListener("mouseover", () => {
+            item.style.color = "#00a86b";
+          });
+          item.addEventListener("mouseout", () => {
+            item.style.color = "#333";
+          });
+        });
+        document
+          .getElementById("priceRange")
+          .addEventListener("input", function () {
+            let priceValue = document.getElementById("priceRange").value;
+            document.getElementById(
+              "priceValue"
+            ).innerText = `${priceValue.replace(
+              /\B(?=(\d{3})+(?!\d))/g,
+              "."
+            )} VND`;
+          });
+    </script>
+</body>
+</html>

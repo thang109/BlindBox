@@ -3,11 +3,157 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewData["Title"] - Gift Store</title>
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/dropdown.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
+    <div class="top-bar">Free Shipping + 30-Day Guarantee</div>
+    <header>
+        <div class="header-main">
+            <a class="logo" href="/" style="text-decoration:none">GBOX</a>
+            <div class="user-actions">
+                @if (ViewBag.IsUserLoggedIn == true)
+                {
+                    <div class="user-greeting">
+                        <div class="dropdown">
+                            <button class="dropdown-btn">
+                                <span class="user-icon">👤</span>
+                                <span>Xin chào, @ViewBag.Username</span>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/Account/EditProfile">Settings</a>
+                                <a href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                            </div>
+                        </div>
+                        <form id="logoutForm" method="post" action="/Account/Logout" style="display: none;">
+                            <button type="submit" id="logoutButton">Logout</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="user-greeting" onclick="window.location.href='@Url.Action("SignIn", "Account")'">
+                        <span class="user-icon">👤</span>
+                        <span>Xin chào, hãy đăng nhập</span>
+                    </div>
+                }
+                <div class="cart-icon">🛒</div>
+            </div>
+        </div>
+    </header>
+    
     <div>
         @RenderBody()
     </div>
+
+    <!-- Footer -->
+    <footer class="custom-footer">
+        <div class="store-visit">
+            <div class="store-visit-content">
+                <img src="https://via.placeholder.com/100" alt="Store Image" />
+                <div class="store-info">
+                    <h2>Visit Us In A Store Near You</h2>
+                    <p>
+                        Our stores around the US are open for plant shopping, repotting,
+                        curbside pickup, in-person workshops, and more.
+                    </p>
+                    <a href="#">Find Your Local Store →</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping & Handling</a></li>
+                    <li><a href="#">30-Day Guarantee</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>My Box</h3>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Workshops</a></li>
+                    <li><a href="#">Track My Order</a></li>
+                    <li><a href="#">Returns Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Corporate Gifting</a></li>
+                </ul>
+            </div>
+            <div class="footer-column subscribe">
+                <h3>Get the Dirt.</h3>
+                <p>
+                    Get exclusive offers, & event invites straight to your inbox. No
+                    spam, ever.
+                </p>
+                <div class="email-subscribe">
+                    <input style="width: 100%"
+                           type="email"
+                           placeholder="Enter your email..." />
+                    <button style="width: 100%; margin-top: 20px">Subscribe</button>
+                </div>
+                <div class="social-media">
+                    <a href="#">
+                        <img src="https://static.vecteezy.com/system/resources/previews/022/257/063/non_2x/icon-media-social-facebook-free-vector.jpg"
+                             alt="Facebook" />
+                    </a>
+                    <a href="#">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxrN_tFAUk6DoOd_EgHHqz5cmi8YdvWW30Cw&s"
+                             alt="Twitter" />
+                    </a>
+                    <a href="#">
+                        <img src="https://image.similarpng.com/very-thumbnail/2020/06/Black-icon-Instagram-logo-transparent-PNG.png"
+                             alt="Instagram" />
+                    </a>
+                    <a href="#">
+                        <img src="https://portermetrics.com/wp-content/uploads/2022/04/TikTok-icon-black-brand.png"
+                             alt="TikTok" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="bottom-content">
+                <span class="footer-logo">GBOX</span>
+                <div class="footer-links">
+                    <a href="#">Affiliate Program</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Accessibility</a>
+                    <a href="#">Do Not Sell My Info</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="~/js/index.js"></script>
+    <script src="~/js/dropdown.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/text.js"></script>
+    <script>
+        document.querySelectorAll("nav ul li a").forEach((item) => {
+          item.addEventListener("mouseover", () => {
+            item.style.color = "#00a86b";
+          });
+          item.addEventListener("mouseout", () => {
+            item.style.color = "#333";
+          });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

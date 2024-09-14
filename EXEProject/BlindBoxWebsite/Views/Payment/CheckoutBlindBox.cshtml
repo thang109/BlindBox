@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/checkout_blindbox.css" />
+</head>
+<body>
+    <div class="checkout-container">
+        <header>
+            <h1>GBOX</h1>
+        </header>
+
+        <div class="checkout-body">
+            <div class="customer-info">
+                <h2>Thông tin khách hàng</h2>
+                <form class="form-container">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email" />
+                    </div>
+
+                    <h2>Địa chỉ giao hàng</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="last-name">Họ</label>
+                            <input type="text" id="last-name" placeholder="Họ" />
+                        </div>
+                        <div class="form-group">
+                            <label for="first-name">Tên</label>
+                            <input type="text" id="first-name" placeholder="Tên" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="province">Tỉnh/Thành Phố</label>
+                        <input type="text" id="province" placeholder="Tỉnh/Thành Phố" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="district">Quận/Huyện</label>
+                        <input type="text" id="district" placeholder="Quận/Huyện" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Địa chỉ cụ thể</label>
+                        <input type="text" id="address" placeholder="Địa chỉ cụ thể" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Điện thoại</label>
+                        <input type="text" id="phone" placeholder="Điện thoại" />
+                    </div>
+                </form>
+
+                <a href="#" class="back-to-cart">← Trở lại giỏ hàng</a>
+            </div>
+
+            <div class="order-summary">
+                <h2>Order summary</h2>
+                <div class="item-summary">
+                    <img src="https://m.media-amazon.com/images/I/71oyEZZW8+L.jpg"
+                         alt="Blind box" />
+                    <div>
+                        <p>Blind box</p>
+                        <p>1 | White</p>
+                    </div>
+                    <p class="price">100.000 VND</p>
+                </div>
+
+                <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
+
+                <div class="order-totals">
+                    <p>Tổng cộng</p>
+                    <p class="price">100.000 VND</p>
+                </div>
+
+                <button class="continue-payment">
+                    <a style="text-decoration: none; color: white"
+                       onclick="window.location.href='@Url.Action("PaymentSuccess", "Payment")'">Tiếp tục thanh toán</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

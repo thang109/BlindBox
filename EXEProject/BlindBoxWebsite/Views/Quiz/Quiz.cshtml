@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift Guide Quiz</title>
+    <link rel="stylesheet" href="~/css/quiz.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Quiz 1 -->
+        <div class="quiz" id="quiz1">
+            <div class="form-section">
+                <div class="question">1 → Đối tượng mà bạn muốn mua quà là ai?*</div>
+                <div class="options">
+                    <div class="option">Bố/Mẹ</div>
+                    <div class="option">Bạn bè</div>
+                    <div class="option">Người yêu</div>
+                    <div class="option">Người khác</div>
+                </div>
+                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+            </div>
+            <div class="image-section">
+                <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
+                     alt="Plants on a table" />
+            </div>
+        </div>
+        
+        <!-- Quiz 2 -->
+        <div class="quiz" id="quiz2">
+            <div class="form-section">
+                <div class="question">2 → Người đó có sở thích gì?*</div>
+                <div class="options">
+                    <div class="option">Thích thể thao</div>
+                    <div class="option">Thích đọc sách</div>
+                    <div class="option">Thích công nghệ</div>
+                    <div class="option">Thích du lịch</div>
+                </div>
+                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+            </div>
+            <div class="image-section">
+                <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
+                     alt="Plants on a table" />
+            </div>
+        </div>
+
+        <!-- Quiz 3 -->
+        <div class="quiz" id="quiz3">
+            <div class="form-section">
+                <div class="question">3 → Người đó thích loại quà nào?*</div>
+                <div class="options">
+                    <div class="option">Đồ ăn/uống</div>
+                    <div class="option">Đồ trang sức</div>
+                    <div class="option">Đồ công nghệ</div>
+                    <div class="option">Đồ handmade</div>
+                </div>
+                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+            </div>
+            <div class="image-section">
+                <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
+                     alt="Plants on a table" />
+            </div>
+        </div>
+
+        <!-- Quiz 4 -->
+        <div class="quiz" id="quiz4">
+            <div class="form-section">
+                <div class="question">4 → Người đó có dịp đặc biệt gì không?*</div>
+                <div class="options">
+                    <div class="option">Sinh nhật</div>
+                    <div class="option">Kỷ niệm</div>
+                    <div class="option">Lễ hội</div>
+                    <div class="option">Không có dịp đặc biệt</div>
+                </div>
+                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+            </div>
+            <div class="image-section">
+                <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
+                     alt="Plants on a table" />
+            </div>
+        </div>
+
+        <!-- Quiz 5 -->
+        <div class="quiz" id="quiz5">
+            <div class="form-section">
+                <div class="question">5 → Cảm ơn bạn! Cuối cùng, sở thích của người nhận là?*</div>
+                <div class="options">
+                    <div class="option">Thích sống xanh, yêu thiên nhiên</div>
+                    <div class="option">Thích tự tay làm đồ handmade</div>
+                    <div class="option">Thích đồ công nghệ</div>
+                    <div class="option">Thích đọc sách, học hỏi</div>
+                </div>
+                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                <button class="submit-button" onclick="window.location.href='@Url.Action("GiftSuggest", "Quiz")'">Hoàn thành</button>
+            </div>
+            <div class="image-section">
+                <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
+                     alt="Plants on a table" />
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/quiz.js"></script>
+</body>
+</html>

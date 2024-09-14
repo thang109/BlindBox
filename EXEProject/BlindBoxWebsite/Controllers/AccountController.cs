@@ -117,6 +117,7 @@ namespace BlindBoxWebsite.Controllers
                 return RedirectToAction("SignIn");
             }
             HttpContext.Session.SetString("UserId", user.UserId.ToString());
+            HttpContext.Session.SetString("UserName", user.Username);
 
             return RedirectToAction("Index", "Home");
         }

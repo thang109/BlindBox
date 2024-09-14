@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.vnpay-logo {
+  width: 150px;
+}
+
+.timer {
+  font-size: 16px;
+  color: red;
+  text-align: center;
+}
+
+#countdown {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.warning {
+  background-color: #ffefc2;
+  padding: 10px;
+  border: 1px solid #ffc107;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.order-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 60px 0;
+}
+
+.order-info {
+  width: 45%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.qr-section {
+  width: 45%;
+  text-align: center;
+}
+
+.qr-section img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.qr-section a {
+  display: block;
+  margin: 10px 0;
+  color: #007bff;
+}
+
+.qr-section button {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.banks {
+  margin-bottom: 30px;
+}
+
+.bank-list,
+.e-wallet-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.bank-list img,
+.e-wallet-list img {
+  width: 100px;
+  height: auto;
+}
+
+.footer {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-top: 20px;
+}
