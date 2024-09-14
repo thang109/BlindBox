@@ -1,0 +1,143 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.checkout-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact-shipping-info {
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-shipping-info h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.contact-shipping-info form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-shipping-info input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.back-to-cart {
+  color: #1abc9c;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.order-summary {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.product-details p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.discount-link {
+  color: #1abc9c;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.summary-totals p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.total-amount {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.continue-to-payment-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1abc9c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.continue-to-payment-btn:hover {
+  background-color: #16a085;
+}
+
+@media (max-width: 768px) {
+  .checkout-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-shipping-info,
+  .order-summary {
+    width: 100%;
+  }
+}

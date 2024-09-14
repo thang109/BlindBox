@@ -1,0 +1,94 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.subscription-section {
+  background-color: #fff;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.subscription-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.content-container {
+  flex: 1;
+  max-width: 500px;
+}
+
+.content-container h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.content-container p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.shop-now-btn,
+.blindbox-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1abc9c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.shop-now-btn:hover,
+.blindbox-btn:hover {
+  background-color: #16a085;
+}
+
+.blindbox-btn {
+  background-color: #1abc9c;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .subscription-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .content-container h1 {
+    font-size: 28px;
+  }
+
+  .content-container p {
+    font-size: 16px;
+  }
+
+  .shop-now-btn,
+  .blindbox-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

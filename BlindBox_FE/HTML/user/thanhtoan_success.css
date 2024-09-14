@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.header .profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.profile span {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.success-message {
+  color: #27ae60;
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.transaction-details {
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.transaction-details p {
+  margin: 15px 0;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.transaction-details p span {
+  font-weight: bold;
+}
+
+.back-button {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn {
+  background-color: #1abc9c;
+  color: #fff;
+  padding: 15px 40px;
+  border: none;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #16a085;
+}
+
+/* Adjust for mobile */
+@media (max-width: 768px) {
+  .container {
+    margin: 50px 20px;
+  }
+
+  .transaction-details p {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 15px 0;
+  }
+}

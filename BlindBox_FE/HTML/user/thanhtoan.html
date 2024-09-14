@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh Toán VNPAY</title>
+    <link rel="stylesheet" href="./thanhtoan.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <img
+          src="https://vinadesign.vn/uploads/images/2023/05/vnpay-logo-vinadesign-25-12-57-55.jpg"
+          alt="VNPAY Logo"
+          class="vnpay-logo"
+        />
+        <div class="timer">
+          <span>Giao dịch hết hạn sau</span>
+          <div id="countdown">15:00</div>
+        </div>
+      </div>
+
+      <!-- Warning Section -->
+      <div class="warning">
+        Quý khách vui lòng không tắt trình duyệt cho đến khi nhận được kết quả
+        giao dịch trên website. Xin cảm ơn!
+      </div>
+
+      <!-- Order Details Section -->
+      <div class="order-section">
+        <div class="order-info">
+          <h2>Thông tin đơn hàng</h2>
+          <p><strong>Số tiền thanh toán:</strong> 100.000 VNĐ</p>
+          <p><strong>Giá trị đơn hàng:</strong> 100.000 VNĐ</p>
+          <p><strong>Phí giao dịch:</strong> 0 VNĐ</p>
+          <p><strong>Mã đơn hàng:</strong> 135353745535415533522</p>
+          <p><strong>Nhà cung cấp:</strong> Công ty cổ phần ShopeePay</p>
+        </div>
+
+        <!-- QR Code Section -->
+        <div class="qr-section">
+          <h2>Quét mã qua ứng dụng Ngân hàng/ Ví điện tử</h2>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/800px-QR_code_for_mobile_English_Wikipedia.svg.png"
+            alt="QR Code"
+          />
+          <a href="#">Hướng dẫn thanh toán</a>
+          <button>Hủy thanh toán</button>
+        </div>
+      </div>
+
+      <!-- Bank and E-Wallet Section -->
+      <div class="banks">
+        <h2>Danh sách Ngân hàng/ Ví điện tử hỗ trợ</h2>
+        <div class="bank-list">
+          <img
+            src="https://www.inlogo.vn/vnt_upload/File/Image/logo_VCB_828891.jpg"
+            alt="Vietcombank"
+          />
+          <img
+            src="https://dongphucvina.vn/wp-content/uploads/2023/05/logo-BIDV-dongphucvina.vn_.png"
+            alt="BIDV"
+          />
+          <img
+            src="https://i.pinimg.com/564x/0e/33/49/0e3349ab85ae5ebf604df3cb380f9c8f.jpg"
+            alt="VietinBank"
+          />
+          <img
+            src="https://cdn.haitrieu.com/wp-content/uploads/2022/01/Icon-Agribank.png"
+            alt="Agribank"
+          />
+          <img
+            src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-VNPAY-QR.png"
+            alt="VNPAY"
+          />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPnosQleCL5u-2iiaAgeVzBKMpe_bxS3Fw0g&s"
+            alt="ABBANK"
+          />
+          <img
+            src="https://static.wixstatic.com/media/9d8ed5_0f9b1175f94f4ce4a6789d63a1540044~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+            alt="HDBank"
+          />
+          <!-- Add more banks as needed -->
+        </div>
+
+        <div class="e-wallet-list">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
+            alt="Momo"
+          />
+          <img
+            src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png"
+            alt="ZaloPay"
+          />
+          <img
+            src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ShopeePay-V.png"
+            alt="ShopeePay"
+          />
+          <img
+            src="https://inkythuatso.com/uploads/images/2021/12/logo-viettelpay-inkythuatso-3-14-08-56-36.jpg"
+            alt="ViettelPay"
+          />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPM9Urw7qKAXptMHGS0_x55RbxUo9DU7vwQw&s"
+            alt="AirPay"
+          />
+          <!-- Add more e-wallets as needed -->
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>1900 5555 77 | hotrovnpay@vnpay.vn</p>
+      </div>
+    </div>
+
+    <script>
+      // Set initial countdown time in minutes and seconds
+      var countdownTime = 900; // 15 minutes in seconds
+
+      var countdownElement = document.getElementById("countdown");
+
+      function startCountdown() {
+        var interval = setInterval(function () {
+          var minutes = Math.floor(countdownTime / 60);
+          var seconds = countdownTime % 60;
+
+          // Update the countdown display
+          countdownElement.textContent =
+            minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+          // Stop the countdown when it reaches zero
+          if (countdownTime <= 0) {
+            clearInterval(interval);
+            countdownElement.textContent = "Hết hạn";
+          }
+
+          countdownTime--;
+        }, 1000);
+      }
+
+      startCountdown();
+    </script>
+  </body>
+</html>

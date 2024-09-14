@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift Ideas - GBox</title>
+    <link rel="stylesheet" href="./email.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-section">
+        <h2>Ý tưởng về quà tặng, sắp ra mắt.*</h2>
+        <p>
+          Chia sẻ email của bạn ở bên dưới để nhận những cập nhật mới nhất từ
+          GBox.
+        </p>
+        <input type="email" placeholder="name@example.com" />
+        <button class="submit-btn">Nhận cập nhật</button>
+      </div>
+      <div class="right-section">
+        <img
+          src="https://www.marthastewart.com/thmb/tAHqnIOp0JVZMi83PYGuKn-fT0o=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/small-trees-with-big-curb-appeal-kousa-dogwood-getty-0623-c5285e307c884bdab6a0a7edb816e30c.jpg"
+          alt="Gift Ideas Plant"
+        />
+        <div class="icons">
+          <div class="icon" onclick="scrollUp()">
+            &#9650;
+            <!-- Up arrow -->
+          </div>
+          <div class="icon" onclick="scrollDown()">
+            &#9660;
+            <!-- Down arrow -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function scrollUp() {
+        window.scrollBy(0, -200);
+      }
+
+      function scrollDown() {
+        window.scrollBy(0, 200);
+      }
+    </script>
+  </body>
+</html>

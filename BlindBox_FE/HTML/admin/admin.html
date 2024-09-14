@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2><i class="fas fa-bolt"></i> Spur</h2>
+      </div>
+      <ul>
+        <li>
+          <a href="#" class="active"
+            ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="./analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+        </li>
+        <li>
+          <a href="./user_managment.html"><i class="fas fa-box"></i> User managment</a>
+        </li>
+        <li>
+          <a href="./product_managment.html"><i class="fas fa-box"></i> Product managment</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div class="topbar">
+        <input type="search" placeholder="Type to search..." />
+        <div class="topbar-icons">
+          <a href="#"
+            ><i class="fas fa-bell"></i><span class="badge">4</span></a
+          >
+          <a href="#"><i class="fas fa-user-circle"></i></a>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card blue">
+            <div class="card-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="card-content">
+                <h3>Sign ups</h3>
+                <p>114</p>
+                <small>+25% from last month</small>
+            </div>
+        </div>
+        <div class="card green">
+            <div class="card-icon">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="card-content">
+                <h3>Revenue</h3>
+                <p>$25,541</p>
+                <small>+17.5% from last month</small>
+            </div>
+        </div>
+        <div class="card red">
+            <div class="card-icon">
+                <i class="fas fa-phone"></i>
+            </div>
+            <div class="card-content">
+                <h3>Open tickets</h3>
+                <p>5</p>
+                <small>&nbsp;</small>
+            </div>
+        </div>
+    </div>
+    
+
+      <div class="chart-section">
+        <h3>Bar Chart</h3>
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <div class="notifications">
+        <h3>Notifications</h3>
+        <ul>
+          <li>New comment - 21 days ago</li>
+          <li>New comment - 21 days ago</li>
+          <li>New comment - 21 days ago</li>
+          <li><a href="#">Show all</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>
