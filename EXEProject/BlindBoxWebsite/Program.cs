@@ -36,7 +36,10 @@ builder.Services.AddControllers()
     });
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<ISendMailService, SendMailService>();
+builder.Services.AddTransient<IVnPayService, VnPayService>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                     .AddEnvironmentVariables();
 
 var app = builder.Build();
 

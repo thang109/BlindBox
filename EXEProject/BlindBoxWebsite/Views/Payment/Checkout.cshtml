@@ -1,55 +1,41 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/checkout.css" />
-    <link rel="stylesheet" href="~/css/index.css" />
-    <title>Checkout Page</title>
-</head>
-<body>
-    <div class="checkout-container">
-        <div class="checkout-content">
-            <div class="contact-shipping-info">
-                <form>
-                    <h2>Contact information</h2>
-                    <input type="email" placeholder="Email" required />
-
-                    <h2>Địa chỉ giao hàng</h2>
-                    <input type="text" placeholder="Họ" required />
-                    <input type="text" placeholder="Tên" required />
-                    <input type="text" placeholder="Tỉnh/Thành Phố" required />
-                    <input type="text" placeholder="Quận/Huyện" required />
-                    <input type="text" placeholder="Địa chỉ cụ thể" required />
-                    <input type="text" placeholder="Điện thoại" required />
-
-                    <a href="#" class="back-to-cart">← Trở lại giỏ hàng</a>
-                </form>
-            </div>
-            <div class="order-summary">
-                <h2>Order summary</h2>
-                <div class="product-item">
-                    <img src="https://www.deeproot.com/wp-content/uploads/stories/Images/ficus%20benjamina%20-%20small.jpg"
-                         alt="Product Image" />
-                    <div class="product-details">
-                        <p>Easy-Care Subscription (3 Months) × 1</p>
-                        <p>$165.00</p>
-                        <p>White</p>
-                    </div>
-                </div>
-                <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
-                <div class="summary-totals">
-                    <p>Tổng cộng: <span>$165.00</span></p>
-                    <p>Phí vận chuyển: <span>--</span></p>
-                    <p>Thuế: <span>--</span></p>
-                    <p class="total-amount">Tổng: <span>VND 165.00</span></p>
-                </div>
-                <button class="continue-to-payment-btn">
-                    <a style="text-decoration: none; color: white"
-                       onclick="window.location.href='@Url.Action("PaymentSuccess", "Payment")'">Tiếp tục thanh toán</a>
-                </button>
-            </div>
+﻿<div class="table-responsive">
+    <form action="/Payment/CreatePaymentUrl" id="frmCreateOrder" method="POST">
+        <div class="form-group">
+            <label for="ordertype">Loại hàng hóa </label>
+            <select name="OrderType" id="ordertype" class="form-control">
+                <option value="electric">Đồ điện tử</option>
+                <option value="fashion">Thời trang</option>
+                <option value="other">Khác</option>
+            </select>
         </div>
-    </div>
-</body>
-</html>
+        <br />
+        <div class="form-group">
+            <label for="Name">Tên khách hàng</label>
+            <input class="form-control"
+                   id="Name"
+                   name="Name"
+                   type="text"
+                   value="Code Mega">
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="Amount">Số tiền</label>
+            <input class="form-control"
+                   id="Amount"
+                   name="Amount"
+                   type="text"
+                   value="20000000">
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="OrderDescription">Nội dung thanh toán</label>
+            <textarea class="form-control"
+                      cols="20"
+                      id="OrderDescription"
+                      name="OrderDescription"
+                      rows="2">Thanh toán tại Code Mega</textarea>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Thanh toán (Checkout)</button>
+    </form>
+</div>

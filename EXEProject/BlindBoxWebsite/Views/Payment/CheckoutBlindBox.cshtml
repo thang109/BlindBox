@@ -81,10 +81,13 @@
                     <p class="price">100.000 VND</p>
                 </div>
 
-                <button class="continue-payment">
-                    <a style="text-decoration: none; color: white"
-                       onclick="window.location.href='@Url.Action("PaymentSuccess", "Payment")'">Tiếp tục thanh toán</a>
-                </button>
+                <form action="@Url.Action("CreatePaymentUrl", "Payment")" method="post">
+                    <input type="hidden" name="Amount" value="165000">
+                    <input type="hidden" name="ProductName" value="Easy-Care Subscription (3 Months)">
+                    <button type="submit" class="continue-to-payment-btn" style="color: white">
+                        Tiếp tục thanh toán
+                    </button>
+                </form>
             </div>
         </div>
     </div>

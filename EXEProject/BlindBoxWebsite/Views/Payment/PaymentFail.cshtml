@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/thanhtoan_success.css">
+    <link rel="stylesheet" href="~/css/thanhtoan_fail.css">
     <link rel="stylesheet" href="~/css/index.css">
-    <title>Transaction Success</title>
+    <title>Transaction Failed</title>
 </head>
 <body>
     <div class="container">
@@ -21,13 +21,12 @@
             </div>
         </div>
 
-        <h2 class="success-message">Xin chúc mừng!</h2>
+        <h2 class="fail-message">Rất tiếc, giao dịch không thành công!</h2>
 
         <div class="transaction-details">
-            <p style="margin-bottom: 25px;"><span>Giao dịch thành công</span></p>
-            @* <p style="margin-bottom: 25px;">Sản phẩm được chọn: <span>@Model.OrderDescription</span></p> <!-- Sản phẩm động -->
+            <p style="margin-bottom: 25px;">Lý do: <span>@Model.OrderDescription</span></p> <!-- Thông báo lỗi từ VNPay -->
             <p style="margin-bottom: 25px;">Phương thức thanh toán: <span>@Model.PaymentMethod</span></p> <!-- Phương thức thanh toán động -->
-            <p style="margin-bottom: 25px;">ID giao dịch: <span>@Model.TransactionId</span></p> <!-- ID giao dịch động --> *@
+            <p style="margin-bottom: 25px;">ID giao dịch: <span>@Model.TransactionId</span></p> <!-- ID giao dịch động -->
         </div>
 
         <div class="back-button">
@@ -37,7 +36,7 @@
 
     <script>
         function goToHomePage() {
-          window.location.href = "/";
+            window.location.href = "/";
         }
     </script>
 </body>

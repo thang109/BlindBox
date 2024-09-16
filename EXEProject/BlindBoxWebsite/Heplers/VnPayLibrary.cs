@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using BlindBoxWebsite.ViewModels;
 
 namespace BlindBoxWebsite.Heplers
 {
@@ -91,6 +92,46 @@ namespace BlindBoxWebsite.Heplers
             }
 
             return data.ToString();
+        }
+
+        public VnPayResponseModel GetFullResponseData(IQueryCollection collection, string hashSecret)
+        {
+            var vnPay = new VnPayLibrary();
+
+            foreach (var (key, value) in collection)
+            {
+                if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
+                {
+                    vnPay.AddResponseData(key, value);
+                }
+            }
+
+            var orderId = Convert.ToInt64(vnPay.GetResponseData("vnp_TxnRef"));
+            var vnPayTranId = Convert.ToInt64(vnPay.GetResponseData("vnp_TransactionNo"));
+            var vnpResponseCode = vnPay.GetResponseData("vnp_ResponseCode");
+            var vnpSecureHash =
+                collection.FirstOrDefault(k => k.Key == "vnp_SecureHash").Value;
+            var orderInfo = vnPay.GetResponseData("vnp_OrderInfo");
+
+            var checkSignature = vnPay.ValidateSignature(vnpSecureHash, hashSecret);
+
+            if (!checkSignature)
+                return new VnPayResponseModel()
+                {
+                    Success = false
+                };
+
+            return new VnPayResponseModel()
+            {
+                Success = true,
+                PaymentMethod = "VnPay",
+                OrderDescription = orderInfo,
+                OrderId = orderId.ToString(),
+                PaymentId = vnPayTranId.ToString(),
+                TransactionId = vnPayTranId.ToString(),
+                Token = vnpSecureHash,
+                VnPayResponseCode = vnpResponseCode
+            };
         }
         #endregion
 
