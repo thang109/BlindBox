@@ -58,9 +58,18 @@ html {
   transition: background-color 0.3s;
 }
 
-.option:hover {
+/*.option:hover {
   background-color: #d1e9e5;
+}*/
+
+.option.selected {
+    background-color: #4CAF50;
+    color: white;
 }
+
+    .hidden{
+        display: none;
+    }
 
 button.ok-button {
     width: 50%;

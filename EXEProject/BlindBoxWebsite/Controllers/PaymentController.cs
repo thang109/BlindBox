@@ -54,14 +54,15 @@ namespace BlindBoxWebsite.Controllers
             return View(model);
         }
 
-        public IActionResult CreatePaymentUrl(PaymentInformationModel model)
+        public IActionResult CreatePaymentUrl(VnPayRequestModel model)
         {
-            //if (string.IsNullOrEmpty(model.Email) ||
-            //    string.IsNullOrEmpty(model.FullName) ||
-            //    string.IsNullOrEmpty(model.Phone))
-            //{
-            //    return RedirectToAction("Checkout", new { error = "Vui lòng điền đầy đủ thông tin" });
-            //}
+            if (string.IsNullOrEmpty(model.Email) &&
+                string.IsNullOrEmpty(model.FullName) &&
+                string.IsNullOrEmpty(model.Phone) &&
+                string.IsNullOrEmpty(model.Address))
+            {
+                return RedirectToAction("Checkout", new { error = "Vui lòng điền đầy đủ thông tin" });
+            }
             var url = _vnPayService.CreatePaymentUrl(HttpContext, model);
 
             return Redirect(url);
@@ -76,7 +77,7 @@ namespace BlindBoxWebsite.Controllers
                 return RedirectToAction("PaymentSuccess");
             }
             else
-            {
+            { 
                 return RedirectToAction("PaymentFail");
             }
         }

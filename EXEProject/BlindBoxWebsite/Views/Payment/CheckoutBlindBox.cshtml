@@ -1,95 +1,62 @@
-﻿@{
-    Layout = null;
-}
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="~/css/checkout_blindbox.css" />
+    <link rel="stylesheet" href="~/css/checkout.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
 </head>
 <body>
     <div class="checkout-container">
-        <header>
-            <h1>GBOX</h1>
-        </header>
+        <div class="checkout-content">
+                <form action="/Payment/CreatePaymentUrl" method="post">
+                    <div class="contact-shipping-info">
+                        <h2>Contact information</h2>
+                        <input type="email" name="Email" placeholder="Email" required />
 
-        <div class="checkout-body">
-            <div class="customer-info">
-                <h2>Thông tin khách hàng</h2>
-                <form class="form-container">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Email" />
+                        <h2>Địa chỉ giao hàng</h2>
+                        <input type="text" name="FullName" placeholder="Your Name" required />
+                        <input type="text" name="City" placeholder="City" required />
+                        <input type="text" name="District" placeholder="District" required />
+                        <input type="text" name="Address" placeholder="Address" required />
+                        <input type="text" name="Phone" placeholder="Phone" required pattern="\d{10,11}" title="Số điện thoại phải là 10-11 chữ số" />
+
+                        <a href="#" class="back-to-cart">← Trở lại giỏ hàng</a>
                     </div>
 
-                    <h2>Địa chỉ giao hàng</h2>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="last-name">Họ</label>
-                            <input type="text" id="last-name" placeholder="Họ" />
+                    <div class="order-summary">
+                        <h2>Order summary</h2>
+                        <div class="product-item">
+                            <img src="https://m.media-amazon.com/images/I/71oyEZZW8+L.jpg"
+                                 alt="Blind box" />
+                            <div>
+                                <p>Blind box</p>
+                                <p>1 | White</p>
+                            </div>
+                            <p class="price">100.000 VND</p>
                         </div>
-                        <div class="form-group">
-                            <label for="first-name">Tên</label>
-                            <input type="text" id="first-name" placeholder="Tên" />
+                        <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
+                        <div class="summary-totals">
+                            <p>Tổng cộng: <span>100.000VND</span></p>
+                            <p>Phí vận chuyển: <span>--</span></p>
+                            <p>Thuế: <span>--</span></p>
+                            <p class="total-amount">Tổng: <span>100.000VND</span></p>
                         </div>
+
+                        <input type="hidden" name="Amount" value="100000" />
+                        <input type="hidden" name="OrderDescription" value="Easy-Care Subscription (3 Months)" />
+                        <input type="hidden" name="OrderType" value="Product Payment" />
+                        <input type="hidden" name="BlindBoxId" value="1" />
+                        <input type="hidden" name="CreateDate" value="@DateTime.Now" />
+
+                        <button type="submit" class="continue-to-payment-btn" style="color: white">
+                            Tiếp tục thanh toán
+                        </button>
                     </div>
-
-                    <div class="form-group">
-                        <label for="province">Tỉnh/Thành Phố</label>
-                        <input type="text" id="province" placeholder="Tỉnh/Thành Phố" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="district">Quận/Huyện</label>
-                        <input type="text" id="district" placeholder="Quận/Huyện" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Địa chỉ cụ thể</label>
-                        <input type="text" id="address" placeholder="Địa chỉ cụ thể" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Điện thoại</label>
-                        <input type="text" id="phone" placeholder="Điện thoại" />
-                    </div>
-                </form>
-
-                <a href="#" class="back-to-cart">← Trở lại giỏ hàng</a>
-            </div>
-
-            <div class="order-summary">
-                <h2>Order summary</h2>
-                <div class="item-summary">
-                    <img src="https://m.media-amazon.com/images/I/71oyEZZW8+L.jpg"
-                         alt="Blind box" />
-                    <div>
-                        <p>Blind box</p>
-                        <p>1 | White</p>
-                    </div>
-                    <p class="price">100.000 VND</p>
-                </div>
-
-                <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
-
-                <div class="order-totals">
-                    <p>Tổng cộng</p>
-                    <p class="price">100.000 VND</p>
-                </div>
-
-                <form action="@Url.Action("CreatePaymentUrl", "Payment")" method="post">
-                    <input type="hidden" name="Amount" value="165000">
-                    <input type="hidden" name="ProductName" value="Easy-Care Subscription (3 Months)">
-                    <button type="submit" class="continue-to-payment-btn" style="color: white">
-                        Tiếp tục thanh toán
-                    </button>
                 </form>
             </div>
         </div>
-    </div>
 </body>
 </html>

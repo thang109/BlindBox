@@ -80,9 +80,13 @@ namespace BlindBoxWebsite.Heplers
                 _responseData.Remove("vnp_SecureHash");
             }
 
-            foreach (var (key, value) in _responseData.Where(kv => !string.IsNullOrEmpty(kv.Value)))
+            foreach (var key in _responseData.Keys.OrderBy(k => k))
             {
-                data.Append(WebUtility.UrlEncode(key) + "=" + WebUtility.UrlEncode(value) + "&");
+                var value = _responseData[key];
+                if (!string.IsNullOrEmpty(value))
+                {
+                    data.Append(WebUtility.UrlEncode(key) + "=" + WebUtility.UrlEncode(value) + "&");
+                }
             }
 
             //remove last '&'
@@ -115,7 +119,7 @@ namespace BlindBoxWebsite.Heplers
 
             var checkSignature = vnPay.ValidateSignature(vnpSecureHash, hashSecret);
 
-            if (!checkSignature)
+            if (checkSignature)
                 return new VnPayResponseModel()
                 {
                     Success = false

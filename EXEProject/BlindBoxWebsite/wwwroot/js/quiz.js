@@ -1,34 +1,34 @@
-﻿let currentQuiz = 1; // Quiz đầu tiên
+﻿// Object to store selected answers
+const answers = {};
 
-// Hiển thị quiz theo thứ tự
-function showQuiz(quizNumber) {
-    const quizzes = document.querySelectorAll('.quiz');
-    quizzes.forEach((quiz, index) => {
-        if (index === quizNumber - 1) {
-            quiz.style.display = 'flex'; // Hiển thị quiz hiện tại
-        } else {
-            quiz.style.display = 'none'; // Ẩn các quiz khác
-        }
-    });
+// Function to highlight selected option and store answer
+function selectOption(quizId, optionElement, optionText) {
+    const options = document.querySelectorAll(`#${quizId} .option`);
+    options.forEach(option => option.classList.remove('selected'));
+
+    optionElement.classList.add('selected');
+
+    answers[quizId] = optionText;
+
+    console.log(answers); 
 }
 
-// Khi trang được tải, hiển thị quiz đầu tiên
-document.addEventListener("DOMContentLoaded", () => {
-    showQuiz(currentQuiz);
-});
-
-// Chuyển đến quiz tiếp theo
+// Go to the next quiz
 function nextQuiz() {
-    if (currentQuiz < 5) {
-        currentQuiz++;
-        showQuiz(currentQuiz);
+    const currentQuiz = document.querySelector('.quiz:not(.hidden)');
+    const nextQuiz = currentQuiz.nextElementSibling;
+    if (nextQuiz && nextQuiz.classList.contains('quiz')) {
+        currentQuiz.classList.add('hidden');
+        nextQuiz.classList.remove('hidden');
     }
 }
 
-// Chuyển về quiz trước
+// Go to the previous quiz
 function previousQuiz() {
-    if (currentQuiz > 1) {
-        currentQuiz--;
-        showQuiz(currentQuiz);
+    const currentQuiz = document.querySelector('.quiz:not(.hidden)');
+    const previousQuiz = currentQuiz.previousElementSibling;
+    if (previousQuiz && previousQuiz.classList.contains('quiz')) {
+        currentQuiz.classList.add('hidden');
+        previousQuiz.classList.remove('hidden');
     }
 }
