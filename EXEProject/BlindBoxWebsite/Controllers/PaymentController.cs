@@ -1,9 +1,12 @@
 ﻿using BlindBoxWebsite.Interfaces;
 using BlindBoxWebsite.Models;
+using BlindBoxWebsite.Services;
 using BlindBoxWebsite.ViewModels;
+using MailKit.Search;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace BlindBoxWebsite.Controllers
 {
@@ -11,11 +14,13 @@ namespace BlindBoxWebsite.Controllers
     {
         private readonly BlindBoxContext _context;
         private readonly IVnPayService _vnPayService;
+        private readonly ISendMailService _sendMailService;
 
-        public PaymentController(BlindBoxContext context, IVnPayService vnPayService)
+        public PaymentController(BlindBoxContext context, IVnPayService vnPayService, ISendMailService sendMailService)
         {
             _context = context;
             _vnPayService = vnPayService;
+            _sendMailService = sendMailService;
         }
         public IActionResult Index()
         {
@@ -56,28 +61,42 @@ namespace BlindBoxWebsite.Controllers
 
         public IActionResult CreatePaymentUrl(VnPayRequestModel model)
         {
-            if (string.IsNullOrEmpty(model.Email) &&
+            try
+            {
+                if (string.IsNullOrEmpty(model.Email) &&
                 string.IsNullOrEmpty(model.FullName) &&
                 string.IsNullOrEmpty(model.Phone) &&
                 string.IsNullOrEmpty(model.Address))
-            {
-                return RedirectToAction("Checkout", new { error = "Vui lòng điền đầy đủ thông tin" });
-            }
-            var url = _vnPayService.CreatePaymentUrl(HttpContext, model);
+                {
+                    return RedirectToAction("PaymentFail");
+                }
+                var url = _vnPayService.CreatePaymentUrl(HttpContext, model);
 
-            return Redirect(url);
+                return Redirect(url);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("PaymentFail");
+            }
         }
 
-        public IActionResult PaymentCallback()
+        public async Task<IActionResult> PaymentCallback()
         {
-            var response = _vnPayService.PaymentExecute(Request.Query);
-
-            if (response.Success) 
+            try
             {
-                return RedirectToAction("PaymentSuccess");
+                var response = _vnPayService.PaymentExecute(Request.Query);
+                if (response.Success)
+                {
+
+                    return RedirectToAction("PaymentSuccess");
+                }
+                else
+                {
+                    return RedirectToAction("PaymentFail");
+                }
             }
-            else
-            { 
+            catch (Exception ex)
+            {
                 return RedirectToAction("PaymentFail");
             }
         }
