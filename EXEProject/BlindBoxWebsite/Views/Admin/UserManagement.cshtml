@@ -1,0 +1,76 @@
+﻿@model BlindBoxWebsite.Models.User
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/user_managment.css" />
+</head>
+<body>
+    <div class="main-content">
+        <div class="topbar">
+            <input type="search" placeholder="Type to search..." />
+            <div class="topbar-icons">
+                <a href="#"><i class="fas fa-bell"></i><span class="badge">4</span></a>
+                <a href="#"><i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="user-management">
+            <h2>User Management</h2>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>john_doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Admin</td>
+                        <td>Active</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="delete-btn">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>jane_smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>User</td>
+                        <td>Active</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="delete-btn">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

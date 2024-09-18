@@ -24,6 +24,10 @@
                             </button>
                             <div class="dropdown-content">
                                 <a href="/Account/EditProfile">Settings</a>
+                                @if (ViewBag.Role == "Admin")
+                                {
+                                    <a href="/Admin/Dashboard">Admin Dashboard</a>
+                                }
                                 <a href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
                             </div>
                         </div>

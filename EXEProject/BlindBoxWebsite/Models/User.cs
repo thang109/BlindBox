@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlindBoxWebsite.Models.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace BlindBoxWebsite.Models;
@@ -26,6 +27,8 @@ public partial class User
     public bool IsEmailConfirmed { get;  set; }
 
     public string? ResetToken { get;  set; }
+
+    public UserRole Role { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
