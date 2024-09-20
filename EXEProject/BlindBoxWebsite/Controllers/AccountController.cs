@@ -1,6 +1,7 @@
 ﻿using BlindBoxWebsite.DTO.AccountDTOs;
 using BlindBoxWebsite.Interfaces;
 using BlindBoxWebsite.Models;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Org.BouncyCastle.Crypto.Generators;
@@ -38,6 +39,13 @@ namespace BlindBoxWebsite.Controllers
                 return View(signUpRequest);
             }
 
+            var existingUser = _userRepository.GetByEmail(signUpRequest.Email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("Email", "Email is already in use.");
+                return View(signUpRequest);
+            }
+
             var user = new User
             {
                 Username = signUpRequest.UserName,
@@ -62,7 +70,7 @@ namespace BlindBoxWebsite.Controllers
 
             TempData["ConfirmMessage"] = "Please check your email to confirm your account.";
 
-            return RedirectToAction("SignIn");
+            return RedirectToAction("SignIn", "Account");
         }
 
         [HttpGet]
@@ -103,21 +111,22 @@ namespace BlindBoxWebsite.Controllers
             }
 
             var user = _userRepository.GetByEmail(signInRequest.UserName);
-            user.CreatedAt = DateTime.Now;
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(signInRequest.Password, user.Password))
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError("Password", "Invalid email or password.");
                 return View(signInRequest);
             }
 
             if (!user.IsEmailConfirmed)
             {
-                TempData["Message"] = "Please confirm your email before logging in.";
-                return RedirectToAction("SignIn");
+                ViewData["ErrorMessage"] = "Your account is not confirmed. Please check your email to confirm your account.";
+                return View(signInRequest);
             }
             HttpContext.Session.SetString("UserId", user.UserId.ToString());
             HttpContext.Session.SetString("UserName", user.Username);
+
+            TempData["LogInSuccess"] = "Welcome to my GBOX shop"; 
 
             return RedirectToAction("Index", "Home");
         }
@@ -126,6 +135,7 @@ namespace BlindBoxWebsite.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            TempData["LogoutSuccess"] = "Thank you and see you soon";
             return RedirectToAction("Index", "Home");
         }
 
@@ -140,16 +150,22 @@ namespace BlindBoxWebsite.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var userId = HttpContext.Session.GetString("UserId");
+                if (userId != null)
+                {
+                    var userDb = await _userRepository.GetByIdAsync(int.Parse(userId));
+                    changePasswordRequest.UserName = userDb?.Username;
+                }
                 return View(changePasswordRequest);
             }
             
-            var userId = HttpContext.Session.GetString("UserId");
-            if(userId == null)
+            var userIdSession = HttpContext.Session.GetString("UserId");
+            if(userIdSession == null)
             {
                 return RedirectToAction("SignIn");
             }
 
-            var user = await _userRepository.GetByIdAsync(int.Parse(userId));
+            var user = await _userRepository.GetByIdAsync(int.Parse(userIdSession));
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "User not found.");
@@ -183,7 +199,7 @@ namespace BlindBoxWebsite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordRequest forgotPasswordRequest)
+        public async Task<IActionResult> ForgotPassword(DTO.AccountDTOs.ForgotPasswordRequest forgotPasswordRequest)
         {
             if(!ModelState.IsValid)
             {
@@ -193,7 +209,7 @@ namespace BlindBoxWebsite.Controllers
             var user = _userRepository.GetByEmail(forgotPasswordRequest.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Email not found.");
+                ModelState.AddModelError("Email", "Email not found.");
                 return View(forgotPasswordRequest);
             }
 
@@ -212,15 +228,15 @@ namespace BlindBoxWebsite.Controllers
             };
 
             await _sendMailService.SendMail(emailContent);
-            TempData["Message"] = "Please check your email for a link to reset your password.";
+            TempData["ResetMessage"] = "Please check your email for a link to reset your password.";
 
-            return RedirectToAction("ForgotPassword");
+            return RedirectToAction("ForgotPassword", "Account");
         }
 
         [HttpGet]
         public IActionResult ResetPassword(string token, string email)
         {
-            var model = new ResetPasswordRequest
+            var model = new DTO.AccountDTOs.ResetPasswordRequest
             {
                 Token = token,
                 Email = email
@@ -230,7 +246,7 @@ namespace BlindBoxWebsite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ResetPassword(ResetPasswordRequest resetPasswordRequest)
+        public async Task<IActionResult> ResetPassword(DTO.AccountDTOs.ResetPasswordRequest resetPasswordRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -240,19 +256,20 @@ namespace BlindBoxWebsite.Controllers
             var user = _userRepository.GetByEmail(resetPasswordRequest.Email);
             if (user == null || user.ResetToken != resetPasswordRequest.Token)
             {
-                ModelState.AddModelError(string.Empty, "Invalid token or email.");
+                ModelState.AddModelError("NewPassword", "Token is already used");
                 return View(resetPasswordRequest);
             }
 
             user.Password = BCrypt.Net.BCrypt.HashPassword(resetPasswordRequest.NewPassword);
             user.ResetToken = null; 
             user.UpdatedAt = DateTime.Now;
+
             await _userRepository.UpdateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            ViewBag.Message = "Password reset successfully. You will be redirected shortly.";
+            TempData["ResetSuccess"] = "Password reset successfully, please sign in again";
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("SignIn", "Account");
         }
 
         [HttpGet]
@@ -315,7 +332,7 @@ namespace BlindBoxWebsite.Controllers
             await _userRepository.UpdateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Profile updated successfully!";
+            TempData["UpdateSuccess"] = "Profile updated successfully!";
 
             return RedirectToAction("EditProfile", "Account");
         }

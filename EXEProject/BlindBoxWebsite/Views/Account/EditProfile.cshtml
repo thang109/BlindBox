@@ -1,46 +1,101 @@
 ﻿@model BlindBoxWebsite.DTO.AccountDTOs.EditProfileRequest
-
-<h2>Edit Profile</h2>
-
-@if(TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
+@{
+    Layout = null;
 }
-<form asp-action="EditProfile" method="post">
-    <div class="form-group">
-        <label for="FullName">Full Name</label>
-        <textarea asp-for="FullName" class="form-control"></textarea>
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
-    
-    <div class="form-group">
-        <label for="UserName">Username</label>
-        <input type="text" asp-for="UserName" class="form-control" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - GBOX Store</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/password-resets/password-reset-3/assets/css/password-reset-3.css">
+    <link href="~/css/editprofile.css" rel="stylesheet" />
+    <style>
+        .popup-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
 
-    <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="email" asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
+            .popup-message.error {
+                background-color: #dc3545;
+            }
+    </style>
+</head>
+<body>
+    @if (TempData["UpdateSuccess"] != null)
+    {
+        <div id="popup-success" class="popup-message">
+            @TempData["UpdateSuccess"]
+        </div>
+    }
+    <div class="container-xl px-4 mt-4">
+        <nav class="nav nav-borders">
+            <a class="nav-link" href="/" target="__blank">Home</a>
+            <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
+            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
+            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page" target="__blank">Notifications</a>
+        </nav>
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <button class="btn btn-primary" type="button">Upload new image</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <form asp-action="EditProfile" method="post">
+                            <div class="mb-3">
+                                <label class="small mb-1" for="UserName">Username (how your name will appear to other users on the site)</label>
+                                <input class="form-control" asp-for="UserName" type="text" placeholder="Enter your username">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-12">
+                                    <label class="small mb-1" for="FullName">Full name</label>
+                                    <input class="form-control" asp-for="FullName" type="text" placeholder="Enter your full name">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small mb-1" for="Email">Email address</label>
+                                <input class="form-control" asp-for="Email" type="email" placeholder="Enter your email address">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="PhoneNumber">Phone number</label>
+                                    <input class="form-control" asp-for="PhoneNumber" type="tel" placeholder="Enter your phone number">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="Address">Address</label>
+                                    <input class="form-control" asp-for="Address" type="text" placeholder="Enter your address">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="Address">Address</label>
-        <input type="text" asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="PhoneNumber">Phone Number</label>
-        <input type="text" asp-for="PhoneNumber" class="form-control" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+    <script src="~/js/account.js"></script>
+</body>
+</html>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

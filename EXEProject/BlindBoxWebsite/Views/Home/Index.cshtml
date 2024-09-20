@@ -1,6 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@if (TempData["LogInSuccess"] != null)
+{
+    <div id="popup-success" class="popup-message">
+        @TempData["LogInSuccess"]
+    </div>
+}
+@if (TempData["LogoutSuccess"] != null)
+{
+    <div id="popup-success" class="popup-message">
+        @TempData["LogoutSuccess"]
+    </div>
+}
 <div class="navigation">
       <nav>
         <ul>

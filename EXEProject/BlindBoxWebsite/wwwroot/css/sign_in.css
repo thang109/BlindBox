@@ -1,0 +1,34 @@
+﻿body {
+    overflow-y: hidden;
+    margin-top: -15px;
+    margin: -15px auto;
+}
+
+button.btn.bsb-btn-xl.btn-primary {
+    background-color: #027f51;
+}
+
+.popup-message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745; /* Màu nền thông báo */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+    .popup-message.error {
+        background-color: #dc3545; /* Màu nền cho thông báo lỗi */
+    }
+
+
+.custom-link {
+    color: #027f51; /* Thay đổi màu sắc theo ý bạn */
+}
+
+    .custom-link:hover {
+        color: #c70039; /* Màu sắc khi di chuột qua */
+    }

@@ -1,0 +1,10 @@
+From: GBOX <thangntde170747@fpt.edu.vn>
+Date: Fri, 20 Sep 2024 11:44:22 +0700
+Subject: Email Confirmation
+Message-Id: <7E10Z0VB5OU4.UV1U2Z46985D2@desktop-hl2r6td>
+Sender: GBOX <thangntde170747@fpt.edu.vn>
+To: maiphuongtruong5@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<h1>Confirm Your Email</h1><p>Please click the link below to confirm your email address: <a href='https://localhost:7237/Account/ConfirmEmail?userId=10&message=Email%20confirmed%20successfully,%20please%20log%20in.'>Confirm Email</a></p>
