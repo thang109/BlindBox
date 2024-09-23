@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/css/index.css" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
 
     * {
@@ -67,17 +68,21 @@
       transition: background-color 0.3s;
     }
 
-    /*.option:hover {
-      background-color: #d1e9e5;
-    }*/
+            .option:hover {
+                background-color: #d1e9e5;
+            }
 
-    .option.selected {
-        background-color: #4CAF50;
-        color: white;
-    }
+            .option.selected {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+                font-weight: bold;
+                cursor: default;
+            }
+
+
 
     .hidden{
-        display: none;
+        display: none !important;
     }
 
     button.ok-button {
@@ -132,22 +137,56 @@
         display: none;
     }
 
-    .quiz:first-child {
-        display: flex; 
-    }
-</style>
+            .quiz:not(.hidden) {
+                display: flex;
+            }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+ </style>
 </head>
 <body>
+    <div class="loading-screen hidden" id="loadingScreen">
+        <div class="loading-content">
+            <p>Cảm ơn bạn đã hoàn thành quiz!</p>
+            <p>Hệ thống đang xử lý quiz của bạn, vui lòng đợi trong giây lát...</p> <br />
+            <div class="text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Quiz 1 -->
         <div class="quiz" id="quiz1">
             <div class="form-section">
-                <div class="question">1 → Đối tượng mà bạn muốn mua quà là ai?*</div>
+                <div class="question">1 → Để bắt đầu, bạn muốn mua quà cho ai?</div>
                 <div class="options">
-                    <div class="option" onclick="selectOption('quiz1', this, 'Bố/Mẹ')">Bố/Mẹ</div>
-                    <div class="option" onclick="selectOption('quiz1', this, 'Bạn bè')">Bạn bè</div>
-                    <div class="option" onclick="selectOption('quiz1', this, 'Người yêu')">Người yêu</div>
-                    <div class="option" onclick="selectOption('quiz1', this, 'Người khác')">Người khác</div>
+                    <div class="option">Đối tác, sếp, đồng nghiệp</div>
+                    <div class="option">Bạn gái, crush</div>
+                    <div class="option">Thành viên trong gia đình</div>
+                    <div class="option">Bạn bè</div>
+                    <div class="option">Bản thân</div>
                 </div>
                 <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
             </div>
@@ -156,76 +195,79 @@
                      alt="Plants on a table" />
             </div>
         </div>
-        
         <!-- Quiz 2 -->
         <div class="quiz" id="quiz2">
             <div class="form-section">
-                <div class="question">2 → Người đó có sở thích gì?*</div>
+                <div class="question">2 → Người bạn muốn mua là? </div>
                 <div class="options">
-                    <div class="option">Thích thể thao</div>
-                    <div class="option">Thích đọc sách</div>
-                    <div class="option">Thích công nghệ</div>
-                    <div class="option">Thích du lịch</div>
+                    <div class="option">Nam</div>
+                    <div class="option">Nữ</div>
                 </div>
-                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
-                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+                <div class="optionButton" style="display: flex">
+                    <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                    <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+                </div>
             </div>
             <div class="image-section">
                 <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
                      alt="Plants on a table" />
             </div>
         </div>
-
         <!-- Quiz 3 -->
         <div class="quiz" id="quiz3">
             <div class="form-section">
-                <div class="question">3 → Người đó thích loại quà nào?*</div>
+                <div class="question">3 → Bạn mua quà nhân dịp gì? *</div>
                 <div class="options">
-                    <div class="option">Đồ ăn/uống</div>
-                    <div class="option">Đồ trang sức</div>
-                    <div class="option">Đồ công nghệ</div>
-                    <div class="option">Đồ handmade</div>
+                    <div class="option">Sinh nhật</div>
+                    <div class="option">Kỉ niệm/Lễ tặng quà</div>
+                    <div class="option">Mừng nhà mới/Tân gia</div>
+                    <div class="option">Không có dịp cụ thể</div>
                 </div>
-                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
-                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+                <div class="optionButton" style="display: flex">
+                    <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                    <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+                </div>
             </div>
             <div class="image-section">
                 <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
                      alt="Plants on a table" />
             </div>
         </div>
-
         <!-- Quiz 4 -->
         <div class="quiz" id="quiz4">
             <div class="form-section">
-                <div class="question">4 → Người đó có dịp đặc biệt gì không?*</div>
+                <div class="question">4 → Chủ đề bạn nghĩ họ sẽ quan tâm là ?</div>
                 <div class="options">
-                    <div class="option">Sinh nhật</div>
-                    <div class="option">Kỷ niệm</div>
-                    <div class="option">Lễ hội</div>
-                    <div class="option">Không có dịp đặc biệt</div>
+                    <div class="option">Đời sống sức khỏe và chăm sóc gia đình</div>
+                    <div class="option">Đồ công nghệ và thiết bị điện tử, gia dụng</div>
+                    <div class="option">Thời trang và đồ sưu tập</div>
+                    <div class="option">Đọc sách và kiến thức</div>
+                    <div class="option">Thể thao và du lịch</div>
                 </div>
-                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
-                <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+                <div class="optionButton" style="display: flex">
+                    <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                    <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
+                </div>
             </div>
             <div class="image-section">
                 <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
                      alt="Plants on a table" />
             </div>
         </div>
-
         <!-- Quiz 5 -->
         <div class="quiz" id="quiz5">
             <div class="form-section">
-                <div class="question">5 → Cảm ơn bạn! Cuối cùng, sở thích của người nhận là?*</div>
+                <div class="question">5 → Cảm ơn bạn! Cuối cùng, chi phí bạn sẵn sàng bỏ ra cho quà tặng là?</div>
                 <div class="options">
-                    <div class="option">Thích sống xanh, yêu thiên nhiên</div>
-                    <div class="option">Thích tự tay làm đồ handmade</div>
-                    <div class="option">Thích đồ công nghệ</div>
-                    <div class="option">Thích đọc sách, học hỏi</div>
+                    <div class="option">Dưới 500.000đ</div>
+                    <div class="option">500.000đ - 999.999đ</div>
+                    <div class="option">1.000.000đ - 1.999.999đ</div>
+                    <div class="option">2.000.000đ trở lên</div>
                 </div>
-                <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
-                <button class="submit-button" onclick="window.location.href='@Url.Action("GiftSuggest", "Quiz")'">Hoàn thành</button>
+                <div class="optionButton" style="display: flex">
+                    <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
+                    <button class="submit-button" onclick="completeQuiz()">Hoàn thành</button>
+                </div>
             </div>
             <div class="image-section">
                 <img src="https://st3.depositphotos.com/4876861/32484/i/450/depositphotos_324849002-stock-photo-small-tree-growing-with-sunshine.jpg"
@@ -234,6 +276,74 @@
         </div>
     </div>
 
-    <script src="~/js//quiz.js"></script>
+    <script>
+        let currentQuiz = 1;
+        let answers = [];
+
+        function showQuiz(quizNumber) {
+            const quizzes = document.querySelectorAll('.quiz');
+            quizzes.forEach((quiz, index) => {
+                if (index === quizNumber - 1) {
+                    quiz.style.display = 'flex';
+                } else {
+                    quiz.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            showQuiz(currentQuiz);
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', function () {
+                    selectOption(this);
+                });
+            });
+        });
+
+        function selectOption(option) {
+            const parentOptions = option.parentElement.querySelectorAll('.option');
+            parentOptions.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            option.classList.add('selected');
+            const questionIndex = currentQuiz - 1;
+            answers[questionIndex] = option.textContent.trim();
+        }
+
+        function nextQuiz() {
+            const selectedOption = document.querySelector(`#quiz${currentQuiz} .option.selected`);
+            if (selectedOption) {
+                if (currentQuiz < 5) {
+                    currentQuiz++;
+                    showQuiz(currentQuiz);
+                } else {
+                    alert("Cảm ơn bạn đã hoàn thành quiz!");
+                    console.log("Câu trả lời của bạn:", answers);
+                    window.location.href = '@Url.Action("GiftSuggest", "Quiz")';
+                }
+            } else {
+                alert("Vui lòng chọn một câu trả lời trước khi tiếp tục!");
+            }
+        }
+
+        function previousQuiz() {
+            if (currentQuiz > 1) {
+                currentQuiz--;
+                showQuiz(currentQuiz);
+            }
+        }
+
+        function completeQuiz() {
+            const loadingScreen = document.getElementById("loadingScreen");
+            loadingScreen.classList.remove("hidden");
+
+            setTimeout(function () {
+                window.location.href = '@Url.Action("GiftSuggest", "Quiz")';
+            }, 5000);
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -15,17 +15,40 @@
         .popup-message {
             display: none;
             position: fixed;
-            top: 20px;
+            top: 50px;
             right: 20px;
-            background-color: #28a745;
+            background-color: #28a745; /* Màu nền thông báo */
             color: white;
-            padding: 15px;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 10px;
             z-index: 1000;
+            width: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in-out;
+            display: flex; /* Sử dụng Flexbox để đặt logo và nội dung */
+            align-items: center;
+            justify-content: center;
         }
 
             .popup-message.error {
-                background-color: #dc3545;
+                background-color: #dc3545; /* Màu nền cho thông báo lỗi */
+            }
+
+            .popup-message .icon {
+                font-size: 24px;
+                margin-right: 15px;
+            }
+
+            .popup-message .message-text {
+                flex: 1; /* Cho phần chữ chiếm toàn bộ không gian còn lại */
+                text-align: left;
+            }
+
+            .popup-message .close-btn {
+                margin-left: 10px;
+                font-size: 18px;
+                cursor: pointer;
+                color: white;
             }
     </style>
 </head>
@@ -33,7 +56,12 @@
     @if (TempData["UpdateSuccess"] != null)
     {
         <div id="popup-success" class="popup-message">
-            @TempData["UpdateSuccess"]
+            <span class="icon">✔️</span>
+            <div class="message-text">
+                <strong>Thông báo</strong><br />
+                @TempData["UpdateSuccess"]
+            </div>
+            <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
         </div>
     }
     <div class="container-xl px-4 mt-4">

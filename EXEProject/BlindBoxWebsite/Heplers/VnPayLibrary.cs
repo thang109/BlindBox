@@ -119,7 +119,7 @@ namespace BlindBoxWebsite.Heplers
 
             var checkSignature = vnPay.ValidateSignature(vnpSecureHash, hashSecret);
 
-            if (checkSignature)
+            if (!checkSignature)
                 return new VnPayResponseModel()
                 {
                     Success = false

@@ -63,13 +63,11 @@ namespace BlindBoxWebsite.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(model.Email) &&
-                string.IsNullOrEmpty(model.FullName) &&
-                string.IsNullOrEmpty(model.Phone) &&
-                string.IsNullOrEmpty(model.Address))
+                if (!ModelState.IsValid)
                 {
-                    return RedirectToAction("PaymentFail");
+                    return View("Checkout", model);
                 }
+
                 var url = _vnPayService.CreatePaymentUrl(HttpContext, model);
 
                 return Redirect(url);

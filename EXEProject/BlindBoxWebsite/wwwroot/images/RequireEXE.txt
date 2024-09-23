@@ -1,0 +1,20 @@
+**Nội dung quiz, 5 câu
+
+**Tìm các hình ảnh liên quan tới quiz đó, 1 quiz 1 ảnh
+VD/ Sở thích mang giày/dép của bạn là gì?
+1. Thể thao
+2. Du lịch
+3. Thời trang
+4. Khác...
+-> thì tìm ảnh liên quan đến giày
+
+**Ảnh cho trang homepage
+1 ảnh hộp quà section đầu (700x500)
+1 ảnh hộp quà cho section 2 (600x600)
+1 logo cho hệ thống
+
+**10 tấm ảnh cho trang recommend, ảnh liên quan đến các sản phẩm ở trong quà tặng
+=> Tổng cộng cần tầm 30 tấm ảnh chất lượng
+   5 quiz
+
+**Admin sẽ quản lý những thông tin gì(doanh thu, sản phẩm,...)

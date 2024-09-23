@@ -52,9 +52,14 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 app.UseSession();
+
+app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 app.UseCors(builder =>
     builder.AllowAnyHeader()

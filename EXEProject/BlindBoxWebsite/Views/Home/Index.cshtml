@@ -1,16 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@if (TempData["LogInSuccess"] != null)
-{
-    <div id="popup-success" class="popup-message">
-        @TempData["LogInSuccess"]
-    </div>
-}
 @if (TempData["LogoutSuccess"] != null)
 {
     <div id="popup-success" class="popup-message">
-        @TempData["LogoutSuccess"]
+        <span class="icon">✔️</span>
+        <div class="message-text">
+            <strong>Thông báo</strong><br />
+            <span>@TempData["LogoutSuccess"]</span>
+        </div>
+        <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
+    </div>
+}
+@if (TempData["LogInSuccess"] != null)
+{
+    <div id="popup-success" class="popup-message">
+        <span class="icon">✔️</span>
+        <div class="message-text">
+            <strong>Thông báo</strong><br />
+            <span>Đăng Nhập Thành Công<span>
+        </div>
+        <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
     </div>
 }
 <div class="navigation">

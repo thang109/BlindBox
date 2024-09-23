@@ -10,23 +10,127 @@
     <link rel="stylesheet" href="~/css/suggest.css" />
     <link rel="stylesheet" href="~/css/index.css" />
     <title>Easy-Care Subscription</title>
+    <style>
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 28px;
+        color: #4CAF50; /* Màu xanh lá cây tươi sáng */
+        text-align: center;
+    }
+
+    p {
+        line-height: 1.6;
+        margin: 15px 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+        a:hover {
+            text-decoration: underline; /* Gạch chân khi hover */
+        }
+
+    .subscription-section {
+      background-color: #fff;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .subscription-container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 140px;
+      padding: 20px 50px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .content-container {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .content-container h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .content-container p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .shop-now-btn,
+    .blindbox-btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        background-color: #027f51; /* Màu xanh lá cây */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s;
+    }
+
+    .shop-now-btn:hover,
+    .blindbox-btn:hover {
+      background-color: #45a049;
+    }
+
+    .blindbox-btn {
+      background-color: #027f51;
+      margin-top: 10px;
+    }
+
+    </style>
 </head>
 <body>
     <section class="subscription-section">
         <div class="subscription-container">
             <div class="image-container" style="width: 50%;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB2fyimaH7vxwd46nNTNHoBrlILHZSCMS-MQ&s"
-                     alt="Plants" />
+                <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Suggest" />
             </div>
             <div class="content-container">
-                <h1>Easy-Care Subscription</h1>
-                <p>The gift that keeps on giving — no green thumb required</p>
+                <h1>Tinh Dầu Thiên Nhiên</h1>
+                <p>
+                    Chào bạn! Sau khi tổng hợp ý kiến từ quiz, tôi rất vui được giới thiệu sản phẩm bạn đang tìm kiếm: tinh dầu thiên nhiên thư giãn. Được chiết xuất từ cây cỏ và hoa, sản phẩm này mang lại nhiều lợi ích cho sức khỏe và tinh thần. Với hương thơm tự nhiên, tinh dầu giúp xua tan căng thẳng, nâng cao tâm trạng và cải thiện giấc ngủ. Hãy để tinh dầu thiên nhiên mang lại sự thư giãn mà bạn xứng đáng!
+                </p>
                 <button class="shop-now-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Gift", "Product")'">SHOP NOW</a>
+                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment")'">BUY NOW</a>
                 </button>
-                <p>or surprise yourself with blind box</p>
+                <p>
+                    Nếu sản phẩm vừa rồi chưa phù hợp, hệ thống của tôi đã chuẩn bị các sản phẩm Blind Box và nhiều lựa chọn khác cho bạn! Mỗi hộp quà được chọn cẩn thận theo sở thích và nhu cầu của bạn, mang đến những trải nghiệm bất ngờ.
+                </p>
                 <button class="blindbox-btn">
                     <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("BlindBox", "Product")'">BLINDBOX SHOP</a>
+                </button>
+                <button class="blindbox-btn">
+                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Gift", "Product")'">SHOP NOW</a>
                 </button>
             </div>
         </div>
