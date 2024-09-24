@@ -21,6 +21,12 @@
             .custom-link:hover {
                 color: #c70039;
             }
+
+        .img-full-border {
+            width: 90%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -31,7 +37,7 @@
                 <div class="col-12 col-md-6 bsb-tpl-bg-platinum">
                     <div class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5">
                         <h3 class="m-0">Welcome!</h3>
-                        <img class="img-fluid rounded mx-auto my-4" loading="lazy" src="./assets/img/bsb-logo.svg" width="245" height="80" alt="BootstrapBrain Logo">
+                        <img class="img-fluid img-full-border rounded mx-auto my-4" loading="lazy" src="~/images/Logo_Website.jpg" width="245" height="80" alt="BootstrapBrain Logo">
                         <p class="mb-0">Not a member yet? <a href="SignUp" class="custom-link">Register now</a></p>
                     </div>
                 </div>
@@ -54,7 +60,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label asp-for="Email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input asp-for="Email" class="form-control" type="email" placeholder="abc@gmail.com">
+                                    <input asp-for="Email" class="form-control" type="text" placeholder="abc@gmail.com">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">

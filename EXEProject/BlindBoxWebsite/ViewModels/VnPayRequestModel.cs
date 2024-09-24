@@ -12,7 +12,7 @@ namespace BlindBoxWebsite.ViewModels
 
         [Required(ErrorMessage = "Full name is required.")]
         [StringLength(100, ErrorMessage = "Full name cannot be longer than 100 characters.")]
-        [RegularExpression(@"^\S.*\S$|^\S$", ErrorMessage = "Full name cannot start or end with whitespace.")]
+        [RegularExpression(@"^[a-zA-Z]+(\s[a-zA-Z]+)*$", ErrorMessage = "Full name can only contain letters and cannot start or end with whitespace.")]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
 

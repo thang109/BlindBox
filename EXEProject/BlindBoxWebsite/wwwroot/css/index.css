@@ -147,7 +147,7 @@ nav ul {
 /* Hero Section Styles */
 .gift-section {
     display: flex;
-    height: 500px;
+    height: 700px;
 }
 
 .left-side {
@@ -161,7 +161,7 @@ nav ul {
 
 .right-side {
     flex: 1;
-    background-image: url("https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80");
+    background-image: url('@Url.Content("~/images/blindbox_coca.jpg")');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -291,7 +291,7 @@ ul {
 
 .quiz-button {
     padding: 15px 30px;
-    background-color: #00a400;
+    background-color: #008c5a;
     color: white;
     border: none;
     cursor: pointer;

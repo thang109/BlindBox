@@ -6,7 +6,7 @@
     <div id="popup-success" class="popup-message">
         <span class="icon">✔️</span>
         <div class="message-text">
-            <strong>Thông báo</strong><br />
+            <strong>Đăng xuất thành công!</strong><br />
             <span>@TempData["LogoutSuccess"]</span>
         </div>
         <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
@@ -17,14 +17,48 @@
     <div id="popup-success" class="popup-message">
         <span class="icon">✔️</span>
         <div class="message-text">
-            <strong>Thông báo</strong><br />
-            <span>Đăng Nhập Thành Công<span>
+            <strong>Đăng Nhập Thành Công!</strong><br />
+            <span>@TempData["LogInSuccess"]</span>
         </div>
         <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
     </div>
 }
+@if (TempData["SubcribeSuccess"] != null)
+{
+    <div id="popup-success" class="popup-message">
+        <span class="icon">✔️</span>
+        <div class="message-text">
+            <strong>Đăng ký thành công!</strong><br />
+            <span>@TempData["SubcribeSuccess"]</span>
+        </div>
+        <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
+    </div>
+}
+
+<!-- Popup Section -->
+@* <div id="popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; border-radius:12px; box-shadow:0 4px 15px rgba(0, 0, 0, 0.1); z-index:1000;">
+    <div class="container">
+        <div class="left-section">
+            <h2>Ý tưởng về quà tặng, sắp ra mắt.*</h2>
+            <p>Chia sẻ email của bạn ở bên dưới để nhận những cập nhật mới nhất từ GBox.</p>
+            <input type="email" placeholder="name@example.com" />
+            <button class="submit-btn">Nhận cập nhật</button>
+            <button id="close-popup" style="margin-top: 20px;">Đóng</button>
+        </div>
+        <div class="right-section">
+            <img src="" alt="Gift Ideas Plant" />
+            <div class="icons">
+                <div class="icon" onclick="scrollUp()">&#9650;</div>
+                <div class="icon" onclick="scrollDown()">&#9660;</div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
+
+<!-- Navbar Section -->
 <div class="navigation">
-      <nav>
+    <nav>
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">Dịp lễ</a></li>
@@ -34,16 +68,16 @@
           <li><a href="#">Fanpage</a></li>
           <li><a href="#">Subscriptions</a></li>
         </ul>
-      </nav>
-    </div>
+    </nav>
+</div>
 
-    <!-- Hero Section -->
-    <section class="gift-section">
+<!-- Hero Section -->
+<section class="gift-section">
       <div class="left-side">
         <h2>The best gift is<br />giving from your<br />heart.</h2>
         <div class="buttons">
           <a onclick="window.location.href='@Url.Action("Quiz", "Quiz")'" class="btn btn-primary">Get Quiz Now →</a>
-          <a href="#" class="btn btn-secondary">Đăng Kí Hội Viên →</a>
+            <a href="Subscription/Subscribe" class="btn btn-secondary">Đăng Kí Hội Viên →</a>
         </div>
       </div>
       <div class="right-side">
@@ -51,8 +85,8 @@
       </div>
     </section>
 
-    <!-- Quiz Section -->
-    <section class="quiz-section">
+<!-- Quiz Section -->
+<section class="quiz-section">
       <div class="text-content">
         <h1>Gift Guide Quiz</h1>
         <p>Bạn muốn mua quà? Chúng tôi sẽ giúp bạn tìm được món quà phù hợp</p>
@@ -70,7 +104,7 @@
       </div>
     </section>
 
-    <section class="info-section">
+<section class="info-section">
       <div class="info-box">
         <div class="icon">
           <!-- Icon miễn phí vận chuyển -->

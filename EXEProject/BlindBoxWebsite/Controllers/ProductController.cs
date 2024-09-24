@@ -11,11 +11,23 @@ namespace BlindBoxWebsite.Controllers
 
         public IActionResult BlindBox()
         {
+            bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
+            ViewBag.IsUserLoggedIn = isUserLoggedIn;
+            if (isUserLoggedIn)
+            {
+                ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            }
             return View();
         }
 
         public IActionResult Gift()
         {
+            bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
+            ViewBag.IsUserLoggedIn = isUserLoggedIn;
+            if (isUserLoggedIn)
+            {
+                ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            }
             return View();
         }
     }

@@ -1,7 +1,4 @@
 ﻿@model BlindBoxWebsite.ViewModels.VnPayRequestModel
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout - GBOX Store</title>
+    <link rel="stylesheet" href="~/css/index.css">
     <style>
         .checkout-container {
             max-width: 1200px;
@@ -19,7 +17,7 @@
         .row-container {
             display: flex;
             justify-content: space-between;
-            gap: 20px;
+            gap: 100px;
         }
 
         .contact-shipping-info,
@@ -31,11 +29,11 @@
         }
 
         .contact-shipping-info {
-            max-width: 55%;
+            max-width: 50%;
         }
 
         .order-summary {
-            max-width: 40%;
+            max-width: 50%;
             background-color: #f1f1f1;
             padding: 20px;
             border-radius: 8px;
@@ -52,7 +50,7 @@
         }
 
             .product-item img {
-                max-width: 80px;
+                max-width: 170px;
                 margin-right: 15px;
             }
 
@@ -148,17 +146,18 @@
 <body>
     <div class="checkout-container">
         <div class="checkout-content">
+            <span style="display: none">@ViewBag.Username</span>
             <form asp-action="CreatePaymentUrl" method="post">
                 <div class="row-container">
                     <!-- Contact and Shipping Info Section -->
                     <div class="contact-shipping-info">
-                        <h2>Contact information</h2>
+                        <h3>Contact information</h3>
                         <div class="mb-3">
                             <input asp-for="Email" class="form-control" placeholder="Email" />
                             <span asp-validation-for="Email" class="error-message"></span>
                         </div>
 
-                        <h2>Shipping Address</h2>
+                        <h3>Shipping Address</h3>
                         <div class="mb-3">
                             <input asp-for="FullName" class="form-control" type="text" placeholder="Your Name" />
                             <span asp-validation-for="FullName" class="error-message"></span>
@@ -191,9 +190,9 @@
                     <div class="order-summary">
                         <h2>Order summary</h2>
                         <div class="product-item">
-                            <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Suggest" />
+                            <img src="~/images/blindbox_coca.jpg" alt="Suggest" />
                             <div class="product-details">
-                                <p>Blind Box</p>
+                                <h3>Blind Box</h3>
                                 <p>200.000 VND</p>
                             </div>
                         </div>
@@ -202,7 +201,7 @@
                             <p>Tổng cộng: <span>200.000 VND</span></p>
                             <p>Phí vận chuyển: <span>--</span></p>
                             <p>Thuế: <span>--</span></p>
-                            <p class="total-amount">Tổng: <span>VND 200.000</span></p>
+                            <p class="total-amount">Tổng: <span>200.000 VND</span></p>
                         </div>
 
                         <!-- Hidden fields for order details -->

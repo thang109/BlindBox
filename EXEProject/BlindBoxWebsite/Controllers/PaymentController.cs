@@ -3,6 +3,7 @@ using BlindBoxWebsite.Models;
 using BlindBoxWebsite.Services;
 using BlindBoxWebsite.ViewModels;
 using MailKit.Search;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
@@ -29,11 +30,23 @@ namespace BlindBoxWebsite.Controllers
 
         public IActionResult Checkout()
         {
+            bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
+            ViewBag.IsUserLoggedIn = isUserLoggedIn;
+            if (isUserLoggedIn)
+            {
+                ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            }
             return View();
         }
 
         public IActionResult CheckoutBlindBox()
         {
+            bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
+            ViewBag.IsUserLoggedIn = isUserLoggedIn;
+            if (isUserLoggedIn)
+            {
+                ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            }
             return View();
         }
 

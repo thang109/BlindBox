@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         .popup-message {
-            display: none;
             position: fixed;
-            top: 50px;
+            top: 130px;
             right: 20px;
             background-color: #efefef; /* Màu nền thông báo */
             color: black;
@@ -45,13 +44,42 @@
                 cursor: pointer;
                 color: #28a745;
             }
+
+        .right-side {
+            flex: 2;
+            background-image: url('@Url.Content("~/images/blindbox_coca.jpg")');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gift-section {
+            display: flex;
+            height: 700px;
+        }
+
+        .quiz-button {
+            padding: 15px 30px;
+            background-color: #008c5a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
     </style>
 </head>
 <body>
     <div class="top-bar">Free Shipping + 30-Day Guarantee</div>
     <header>
         <div class="header-main">
-            <a class="logo" href="/" style="text-decoration:none">GBOX</a>
+            <a class="logo" href="/">
+                <img src="~/images/Logo_Website.jpg" alt="GBOX" style="height: 100px;margin: -15px 25px;" />
+            </a>
             <div class="user-actions">
                 @if (ViewBag.IsUserLoggedIn == true)
                 {
@@ -95,7 +123,7 @@
     <footer class="custom-footer">
         <div class="store-visit">
             <div class="store-visit-content">
-                <img src="https://via.placeholder.com/100" alt="Store Image" />
+                <img src="~/images/Logo_Website.jpg" alt="Store Logo" />
                 <div class="store-info">
                     <h2>Visit Us In A Store Near You</h2>
                     <p>
@@ -168,7 +196,9 @@
         </div>
         <div class="bottom-footer">
             <div class="bottom-content">
-                <span class="footer-logo">GBOX</span>
+                <span class="footer-logo">
+                    <img src="~/images/Logo_Website.jpg" alt="Store Logo" style="height: 113px;margin: -18px 15px -27px 15px" />
+                </span>
                 <div class="footer-links">
                     <a href="#">Affiliate Program</a>
                     <a href="#">Terms of Use</a>
@@ -197,7 +227,29 @@
             item.style.color = "#333";
           });
         });
+
+        var errorPopup = document.getElementById('popup-error');
+        var successPopup = document.getElementById('popup-success');
+        if (errorPopup) {
+                    errorPopup.style.display = 'flex';
+                    setTimeout(function () {
+                        errorPopup.style.display = 'none';
+                    }, 5000);
+                }
+
+                if (successPopup) {
+                    successPopup.style.display = 'flex';
+                    setTimeout(function () {
+                        successPopup.style.display = 'none';
+                    }, 5000);
+                }
+
+                function closePopup(id) {
+                    document.getElementById(id).style.display = 'none';
+                } 
+                              
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

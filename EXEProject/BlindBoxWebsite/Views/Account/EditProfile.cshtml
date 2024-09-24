@@ -13,12 +13,11 @@
     <link href="~/css/editprofile.css" rel="stylesheet" />
     <style>
         .popup-message {
-            display: none;
             position: fixed;
             top: 50px;
             right: 20px;
-            background-color: #28a745; /* Màu nền thông báo */
-            color: white;
+            background-color: #f2f6fc; /* Màu nền thông báo */
+            color: black;
             padding: 20px;
             border-radius: 10px;
             z-index: 1000;
@@ -48,7 +47,7 @@
                 margin-left: 10px;
                 font-size: 18px;
                 cursor: pointer;
-                color: white;
+                color: black;
             }
     </style>
 </head>
@@ -122,6 +121,28 @@
         </div>
     </div>
     <script src="~/js/account.js"></script>
+    <script>
+        var errorPopup = document.getElementById('popup-error');
+        var successPopup = document.getElementById('popup-success');
+
+        if (errorPopup) {
+            errorPopup.style.display = 'flex';
+            setTimeout(function () {
+                errorPopup.style.display = 'none';
+            }, 5000);
+        }
+
+        if (successPopup) {
+            successPopup.style.display = 'flex';
+            setTimeout(function () {
+                successPopup.style.display = 'none';
+            }, 5000);
+        }
+
+        function closePopup(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
 </body>
 </html>
 
