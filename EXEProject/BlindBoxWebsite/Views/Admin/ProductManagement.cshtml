@@ -1,79 +1,57 @@
-﻿@model BlindBoxWebsite.Models.User
-
+﻿@section Styles {
+    <link rel="stylesheet" href="~/css/admin_manager.css">
+}
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Management</title>
-    <link rel="stylesheet" href="~/css/product_managment.css" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-</head>
-<body>
-    <div class="main-content">
-        <div class="topbar">
-            <input type="search" placeholder="Search products..." />
-            <div class="topbar-icons">
-                <a href="#"><i class="fas fa-bell"></i><span class="badge">3</span></a>
-                <a href="#"><i class="fas fa-user-circle"></i></a>
-            </div>
-        </div>
-
-        <div class="product-management">
-            <h2>Product Management</h2>
-            <button class="add-product-btn">
-                <i class="fas fa-plus"></i> Add Product
-            </button>
-            <table class="product-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Smartphone XYZ</td>
-                        <td>Electronics</td>
-                        <td>$499</td>
-                        <td>In Stock</td>
-                        <td class="action-buttons">
-                            <button class="edit-btn">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="delete-btn">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Running Shoes</td>
-                        <td>Sports</td>
-                        <td>$89</td>
-                        <td>Out of Stock</td>
-                        <td class="action-buttons">
-                            <button class="edit-btn">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="delete-btn">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</body>
-</html>
+<div class="product-management">
+    <h2>Product Management</h2>
+    <button class="add-product-btn">
+        <i class="fas fa-plus"></i> Add Product
+    </button>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Smartphone XYZ</td>
+                <td>Electronics</td>
+                <td>$499</td>
+                <td>In Stock</td>
+                <td class="action-buttons">
+                    <button class="edit-btn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Running Shoes</td>
+                <td>Sports</td>
+                <td>$89</td>
+                <td>Out of Stock</td>
+                <td class="action-buttons">
+                    <button class="edit-btn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

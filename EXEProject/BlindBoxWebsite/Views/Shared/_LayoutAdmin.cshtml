@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Admin Dashboard</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="sidebar">
@@ -14,26 +14,36 @@
         </div>
         <ul>
             <li>
-                <a href="/Admin/Dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="/Admin/Dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
             </li>
             <li>
                 <a href="/Admin/Analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
             </li>
             <li>
-                <a href="/Admin/UserManagement"><i class="fas fa-box"></i> User managment</a>
+                <a href="/Admin/UserManagement"><i class="fas fa-box"></i> User Management</a>
             </li>
             <li>
-                <a href="/Admin/ProductManagement"><i class="fas fa-box"></i> Product managment</a>
+                <a href="/Admin/ProductManagement"><i class="fas fa-box"></i> Product Management</a>
             </li>
         </ul>
     </div>
+    <div class="main-content">
+        <div class="topbar">
+            <input type="search" placeholder="Type to search..." />
+            <div class="topbar-icons">
+                <a href="#"><i class="fas fa-bell"></i><span class="badge">4</span></a>
+                <a href="#" onclick="document.getElementById('logoutForm').submit();"><i class="fas fa-user-circle"></i></a>
+                <form id="logoutForm" method="post" action="/Account/Logout" style="display: none;">
+                    <button type="submit" id="logoutButton">Logout</button>
+                </form>
+            </div>
+        </div>
 
-    <div>
-        @RenderBody()
+        <div class="content-body">
+            @RenderBody()
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="~/js/admin.js"></script>
-    <script src="~/js/analytics.js"></script>
+    @await RenderSectionAsync("Styles", required: false)
 </body>
 </html>

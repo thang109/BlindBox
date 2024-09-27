@@ -1,101 +1,79 @@
-﻿@model BlindBoxWebsite.Models.User
-
+﻿@section Styles {
+    <link rel="stylesheet" href="~/css/admin_analytics.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+}
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analytics Dashboard</title>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="~/css/analytics.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <div class="main-content">
-        <div class="topbar">
-            <input type="search" placeholder="Type to search..." />
-            <div class="topbar-icons">
-                <a href="#"><i class="fas fa-bell"></i><span class="badge">4</span></a>
-                <a href="#"><i class="fas fa-user-circle"></i></a>
-            </div>
-        </div>
-
-        <div class="analytics-cards">
-            <div class="analytics-card">
-                <h3>Total Visits</h3>
-                <canvas id="visitsChart"></canvas>
-            </div>
-            <div class="analytics-card">
-                <h3>Revenue</h3>
-                <canvas id="revenueChart"></canvas>
-            </div>
-        </div>
-
-        <div class="analytics-summary">
-            <div class="summary-box">
-                <h3>Conversion Rate</h3>
-                <p>4.25%</p>
-            </div>
-            <div class="summary-box">
-                <h3>Bounce Rate</h3>
-                <p>35.10%</p>
-            </div>
-            <div class="summary-box">
-                <h3>Average Session Duration</h3>
-                <p>2m 45s</p>
-            </div>
-        </div>
+<div class="analytics-cards">
+    <div class="analytics-card">
+        <h3>Total Visits</h3>
+        <canvas id="visitsChart"></canvas>
     </div>
+    <div class="analytics-card">
+        <h3>Revenue</h3>
+        <canvas id="revenueChart"></canvas>
+    </div>
+</div>
 
-    <script>
-        const visitsCtx = document.getElementById("visitsChart").getContext("2d");
-        const visitsChart = new Chart(visitsCtx, {
-          type: "line",
-          data: {
+<div class="analytics-summary">
+    <div class="summary-box">
+        <h3>Conversion Rate</h3>
+        <p>4.25%</p>
+    </div>
+    <div class="summary-box">
+        <h3>Bounce Rate</h3>
+        <p>35.10%</p>
+    </div>
+    <div class="summary-box">
+        <h3>Average Session Duration</h3>
+        <p>2m 45s</p>
+    </div>
+</div>
+
+<script>
+    const visitsCtx = document.getElementById("visitsChart").getContext("2d");
+    const visitsChart = new Chart(visitsCtx, {
+        type: "line",
+        data: {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
-              {
-                label: "Visits",
-                data: [300, 400, 350, 500, 600, 700],
-                backgroundColor: "rgba(52, 152, 219, 0.2)",
-                borderColor: "rgba(52, 152, 219, 1)",
-                borderWidth: 2,
-              },
+                {
+                    label: "Visits",
+                    data: [300, 400, 350, 500, 600, 700],
+                    backgroundColor: "rgba(52, 152, 219, 0.2)",
+                    borderColor: "rgba(52, 152, 219, 1)",
+                    borderWidth: 2,
+                },
             ],
-          },
-          options: {
+        },
+        options: {
             responsive: true,
             maintainAspectRatio: false,
-          },
-        });
+        },
+    });
 
-        const revenueCtx = document
-          .getElementById("revenueChart")
-          .getContext("2d");
-        const revenueChart = new Chart(revenueCtx, {
-          type: "bar",
-          data: {
+    const revenueCtx = document
+        .getElementById("revenueChart")
+        .getContext("2d");
+    const revenueChart = new Chart(revenueCtx, {
+        type: "bar",
+        data: {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
-              {
-                label: "Revenue",
-                data: [15000, 20000, 18000, 22000, 24000, 26000],
-                backgroundColor: "rgba(46, 204, 113, 0.6)",
-                borderColor: "rgba(46, 204, 113, 1)",
-                borderWidth: 2,
-              },
+                {
+                    label: "Revenue",
+                    data: [15000, 20000, 18000, 22000, 24000, 26000],
+                    backgroundColor: "rgba(46, 204, 113, 0.6)",
+                    borderColor: "rgba(46, 204, 113, 1)",
+                    borderWidth: 2,
+                },
             ],
-          },
-          options: {
+        },
+        options: {
             responsive: true,
             maintainAspectRatio: false,
-          },
-        });
-    </script>
-</body>
-</html>
+        },
+    });
+</script>

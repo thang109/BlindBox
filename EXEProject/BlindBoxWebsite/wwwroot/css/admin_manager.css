@@ -1,0 +1,142 @@
+﻿.user-management,
+.product-management {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+    .user-management h2,
+    .product-management h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+.user-table,
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    .user-table th,
+    .product-table th,
+    .user-table td,
+    .product-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .user-table th,
+    .product-table th {
+        background-color: #ecf0f1;
+        color: #2c3e50;
+    }
+
+    .user-table tr:hover,
+    .product-table tr:hover {
+        background-color: #f2f2f2;
+    }
+
+/* Analytics Section */
+.analytics-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+    .analytics-section h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+.analytics-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.analytics-card {
+    background-color: #3498db;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    color: #fff;
+    text-align: center;
+}
+
+    .analytics-card h3 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .analytics-card p {
+        font-size: 18px;
+        margin: 10px 0 0;
+    }
+
+.chart-container {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+    .chart-container canvas {
+        width: 100%;
+        height: 400px;
+    }
+
+.chart-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+    .edit-btn:hover {
+        background-color: #2980b9;
+    }
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+    .delete-btn:hover {
+        background-color: #c0392b;
+    }
+
+.add-product-btn {
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+    .add-product-btn:hover {
+        background-color: #229954;
+    }

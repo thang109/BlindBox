@@ -79,7 +79,20 @@
                 cursor: default;
             }
 
+            .option input[type="text"] {
+                width: 72%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin-left: 10px;
+                box-sizing: border-box;
+            }
 
+            .option label {
+                display: flex;
+                align-items: center;
+                width: 125%;
+            }
 
     .hidden{
         display: none !important;
@@ -189,6 +202,9 @@
                     <div class="option">Thành viên trong gia đình</div>
                     <div class="option">Bạn bè</div>
                     <div class="option">Bản thân</div>
+                    <div class="option">
+                        <label for="otherInput">Khác: <input type="text" id="otherInput" placeholder="Nhập chủ đề khác" oninput="checkOtherInput()"></label>
+                    </div>
                 </div>
                 <button class="submit-button" onclick="nextQuiz()">Tiếp theo</button>
             </div>
@@ -204,6 +220,7 @@
                 <div class="options">
                     <div class="option">Nam</div>
                     <div class="option">Nữ</div>
+                    <div class="option">Khác</div>
                 </div>
                 <div class="optionButton" style="display: flex">
                     <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
@@ -224,6 +241,9 @@
                     <div class="option">Kỉ niệm/Lễ tặng quà</div>
                     <div class="option">Mừng nhà mới/Tân gia</div>
                     <div class="option">Không có dịp cụ thể</div>
+                    <div class="option">
+                        <label>Khác: <input type="text" id="otherInput" placeholder="Nhập chủ đề khác" oninput="checkOtherInput()"></label>
+                    </div>
                 </div>
                 <div class="optionButton" style="display: flex">
                     <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
@@ -245,6 +265,9 @@
                     <div class="option">Thời trang và đồ sưu tập</div>
                     <div class="option">Đọc sách và kiến thức</div>
                     <div class="option">Thể thao và du lịch</div>
+                    <div class="option">
+                        <label>Khác: <input type="text" id="otherInput" placeholder="Nhập chủ đề khác" oninput="checkOtherInput()"></label>
+                    </div>
                 </div>
                 <div class="optionButton" style="display: flex">
                     <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
@@ -265,6 +288,9 @@
                     <div class="option">500.000đ - 999.999đ</div>
                     <div class="option">1.000.000đ - 1.999.999đ</div>
                     <div class="option">2.000.000đ trở lên</div>
+                    <div class="option">
+                        <label>Khác: <input type="text" id="otherInput" placeholder="Nhập chi phí khác" oninput="checkOtherInput()"></label>
+                    </div>
                 </div>
                 <div class="optionButton" style="display: flex">
                     <button class="submit-button" onclick="previousQuiz()">Quay lại</button>
@@ -310,11 +336,26 @@
             });
             option.classList.add('selected');
             const questionIndex = currentQuiz - 1;
-            answers[questionIndex] = option.textContent.trim();
+            if (option.textContent.trim() === "Khác:") {
+                answers[questionIndex] = '';
+            } else {
+                answers[questionIndex] = option.textContent.trim();
+            }
         }
 
         function nextQuiz() {
             const selectedOption = document.querySelector(`#quiz${currentQuiz} .option.selected`);
+            const otherInput = document.querySelector(`#quiz${currentQuiz} #otherInput`);
+            if (selectedOption && selectedOption.textContent.trim() === "Khác:" && otherInput) {
+                if (otherInput.value.trim() === '') {
+                    alert("Vui lòng nhập vào trường 'Khác'!");
+                    return;
+                } else {
+                    const questionIndex = currentQuiz - 1;
+                    answers[questionIndex] = otherInput.value.trim();
+                }
+            }
+
             if (selectedOption) {
                 if (currentQuiz < 5) {
                     currentQuiz++;

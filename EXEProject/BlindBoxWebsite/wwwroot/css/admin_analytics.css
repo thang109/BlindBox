@@ -1,0 +1,61 @@
+﻿/* Analytics Cards */
+.analytics-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.analytics-card {
+    flex: 1;
+    padding: 30px 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    position: relative;
+}
+
+    .analytics-card h3 {
+        margin: 0;
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: #2c3e50;
+    }
+
+canvas {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 70%;
+}
+
+/* Analytics Summary */
+.analytics-summary {
+    display: flex;
+    gap: 20px;
+}
+
+.summary-box {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .summary-box h3 {
+        margin: 0;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #2c3e50;
+    }
+
+    .summary-box p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #34495e;
+    }
