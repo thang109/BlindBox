@@ -9,35 +9,76 @@
     <link rel="stylesheet" href="~/css/thanhtoan_success.css">
     <link rel="stylesheet" href="~/css/index.css">
     <title>Transaction Fail - GBOX Store</title>
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+            .header h1 {
+                font-size: 28px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .header .profile {
+                display: flex;
+                align-items: center;
+            }
+
+        .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .profile span {
+            margin-left: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+        .container {
+            text-align: center;
+            margin: 50px auto;
+            padding: 20px;
+            width: 60%;
+            background: white;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .success-image {
+            width: 200px;
+            height: auto;
+            margin-top: -85px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>GBOX</h1>
             <div class="profile">
+                <span>@ViewBag.Username</span>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
                      alt="User Profile" />
-                <span>@ViewBag.Username</span>
             </div>
         </div>
-
-        <h2 class="fail-message">Thanh toán thất bại!</h2>
-
-        <div class="transaction-details">
-            <p style="margin-bottom: 25px;"><span>Rất tiếc, giao dịch không thành công!</span></p> <!-- Thông báo lỗi từ VNPay -->
-            <p style="margin-bottom: 25px;"><span>Vui lòng thử lại hoặc chọn một phương thức thanh toán khác</span></p> <!-- Phương thức thanh toán động -->
-            <p style="margin-bottom: 25px;"><span>Nếu sự cố vẫn tiếp diễn, vui lòng liên hệ bộ phận chăm sóc khách hàng của chúng tôi để được hỗ trợ.</span></p> <!-- ID giao dịch động -->
+        <div class="success-message">
+            <img src="~/images/paymentfail.jpg" alt="Fail Image" class="fail-image">
+            <h2>Rất tiếc, giao dịch không thành công!</h2>
+            <p>Vui lòng thử lại hoặc chọn một phương thức thanh toán khác. Nếu sự cố vẫn tiếp diễn, vui lòng liên hệ bộ phận chăm sóc khách hàng của chúng tôi để được hỗ trợ.</p>
         </div>
-
-        <div class="back-button">
-            <button class="btn" onclick="goToHomePage()">Trở lại trang chủ</button>
+        <div class="buttons">
+            <button onclick="location.href='/'" class="btn home">Trang chủ</button>
+            <button onclick="document.location.href='@Url.Action("GiftSuggest", "Quiz")'" class="btn service">Thanh toán lại</button>
         </div>
     </div>
 
-    <script>
-        function goToHomePage() {
-            window.location.href = "/";
-        }
-    </script>
 </body>
 </html>

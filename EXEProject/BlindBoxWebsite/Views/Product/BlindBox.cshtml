@@ -20,16 +20,17 @@
         <div class="product-details">
             <h2 class="discount">Save 20%</h2>
             <h1 class="product-title">Blind-Box</h1>
-            <p class="price">200.000 VND</p>
+            <p class="price">200,000 VND</p>
             <div class="price-slider">
                 <input type="range"
                        min="0"
                        max="200000"
                        value="200000"
-                       id="priceRange" />
-                <span id="priceValue">200.000 VND</span>
+                       id="priceRange" 
+                       oninput="updatePriceValue()" />
+                <span id="priceValue">200,000 VND</span>
             </div>
-            <button class="add-to-cart" onclick="window.location.href='@Url.Action("CheckoutBlindBox", "Payment")'">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
             <ul class="extra-info">
                 <li>
                     <i class="fas fa-tags"></i><strong> Unlock 10% discount for this order</strong>
@@ -97,6 +98,18 @@
               "."
             )} VND`;
           });
+
+        function updatePriceValue() {
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+            const value = priceRange.value;
+            priceValue.textContent = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' VND';
+        }
+
+        function addToCart() {
+            const priceRange = document.getElementById('priceRange').value;
+            window.location.href = `@Url.Action("CheckoutBlindBox", "Payment")?price=${priceRange}`;
+        }
     </script>
 </body>
 </html>

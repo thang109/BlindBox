@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -7,133 +8,206 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/suggest.css" />
     <link rel="stylesheet" href="~/css/index.css" />
     <title>Easy-Care Subscription</title>
     <style>
-    body {
-        font-family: "Arial", sans-serif;
-        background-color: #f8f9fa;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
-    h1 {
-        font-size: 28px;
-        color: #4CAF50; /* Màu xanh lá cây tươi sáng */
-        text-align: center;
-    }
-
-    p {
-        line-height: 1.6;
-        margin: 15px 0;
-    }
-
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-        a:hover {
-            text-decoration: underline; /* Gạch chân khi hover */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-    .subscription-section {
-      background-color: #fff;
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #0c9462;
+            color: white;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                font-weight: bold;
+                color: #efefef;
+            }
+
+            .header p {
+                margin: 10px 0;
+                color: #efefef;
+            }
+
+        .products {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
     }
 
-    .subscription-container {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 140px;
-      padding: 20px 50px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .image-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .content-container {
-      flex: 1;
-      max-width: 500px;
-    }
-
-    .content-container h1 {
-      font-size: 36px;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .content-container p {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .shop-now-btn,
-    .blindbox-btn {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 15px;
-        background-color: #027f51; /* Màu xanh lá cây */
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
+    .product-item {
+        width: 30%;
         text-align: center;
-        transition: background-color 0.3s;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
     }
 
-    .shop-now-btn:hover,
-    .blindbox-btn:hover {
-      background-color: #45a049;
+    .product-item img {
+        width: 100%;
+        height: 250px; /* You can adjust this height as needed */
+        object-fit: cover; /* Ensures images maintain aspect ratio while covering the container */
     }
 
-    .blindbox-btn {
-      background-color: #027f51;
-      margin-top: 10px;
+    .product-item h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
+    .product-item .price {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .product-item p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+        min-height: 120px;
+    }
+
+    .shop-now-btn {
+        background-color: #ae2d2a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: auto;
+    }
+
+    .shop-now-btn a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .shop-now-btn:hover {
+        background-color: #8a2323;
+    }
+        .price {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #ae2d2a;
+            color: white;
+        }
+
+        .additional-products, .blind-box-section {
+            text-align: center;
+            padding: 40px;
+            background-color: #f5f5f5;
+            margin-top: 40px;
+        }
+
+            .additional-products h2, .blind-box-section h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .additional-products p, .blind-box-section p {
+                font-size: 16px;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+        .shop-now-btn, .blindbox-btn {
+            background-color: #0c9462;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .shop-now-btn:hover, .blindbox-btn:hover {
+                background-color: #14833b;
+            }
+
+            .shop-now-btn a, .blindbox-btn a {
+                color: white;
+                text-decoration: none;
+            }
+
+        .bottom-footer {
+            background-color: #e5e5e5;
+            border-top: 1px solid #ddd;
+            padding: 20px 40px;
+            margin: 0 -40px;
+        }
     </style>
 </head>
 <body>
-    <section class="subscription-section">
-        <div class="subscription-container">
-            <div class="image-container" style="width: 50%;">
-                <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Suggest" />
-            </div>
-            <div class="content-container">
-                <h1>Tinh Dầu Thiên Nhiên</h1>
-                <p>
-                    Chào bạn! Sau khi tổng hợp ý kiến từ quiz, tôi rất vui được giới thiệu sản phẩm bạn đang tìm kiếm: tinh dầu thiên nhiên thư giãn. Được chiết xuất từ cây cỏ và hoa, sản phẩm này mang lại nhiều lợi ích cho sức khỏe và tinh thần. Với hương thơm tự nhiên, tinh dầu giúp xua tan căng thẳng, nâng cao tâm trạng và cải thiện giấc ngủ. Hãy để tinh dầu thiên nhiên mang lại sự thư giãn mà bạn xứng đáng!
-                </p>
+    <div class="container">
+        <div class="header">
+            <h1>RECOMMENDED JUST FOR YOU</h1>
+            <p>Chào bạn! Sau khi tổng hợp ý kiến từ quiz, tôi rất vui được giới thiệu sản phẩm bạn đang tìm kiếm</p>
+        </div>
+        <div class="products">
+            <div class="product-item">
+                <h3>Tinh Dầu Thiên Nhiên</h3>
+                <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Tinh Dau">
+                <div class="price">560,000 VND</div>
+                <p>Tinh dầu thiên nhiên thư giãn. Được chiết xuất từ cây cỏ và hoa, sản phẩm này mang lại nhiều lợi ích cho sức khỏe và tinh thần. Với hương thơm tự nhiên, tinh dầu giúp xua tan căng thẳng, nâng cao tâm trạng và cải thiện giấc ngủ. Hãy để tinh dầu thiên nhiên mang lại sự thư giãn mà bạn xứng đáng!</p>
                 <button class="shop-now-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment")'">BUY NOW</a>
+                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment", new { price= 560000, imgUrl= Url.Content("~/images/tinh-dau-thien-nhien.jpg"), title= "Tinh Dầu Thiên Nhiên"})'">Buy Now</a>
                 </button>
-                <p>
-                    Nếu sản phẩm vừa rồi chưa phù hợp, hệ thống của tôi đã chuẩn bị các sản phẩm Blind Box và nhiều lựa chọn khác cho bạn! Mỗi hộp quà được chọn cẩn thận theo sở thích và nhu cầu của bạn, mang đến những trải nghiệm bất ngờ.
-                </p>
-                <button class="blindbox-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("BlindBox", "Product")'">BLINDBOX SHOP</a>
+            </div>
+            <div class="product-item">
+                <h3>Giày Chạy Bộ Adidas Ultrarun 5</h3>
+                <img src="~/images/giay-the-thao-adidas-ultra-boost.jpg" alt="giay ultrarun">
+                <div class="price">2,200,000 VND</div>
+                <p>Nhẹ nhàng chinh phục đường chạy sáng sớm và hoạt động buổi chiều với đôi giày chạy bộ adidas này. Lớp đệm Cloudfoam mang lại cảm giác mềm mại và thoải mái ngay khi vừa xỏ chân, cùng thân giày bằng vải lưới cho đôi chân thoáng mát. </p>
+                <button class="shop-now-btn">
+                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment", new { price= 2200000, imgUrl= Url.Content("~/images/giay-the-thao-adidas-ultra-boost.jpg"), title= "Giày Chạy Bộ Adidas Ultrarun 5"})'">Buy Now</a>
                 </button>
-                <button class="blindbox-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Gift", "Product")'">SHOP NOW</a>
+            </div>
+            <div class="product-item">
+                <h3>Robot hút bụi Samsung Powerbot</h3>
+                <img src="~/images/vn-robot-vr05r5050wk-vr05r5050wk-sv-519428263.jpg" alt="robot hut bui">
+                <div class="price">4,990,000 VND</div>
+                <p>Robot hút bụi Samsung powerbot-E là sản phẩm đánh dấu sự kết hợp đột phá của công nghệ AI với sản phẩm làm sạch nhà cửa của ông lớn Samsung. Sự kết hợp này tạo ra chiếc robot hút bụi có thiết kế đẹp mắt nhỏ gọn và sang trọng nhưng công năng mạnh mẽ với các tính năng ưu việt và cực thông minh.</p>
+                <button class="shop-now-btn">
+                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment", new { price= 4990000, imgUrl= Url.Content("~/images/vn-robot-vr05r5050wk-vr05r5050wk-sv-519428263.jpg"), title= "Robot hút bụi Samsung Powerbot" })'">Buy Now</a>
                 </button>
             </div>
         </div>
-    </section>
+
+        <div class="additional-products">
+            <h2>Nếu sản phẩm vừa rồi chưa phù hợp, hệ thống của tôi có nhiều lựa chọn khác cho bạn!</h2>
+            <p>Bạn có thể tham khảo qua các sản phẩm khác bên chúng tôi.</p>
+            <button class="shop-now-btn">
+                <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Gift", "Product")'">Shop Now</a>
+            </button>
+        </div>
+
+        <div class="blind-box-section">
+            <h2>Ngoài ra cửa hàng của chúng tôi cũng đã chuẩn bị các sản phẩm Blind Box</h2>
+            <p>Mỗi hộp quà được chọn cẩn thận theo sở thích và nhu cầu của bạn, mang đến những trải nghiệm bất ngờ.</p>
+            <button class="blindbox-btn">
+                <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("BlindBox", "Product")'">BlindBox Shop</a>
+            </button>
+        </div>
+
+    </div>
 </body>
 </html>

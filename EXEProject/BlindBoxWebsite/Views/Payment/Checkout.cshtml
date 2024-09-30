@@ -190,25 +190,24 @@
                     <div class="order-summary">
                         <h2>Order summary</h2>
                         <div class="product-item">
-                            <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Suggest" />
+                            <img src="@ViewBag.ImgUrl" alt="Suggest" />
                             <div class="product-details">
                                  
-                                <h3>Tinh Dầu Thiên Nhiên</h3>
-                                <p>560.000 VND</p>
-                                <p>Natural</p>
+                                <h3>@ViewBag.Title</h3>
+                                <p>@ViewBag.RawPrice</p>
                             </div>
                         </div>
                         <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
                         <div class="summary-totals">
-                            <p>Tổng cộng: <span>560.000 VND</span></p>
+                            <p>Tổng cộng: <span>@ViewBag.RawPrice VND</span></p>
                             <p>Phí vận chuyển: <span>--</span></p>
                             <p>Thuế: <span>--</span></p>
-                            <p class="total-amount">Tổng: <span>560.000 VND</span></p>
+                            <p class="total-amount">Tổng: <span>@ViewBag.RawPrice VND</span></p>
                         </div>
 
                         <!-- Hidden fields for order details -->
-                        <input type="hidden" asp-for="Amount" value="560000" />
-                        <input type="hidden" asp-for="OrderDescription" value="Tinh dau thien nhien" />
+                        <input type="hidden" asp-for="Amount" value="@ViewBag.Price" />
+                        <input type="hidden" asp-for="OrderDescription" value="@ViewBag.Title" />
                         <input type="hidden" asp-for="OrderType" value="Product Payment" />
                         <input type="hidden" asp-for="BlindBoxId" value="1" />
                         <input type="hidden" asp-for="CreateDate" value="@DateTime.Now" />

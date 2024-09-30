@@ -28,8 +28,12 @@ namespace BlindBoxWebsite.Controllers
             return View();
         }
 
-        public IActionResult Checkout()
+        public IActionResult Checkout(decimal price, string imgUrl, string title)
         {
+            ViewBag.Price = price;
+            ViewBag.RawPrice = string.Format("{0:N0}", price);
+            ViewBag.ImgUrl = imgUrl;
+            ViewBag.Title = title;
             bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             if (isUserLoggedIn)
@@ -39,8 +43,10 @@ namespace BlindBoxWebsite.Controllers
             return View();
         }
 
-        public IActionResult CheckoutBlindBox()
+        public IActionResult CheckoutBlindBox(decimal price)
         {
+            ViewBag.Price = price;
+            ViewBag.RawPrice = string.Format("{0:N0}", price);
             bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             if (isUserLoggedIn)

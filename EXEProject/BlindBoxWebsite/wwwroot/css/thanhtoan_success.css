@@ -1,113 +1,104 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
 }
 
 .container {
-  max-width: 800px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 40px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-  margin-bottom: 30px;
-}
-
-.header h1 {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-}
-
-.header .profile {
-  display: flex;
-  align-items: center;
-}
-
-.profile img {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-}
-
-.profile span {
-  margin-left: 10px;
-  font-size: 16px;
-  color: #555;
+    text-align: center;
+    margin: 100px auto;
+    padding: 20px;
+    width: 60%;
+    background: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .success-message {
-  color: #27ae60;
-  font-size: 24px;
-  margin-bottom: 30px;
-  text-align: center;
+    padding: 20px;
 }
 
-.transaction-details {
-  text-align: left;
-  border-bottom: 1px solid black;
+.success-image {
+    width: 150px;
+    height: auto;
 }
 
-.transaction-details p {
-  margin: 15px 0;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
+h2 {
+    color: #4CAF50;
+    margin: 20px 0;
 }
 
-.transaction-details p span {
-  font-weight: bold;
+p {
+    color: #666;
+    line-height: 1.5;
 }
 
-.back-button {
-  margin-top: 40px;
-  text-align: center;
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
 .btn {
-  background-color: #1abc9c;
-  color: #fff;
-  padding: 15px 40px;
-  border: none;
-  font-size: 18px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
-
-.btn:hover {
-  background-color: #16a085;
-}
-
-/* Adjust for mobile */
-@media (max-width: 768px) {
-  .container {
-    margin: 50px 20px;
-  }
-
-  .transaction-details p {
+    background-color: #47CACC;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 16px;
-  }
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
 
-  .btn {
-    width: 100%;
-    padding: 15px 0;
-  }
+    .btn:hover {
+        background-color: #027f51;
+    }
+
+.home {
+    background-color: #0daa70;
+}
+
+.service {
+    background-color: #008C8C;
+}
+
+    .service:hover {
+        background-color: #006868;
+    }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+    .header h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .header .profile {
+        display: flex;
+        align-items: center;
+    }
+
+.profile img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.profile span {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #555;
 }

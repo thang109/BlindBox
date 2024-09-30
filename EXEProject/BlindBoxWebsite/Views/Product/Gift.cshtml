@@ -8,22 +8,28 @@
     <link rel="stylesheet" href="~/css/index.css" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        .product-card img {
+            width: 100%;
+            display: block;
+            height: 250px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <span style="display: none">@ViewBag.Username</span>
-        <div class="breadcrumb">Home / Subscriptions</div>
+        <button onclick="document.location.href='@Url.Action("GiftSuggest", "Quiz")'" class="btn btn-primary breadcrumb"><i class="fa-solid fa-chevron-left"></i> Back</button>
         <div class="product-grid">
             <div class="product-card">
-                <img src="https://i.pinimg.com/736x/7d/6d/1d/7d6d1d948f777f167b0f733971dcd79b.jpg"
-                     alt="Product 1" />
+                <img src="~/images/BỘ DỤNG CỤ DỌN NHÀ_190k.jpg" alt="Product 1" />
                 <div class="product-info">
                     <h3>Mã SP: 001</h3>
-                    <p>Áo Phông Cổ Đen Thương Hiệu Zara</p>
+                    <p>Dụng cụ dọn nhà</p>
                     <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 350.000 VND</p>
+                    <p>Giá: 190.000 VND</p>
                 </div>
-                @* <button class="btn btn-primary" onclick="window.location.href='@Url.Action("Checkout", "Payment")'">Buy</button> *@
             </div>
             <div class="product-card">
                 <img src="https://cadadesigns.com/wp-content/uploads/2023/07/Mickey-Louis-Vuitton-Shirt-Louis-Vuitton-Logo-T-Shirt-Unisex-Fashion-Shirt-LV-Tee-Louis-Vuitton-Luxury-Tshirt-LTS066.jpg"
@@ -36,169 +42,152 @@
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://originalluxury.ca/cdn/shop/articles/Five_best_quality_luxury_brands_of_men_s_T-shirts_2.jpg?v=1695802941&width=2048"
-                     alt="Product 3" />
+                <img src="~/images/VITAMIN_ 50K.jpg" alt="Product 3" />
                 <div class="product-info">
                     <h3>Mã SP: 003</h3>
-                    <p>Áo Phông Trắng Thương Hiệu H&M</p>
+                    <p>Thuốc bổ sung vitamin</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 50.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/sách_194k.jpg" alt="Product 4" />
+                <div class="product-info">
+                    <h3>Mã SP: 004</h3>
+                    <p>The Book Thief</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 194.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/tai-nghe-airpods-pro-2-2023-cong-sac-type-c-231027091710.jpg" alt="Product 5" />
+                <div class="product-info">
+                    <h3>Mã SP: 005</h3>
+                    <p>Airpods Pro 2 - 2023</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 5.390.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/mohinhnaruto.jpg" alt="Product 6" />
+                <div class="product-info">
+                    <h3>Mã SP: 006</h3>
+                    <p>Mô hình Naruto</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 1.500.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/55 DIY Herbal Hair Rinses For Shine And Scalp Health.jpg" alt="Product 7" />
+                <div class="product-info">
+                    <h3>Mã SP: 007</h3>
+                    <p>Tinh dầu </p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 560.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/bộ dụng cụ du lịch 300k.jpg" alt="Product 8" />
+                <div class="product-info">
+                    <h3>Mã SP: 008</h3>
+                    <p>Bộ dụng cụ du lịch</p>
                     <p>Link: <a href="#">Xem Chi Tiết</a></p>
                     <p>Giá: 300.000 VND</p>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://steventi.com/wp-content/uploads/2023/07/ao-thun-den-steventi-Luxury-logo-Tee-3.jpg"
-                     alt="Product 4" />
+                <img src="https://i.pinimg.com/736x/7d/6d/1d/7d6d1d948f777f167b0f733971dcd79b.jpg"
+                     alt="Product 9" />
                 <div class="product-info">
-                    <h3>Mã SP: 004</h3>
+                    <h3>Mã SP: 009</h3>
+                    <p>Áo Phông Cổ Đen Thương Hiệu Zara</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 350.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/bộ quần áo unisex_230k.jpg" alt="Product 10" />
+                <div class="product-info">
+                    <h3>Mã SP: 010</h3>
+                    <p>Áo quần bộ unisex</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 230.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/Dầu gội vỏ bưởi.jpg" alt="Product 11" />
+                <div class="product-info">
+                    <h3>Mã SP: 011</h3>
+                    <p>Dầu gội vỏ bưởi</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 200.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/giày_350K.jpg" alt="Product 12" />
+                <div class="product-info">
+                    <h3>Mã SP: 012</h3>
+                    <p>Giày thể thao</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 350.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/MÁY MASSAGE_400K.jpg" alt="Product 13" />
+                <div class="product-info">
+                    <h3>Mã SP: 013</h3>
+                    <p>Máy massage</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 400.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="~/images/MÁY HÚT BỤI_500K.jpg" alt="Product 14" />
+                <div class="product-info">
+                    <h3>Mã SP: 014</h3>
+                    <p>Máy hút bụi</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 500.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd7lKvyN03pziEVTxd-5dOJm60gjnJVnqgmw&s"
+                     alt="Product 15" />
+                <div class="product-info">
+                    <h3>Mã SP: 015</h3>
+                    <p>Áo Sơ Mi Trắng Thương Hiệu Nike</p>
+                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
+                    <p>Giá: 600.000 VND</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://steventi.com/wp-content/uploads/2023/07/ao-thun-den-steventi-Luxury-logo-Tee-3.jpg"
+                     alt="Product 16" />
+                <div class="product-info">
+                    <h3>Mã SP: 016</h3>
                     <p>Áo Polo Cổ Trụ Thương Hiệu Lacoste</p>
                     <p>Link: <a href="#">Xem Chi Tiết</a></p>
                     <p>Giá: 500.000 VND</p>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://organicstarboy.com/cdn/shop/files/store-1723885019005-2982282033.png?v=1723885033&width=1445"
-                     alt="Product 5" />
+                <img src="https://originalluxury.ca/cdn/shop/articles/Five_best_quality_luxury_brands_of_men_s_T-shirts_2.jpg?v=1695802941&width=2048"
+                     alt="Product 17" />
                 <div class="product-info">
-                    <h3>Mã SP: 005</h3>
-                    <p>Áo Phông Sọc Trắng Đen</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 320.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd7lKvyN03pziEVTxd-5dOJm60gjnJVnqgmw&s"
-                     alt="Product 6" />
-                <div class="product-info">
-                    <h3>Mã SP: 006</h3>
-                    <p>Áo Sơ Mi Trắng Thương Hiệu Gucci</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 600.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product7.jpg" alt="Product 7" />
-                <div class="product-info">
-                    <h3>Mã SP: 007</h3>
-                    <p>Áo Phông Thương Hiệu Versace</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 700.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product8.jpg" alt="Product 8" />
-                <div class="product-info">
-                    <h3>Mã SP: 008</h3>
-                    <p>Vòng Tay Đôi Màu Đen</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 150.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product9.jpg" alt="Product 9" />
-                <div class="product-info">
-                    <h3>Mã SP: 009</h3>
-                    <p>Vòng Tay Đôi Màu Hồng</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 180.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product10.jpg" alt="Product 10" />
-                <div class="product-info">
-                    <h3>Mã SP: 010</h3>
-                    <p>Vòng Tay Da Đen Thương Hiệu Coach</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 500.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product11.jpg" alt="Product 11" />
-                <div class="product-info">
-                    <h3>Mã SP: 011</h3>
-                    <p>Sổ Tay Lập Kế Hoạch</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 90.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product12.jpg" alt="Product 12" />
-                <div class="product-info">
-                    <h3>Mã SP: 012</h3>
-                    <p>Thú Nhồi Bông Gấu</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 120.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product13.jpg" alt="Product 13" />
-                <div class="product-info">
-                    <h3>Mã SP: 013</h3>
-                    <p>Móc Khóa Thú Nhồi Bông</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 50.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product14.jpg" alt="Product 14" />
-                <div class="product-info">
-                    <h3>Mã SP: 014</h3>
-                    <p>Ốp Lưng Điện Thoại Thú Nhồi Bông</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 200.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product15.jpg" alt="Product 15" />
-                <div class="product-info">
-                    <h3>Mã SP: 015</h3>
-                    <p>Đèn Ngủ LED Hình Con Cừu</p>
+                    <h3>Mã SP: 017</h3>
+                    <p>Áo Phông Trắng Thương Hiệu H&M</p>
                     <p>Link: <a href="#">Xem Chi Tiết</a></p>
                     <p>Giá: 300.000 VND</p>
                 </div>
             </div>
             <div class="product-card">
-                <img src="product16.jpg" alt="Product 16" />
-                <div class="product-info">
-                    <h3>Mã SP: 016</h3>
-                    <p>Móc Khóa Hình Gấu</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 60.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product17.jpg" alt="Product 17" />
-                <div class="product-info">
-                    <h3>Mã SP: 017</h3>
-                    <p>Bút Kẹp Hình Động Vật</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 40.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product18.jpg" alt="Product 18" />
+                <img src="https://organicstarboy.com/cdn/shop/files/store-1723885019005-2982282033.png?v=1723885033&width=1445"
+                     alt="Product 18" />
                 <div class="product-info">
                     <h3>Mã SP: 018</h3>
-                    <p>Đèn Ngủ LED Hình Động Vật</p>
+                    <p>Áo Phông Sọc Trắng Đen</p>
                     <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 280.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product19.jpg" alt="Product 19" />
-                <div class="product-info">
-                    <h3>Mã SP: 019</h3>
-                    <p>Áo Hoodie Màu Trắng</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 550.000 VND</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="product20.jpg" alt="Product 20" />
-                <div class="product-info">
-                    <h3>Mã SP: 020</h3>
-                    <p>Áo Hoodie Màu Đen</p>
-                    <p>Link: <a href="#">Xem Chi Tiết</a></p>
-                    <p>Giá: 550.000 VND</p>
+                    <p>Giá: 320.000 VND</p>
                 </div>
             </div>
         </div>

@@ -193,19 +193,19 @@
                             <img src="~/images/blindbox_coca.jpg" alt="Suggest" />
                             <div class="product-details">
                                 <h3>Blind Box</h3>
-                                <p>200.000 VND</p>
+                                <p>@ViewBag.RawPrice VND</p>
                             </div>
                         </div>
                         <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
                         <div class="summary-totals">
-                            <p>Tổng cộng: <span>200.000 VND</span></p>
+                            <p>Tổng cộng: <span>@ViewBag.RawPrice VND</span></p>
                             <p>Phí vận chuyển: <span>--</span></p>
                             <p>Thuế: <span>--</span></p>
-                            <p class="total-amount">Tổng: <span>200.000 VND</span></p>
+                            <p class="total-amount">Tổng: <span>@ViewBag.RawPrice VND</span></p>
                         </div>
 
                         <!-- Hidden fields for order details -->
-                        <input type="hidden" asp-for="Amount" value="200000" />
+                        <input type="hidden" asp-for="Amount" value="@ViewBag.Price" />
                         <input type="hidden" asp-for="OrderDescription" value="BlindBox 1" />
                         <input type="hidden" asp-for="OrderType" value="BlindBox Payment" />
                         <input type="hidden" asp-for="BlindBoxId" value="1" />
