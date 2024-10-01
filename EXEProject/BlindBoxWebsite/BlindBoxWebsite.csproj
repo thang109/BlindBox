@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Models\Payments\**" />
+    <Compile Remove="wwwroot\_nuxt\**" />
     <Content Remove="Models\Payments\**" />
+    <Content Remove="wwwroot\_nuxt\**" />
     <EmbeddedResource Remove="Models\Payments\**" />
+    <EmbeddedResource Remove="wwwroot\_nuxt\**" />
     <None Remove="Models\Payments\**" />
+    <None Remove="wwwroot\_nuxt\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,17 +39,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
     <PackageReference Include="MimeKit" Version="4.7.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\_nuxt\static\1725638696\locations\1351-w-roscoe-street-chicago-il\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\pages\common-plant-care-questions\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\pages\plants-for-delivery-nyc\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\products\bird-of-paradise-large-indoor-plant\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\products\fuji-apple-tree\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\products\monstera-deliciosa\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\products\norfolk-island-pine-tree\" />
-    <Folder Include="wwwroot\_nuxt\static\1725638696\products\plant-pruners\" />
   </ItemGroup>
 
 </Project>
