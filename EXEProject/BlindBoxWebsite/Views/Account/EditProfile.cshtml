@@ -14,19 +14,18 @@
     <style>
         .popup-message {
             position: fixed;
-            top: 50px;
+            top: 130px;
             right: 20px;
-            background-color: #f2f6fc; /* Màu nền thông báo */
+            background-color: #efefef; /* Màu nền thông báo */
             color: black;
             padding: 20px;
             border-radius: 10px;
             z-index: 1000;
             width: 350px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.5s ease-in-out;
-            display: flex; /* Sử dụng Flexbox để đặt logo và nội dung */
+            display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between; /* Để các phần tử nằm giữa */
         }
 
             .popup-message.error {
@@ -39,16 +38,20 @@
             }
 
             .popup-message .message-text {
-                flex: 1; /* Cho phần chữ chiếm toàn bộ không gian còn lại */
+                flex: 1;
                 text-align: left;
             }
 
             .popup-message .close-btn {
                 margin-left: 10px;
-                font-size: 18px;
+                font-size: 30px;
                 cursor: pointer;
-                color: black;
+                color: #28a745;
             }
+
+        .text-danger{
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -57,8 +60,8 @@
         <div id="popup-success" class="popup-message">
             <span class="icon">✔️</span>
             <div class="message-text">
-                <strong>Thông báo</strong><br />
-                @TempData["UpdateSuccess"]
+                <strong>Cập Nhật Thành Công!</strong><br />
+                <span>@TempData["UpdateSuccess"]</span>
             </div>
             <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
         </div>
@@ -88,29 +91,32 @@
                     <div class="card-body">
                         <form asp-action="EditProfile" method="post">
                             <div class="mb-3">
-                                <label class="small mb-1" for="UserName">Username (how your name will appear to other users on the site)</label>
-                                <input class="form-control" asp-for="UserName" type="text" placeholder="Enter your username">
+                                <label class="small mb-1" asp-for="UserName">Username (how your name will appear to other users on the site)</label>
+                                <input class="form-control" asp-for="UserName"placeholder="Enter your username">
                                 <span asp-validation-for="UserName" class="text-danger"></span>
                             </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-12">
-                                    <label class="small mb-1" for="FullName">Full name</label>
-                                    <input class="form-control" asp-for="FullName" type="text" placeholder="Enter your full name">
+                                    <label class="small mb-1" asp-for="FullName">Full name</label>
+                                    <input class="form-control" asp-for="FullName" placeholder="Enter your full name">
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="small mb-1" for="Email">Email address</label>
-                                <input class="form-control" asp-for="Email" type="email" placeholder="Enter your email address">
+                                <label class="small mb-1" asp-for="Email">Email address</label>
+                                <input class="form-control" asp-for="Email" placeholder="Enter your email address">
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="PhoneNumber">Phone number</label>
-                                    <input class="form-control" asp-for="PhoneNumber" type="tel" placeholder="Enter your phone number">
+                                    <label class="small mb-1" asp-for="PhoneNumber">Phone number</label>
+                                    <input class="form-control" asp-for="PhoneNumber" placeholder="Enter your phone number">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="Address">Address</label>
-                                    <input class="form-control" asp-for="Address" type="text" placeholder="Enter your address">
+                                    <label class="small mb-1" asp-for="Address">Address</label>
+                                    <input class="form-control" asp-for="Address" placeholder="Enter your address">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
                             </div>
                             <button class="btn btn-primary" type="submit">Save changes</button>
@@ -124,7 +130,6 @@
     <script>
         var errorPopup = document.getElementById('popup-error');
         var successPopup = document.getElementById('popup-success');
-
         if (errorPopup) {
             errorPopup.style.display = 'flex';
             setTimeout(function () {

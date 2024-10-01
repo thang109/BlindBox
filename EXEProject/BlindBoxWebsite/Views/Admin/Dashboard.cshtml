@@ -1,6 +1,5 @@
 ﻿@section Styles {
     <link rel="stylesheet" href="~/css/admin_dashboard.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 }
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -55,42 +54,41 @@
     </ul>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const ctx = document.getElementById("myChart").getContext("2d");
-        const myChart = new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                datasets: [
-                    {
-                        label: "# of Signups",
-                        data: [12, 19, 3, 5, 2],
-                        backgroundColor: [
-                            "rgba(52, 152, 219, 0.6)",
-                            "rgba(52, 152, 219, 0.6)",
-                            "rgba(52, 152, 219, 0.6)",
-                            "rgba(52, 152, 219, 0.6)",
-                            "rgba(52, 152, 219, 0.6)",
-                        ],
-                        borderColor: [
-                            "rgba(52, 152, 219, 1)",
-                            "rgba(52, 152, 219, 1)",
-                            "rgba(52, 152, 219, 1)",
-                            "rgba(52, 152, 219, 1)",
-                            "rgba(52, 152, 219, 1)",
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
+    const ctx = document.getElementById("myChart").getContext("2d");
+    const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            datasets: [
+                {
+                    label: "# of Signups",
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: [
+                        "rgba(52, 152, 219, 0.6)",
+                        "rgba(52, 152, 219, 0.6)",
+                        "rgba(52, 152, 219, 0.6)",
+                        "rgba(52, 152, 219, 0.6)",
+                        "rgba(52, 152, 219, 0.6)",
+                    ],
+                    borderColor: [
+                        "rgba(52, 152, 219, 1)",
+                        "rgba(52, 152, 219, 1)",
+                        "rgba(52, 152, 219, 1)",
+                        "rgba(52, 152, 219, 1)",
+                        "rgba(52, 152, 219, 1)",
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
                 },
             },
-        }),
+        },
     });
 </script>

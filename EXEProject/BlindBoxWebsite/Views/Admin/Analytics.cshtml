@@ -1,6 +1,5 @@
 ﻿@section Styles {
     <link rel="stylesheet" href="~/css/admin_analytics.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 }
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -32,6 +31,7 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const visitsCtx = document.getElementById("visitsChart").getContext("2d");
     const visitsChart = new Chart(visitsCtx, {
