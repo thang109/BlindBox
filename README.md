@@ -3,16 +3,16 @@
 Blind Box E-commerce Website is an innovative platform that combines the thrill of blind box sales with personalized product recommendations. Users can take engaging quizzes to help the system gather insights about their preferences. Based on their responses, the platform suggests products from Shopee and offers unique blind boxes for purchase. Revenue streams include direct blind box sales, affiliate commissions from Shopee, and banner advertisements.
 
 ## 🚀 Key Features
-  👤 User Management
-     Registration, login, and profile management.
-  📝 Quizzes
-     Engage users through quizzes to gather their preferences and personalize recommendations.
-  🛒 Product Recommendations
-     Suggest relevant products based on quiz results using Shopee API.
-  📦 Blind Box Orders
-     Allow users to purchase a variety of blind boxes from the website.
-  💳 Payment Integration
-     Support seamless transactions through integrated payment gateways.
+  -👤 User Management
+    - Registration, login, and profile management.
+  -📝 Quizzes
+    - Engage users through quizzes to gather their preferences and personalize recommendations.
+  -🛒 Product Recommendations
+    - Suggest relevant products based on quiz results using Shopee API.
+  -📦 Blind Box Orders
+    - Allow users to purchase a variety of blind boxes from the website.
+  -💳 Payment Integration
+    - Support seamless transactions through integrated payment gateways.
 ## 💻 Technologies Used
   - **Frontend**
     - ~~Angular: Building a dynamic user interface.~~
@@ -34,5 +34,8 @@ Blind Box E-commerce Website is an innovative platform that combines the thrill 
 ## 📧 Contact Information
 For further details or queries, feel free to contact:
 
-Name: **Thang 🐥**
-Email: _thien.thangg03@gmail.com_
+- Name: **Thang 🐥**
+- Email: _thien.thangg03@gmail.com_
+
+
+@github/support What do you think about these updates?
