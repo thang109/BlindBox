@@ -23,7 +23,7 @@ Blind Box E-commerce Website is an innovative platform that combines the thrill 
     - Entity Framework Core: Data management and database operations.
     - SQL Server: Storing and managing data.
   - **Third-Party Integrations**
-    - ~~Shopee API: Product suggestions and affiliate marketing.~~
+    - Shopee API: Product suggestions and affiliate marketing.
     - VNPay: Secure payment handling.
     - MailKit: Automated email responses.
   - **Dev Tools**
