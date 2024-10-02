@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 /* General Reset */
 * {
   margin: 0;
@@ -135,10 +135,11 @@ nav ul li a:hover {
 }
 
 .product-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+            width: 100%;
+            display: block;
+            height: 250px;
+            object-fit: cover;
+        }
 
 .product-info {
   padding: 15px;

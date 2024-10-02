@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BlindBoxWebsite.Models.BlindBox>;
+@{
+    ViewData["Title"] = "BlindBox Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlindBox - GBOX Store</title>
+    <link rel="stylesheet" href="~/css/list_blindboxes.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        ul li::before {
+            content: "➔";
+            margin-right: 10px;
+            color: #00a400;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Filter -->
+            <div class="col-md-3 filter-sidebar">
+                <div class="filter-section">
+                    <h5>Bộ lọc</h5>
+                    <input type="text" class="form-control mb-3" placeholder="Tìm kiếm theo tên sản phẩm...">
+                </div>
+                <div class="filter-section">
+                    <h5>Dịp tặng quà</h5>
+                    <ul>
+                        <li><input type="checkbox"> Phụ nữ Việt Nam 20/10</li>
+                        <li><input type="checkbox"> Sinh nhật</li>
+                        <li><input type="checkbox"> Ngày kỷ niệm</li>
+                        <li><input type="checkbox"> Dịp khác</li>
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h5>Màu sắc</h5>
+                    <ul>
+                        <li><input type="checkbox"> Be</li>
+                        <li><input type="checkbox"> Cam</li>
+                        <li><input type="checkbox"> Đen</li>
+                        <li><input type="checkbox"> Đỏ</li>
+                        <li><input type="checkbox"> Hồng</li>
+                        <li><input type="checkbox"> Nâu</li>
+                        <li><input type="checkbox"> Tím</li>
+                        <li><input type="checkbox"> Trắng</li>
+                        <li><input type="checkbox"> Vàng</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Product Listing -->
+            <div class="col-md-9" style="margin-top: 22px">
+                <h4 class="mb-4">Sản phẩm</h4>
+                <div class="row product-list">
+                    <!-- Single Product Card -->
+                    @foreach(var blindBox in Model)
+                    {
+                        <div class="col-md-4 col-sm-6 mb-4">
+                            <div class="card product-card">
+                                <img src="@Url.Content("~/" + blindBox.ImageUrl)" alt="@blindBox.Name" style="height: 290px; object-fit: cover;">
+                                <div class="card-body" style="padding-top: 0.5rem">
+                                    <h5 class="card-title">@blindBox.Name</h5>
+                                    <p class="card-text">@blindBox.Price.ToString("N0") VNĐ</p>
+                                    <p class="card-text">@blindBox.Description</p>
+                                    <button class="btn btn-sm btn-info" style="margin-top: 10px; background-color: #0c8c5e; border-color: #0c8c6e">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
