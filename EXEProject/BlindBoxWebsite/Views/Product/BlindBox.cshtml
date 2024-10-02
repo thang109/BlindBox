@@ -1,36 +1,31 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlindBox - GBOX Store</title>
+﻿@section BlindBoxes {
     <link rel="stylesheet" href="~/css/subscription.css" />
-    <link rel="stylesheet" href="~/css/index.css" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-</head>
-<body>
+}
+@{
+    ViewData["Title"] = "BlindBox";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
     <div class="container">
         <span style="display: none">@ViewBag.Username</span>
         <div class="product-image">
-            <img src="~/images/blindbox_coca.jpg"
-                 alt="Blind Box"
+            <img src="@ViewBag.ImageUrl"
+                 alt="@ViewBag.Name"
                  width="70%" />
         </div>
         <div class="product-details">
             <h2 class="discount">Save 20%</h2>
-            <h1 class="product-title">Blind-Box</h1>
-            <p class="price">200,000 VND</p>
-            <div class="price-slider">
-                <input type="range"
-                       min="0"
-                       max="200000"
-                       value="200000"
-                       id="priceRange" 
-                       oninput="updatePriceValue()" />
-                <span id="priceValue">200,000 VND</span>
-            </div>
-            <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+            <h1 class="product-title">@ViewBag.Name</h1>
+            <p class="price">@ViewBag.RawPrice VNĐ</p>
+            <form action="@Url.Action("CheckoutBlindBox", "Payment")" method="post">
+                <input type="hidden" name="Name" value="@ViewBag.Name" />
+                <input type="hidden" name="Price" value="@ViewBag.Price" />
+                <input type="hidden" name="ImageUrl" value="@Url.Content("~" + ViewBag.ImageUrl)" />
+                <input type="hidden" name="Description" value="@ViewBag.Description" />
+                <button class="add-to-cart">
+                    Add to Cart
+                </button>
+            </form>
             <ul class="extra-info">
                 <li>
                     <i class="fas fa-tags"></i><strong> Unlock 10% discount for this order</strong>
@@ -41,7 +36,7 @@
             </ul>
             <details>
                 <summary>Description</summary>
-                <p>Detailed description of the Blind-Box product.</p>
+                <p>@ViewBag.Description</p>
             </details>
             <details>
                 <summary>Gifts?</summary>
@@ -71,45 +66,7 @@
             <button class="quiz-button">Take Our Quiz</button>
         </div>
         <div class="quiz-image">
-            <img src="~/images/blindbox_tinhdau.jpg"
+            <img src="~/images/blindboxes/blindbox_tinhdau.jpg"
                  alt="Gift Guide Quiz" />
         </div>
     </div>
-
-
-    <script src="script.js"></script>
-    <script>
-        document.querySelectorAll("nav ul li a").forEach((item) => {
-          item.addEventListener("mouseover", () => {
-            item.style.color = "#00a86b";
-          });
-          item.addEventListener("mouseout", () => {
-            item.style.color = "#333";
-          });
-        });
-        document
-          .getElementById("priceRange")
-          .addEventListener("input", function () {
-            let priceValue = document.getElementById("priceRange").value;
-            document.getElementById(
-              "priceValue"
-            ).innerText = `${priceValue.replace(
-              /\B(?=(\d{3})+(?!\d))/g,
-              "."
-            )} VND`;
-          });
-
-        function updatePriceValue() {
-            const priceRange = document.getElementById('priceRange');
-            const priceValue = document.getElementById('priceValue');
-            const value = priceRange.value;
-            priceValue.textContent = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' VND';
-        }
-
-        function addToCart() {
-            const priceRange = document.getElementById('priceRange').value;
-            window.location.href = `@Url.Action("CheckoutBlindBox", "Payment")?price=${priceRange}`;
-        }
-    </script>
-</body>
-</html>

@@ -1,149 +1,11 @@
 ﻿@model BlindBoxWebsite.ViewModels.VnPayRequestModel
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout - GBOX Store</title>
-    <link rel="stylesheet" href="~/css/index.css">
-    <style>
-        .checkout-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .row-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 100px;
-        }
-
-        .contact-shipping-info,
-        .order-summary {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            flex: 1;
-        }
-
-        .contact-shipping-info {
-            max-width: 50%;
-        }
-
-        .order-summary {
-            max-width: 50%;
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .mb-3 {
-            margin-bottom: 15px;
-        }
-
-        .product-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-            .product-item img {
-                max-width: 170px;
-                margin-right: 15px;
-            }
-
-        .product-details {
-            font-size: 14px;
-        }
-
-        .discount-link {
-            color: #16a085;
-            text-decoration: none;
-        }
-
-        .summary-totals {
-            margin-top: 25px;
-            font-size: 20px;
-        }
-
-        .total-amount {
-            font-weight: bold;
-        }
-
-        .continue-to-payment-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #16a085;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-            .continue-to-payment-btn:hover {
-                background-color: #027f51;
-            }
-
-        .contact-info, .shipping-address {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-            .contact-info h2, .shipping-address h2 {
-                margin-bottom: 15px;
-                font-size: 1.5rem;
-                font-weight: bold;
-            }
-
-        input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-            input[type="text"]:focus, input[type="email"]:focus {
-                border-color: #007bff;
-                outline: none;
-            }
-
-        .shipping-address {
-            display: flex;
-            flex-direction: column;
-        }
-
-            .shipping-address input {
-                margin-bottom: 15px;
-            }
-
-        button {
-            padding: 10px;
-            width: 100%;
-            background-color: #16a085;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-            button:hover {
-                background-color: #027f51;
-            }
-
-        .error-message{
-            color: red;
-        }
-    </style>
-</head>
-<body>
+@section CheckoutBlindBoxes {
+    <link rel="stylesheet" href="~/css/checkout_blindbox1.css" />
+}
+@{
+    ViewData["Title"] = "Checkout BlindBox";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
     <div class="checkout-container">
         <div class="checkout-content">
             <span style="display: none">@ViewBag.Username</span>
@@ -190,10 +52,11 @@
                     <div class="order-summary">
                         <h2>Order summary</h2>
                         <div class="product-item">
-                            <img src="~/images/blindbox_coca.jpg" alt="Suggest" />
+                            <img src="@Url.Content("~" + ViewBag.ImgUrl)" alt="@ViewBag.Name" />
                             <div class="product-details">
-                                <h3>Blind Box</h3>
+                                <h3>@ViewBag.Name</h3>
                                 <p>@ViewBag.RawPrice VND</p>
+                                <p>@ViewBag.Description</p>
                             </div>
                         </div>
                         <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
@@ -206,7 +69,7 @@
 
                         <!-- Hidden fields for order details -->
                         <input type="hidden" asp-for="Amount" value="@ViewBag.Price" />
-                        <input type="hidden" asp-for="OrderDescription" value="BlindBox 1" />
+                        <input type="hidden" asp-for="OrderDescription" value="@ViewBag.Name" />
                         <input type="hidden" asp-for="OrderType" value="BlindBox Payment" />
                         <input type="hidden" asp-for="BlindBoxId" value="1" />
                         <input type="hidden" asp-for="CreateDate" value="@DateTime.Now" />
@@ -223,6 +86,3 @@
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
-</body>
-
-</html>
