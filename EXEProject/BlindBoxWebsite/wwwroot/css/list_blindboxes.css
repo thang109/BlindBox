@@ -12,14 +12,6 @@
     color: #0c8c5e;
 }
 
-.filter-section h4 {
-    font-weight: 600;
-    color: #0c8c5e;
-    margin-bottom: 15px;
-    border-bottom: 0.1px solid #0c8c5e;
-    padding-bottom: 5px;
-}
-
 /* Filter section title */
 .filter-section h5 {
     font-weight: 600;
@@ -158,6 +150,14 @@ button, input, optgroup, select, textarea {
 
 button {
     border-radius: 0;
+}
+
+.filter-section h4 {
+    font-weight: 600;
+    color: #0c8c5e;
+    margin-bottom: 15px;
+    border-bottom: 0.1px solid #0c8c5e;
+    padding-bottom: 5px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,5 +1,20 @@
 ﻿@section BlindBoxes {
     <link rel="stylesheet" href="~/css/subscription.css" />
+    <style>
+        .add-to-cart {
+            background-color: #1abc9c;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+    </style>
 }
 @{
     ViewData["Title"] = "BlindBox";
@@ -63,7 +78,9 @@
                 <li>→ Hãy trả lời 5 câu hỏi nhanh</li>
                 <li>→ Nhận các gợi ý về món quà của bạn</li>
             </ul>
-            <button class="quiz-button">Take Our Quiz</button>
+            <button class="quiz-button">
+                <a style="text-decoration: none; color: white" href="@Url.Action("Quiz","Quiz")">Take Our Quiz</a>
+            </button>
         </div>
         <div class="quiz-image">
             <img src="~/images/blindboxes/blindbox_tinhdau.jpg"

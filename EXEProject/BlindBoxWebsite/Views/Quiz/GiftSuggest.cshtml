@@ -1,213 +1,74 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<BlindBoxWebsite.Models.BlindBox>
+@{
+    ViewData["Title"] = "Gift Suggest";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section GiftSuggest{
+    <link rel="stylesheet" href="~/css/gift_suggest.css" />
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/index.css" />
-    <title>Easy-Care Subscription</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-        }
-
-        .header {
-            text-align: center;
-            padding: 20px;
-            background-color: #0c9462;
-            color: white;
-        }
-
-            .header h1 {
-                font-size: 24px;
-                font-weight: bold;
-                color: #efefef;
-            }
-
-            .header p {
-                margin: 10px 0;
-                color: #efefef;
-            }
-
-        .products {
-        display: flex;
-        justify-content: space-between;
-        margin: 40px 0;
-    }
-
-    .product-item {
-        width: 30%;
-        text-align: center;
-        padding: 20px;
-        border: 1px solid #ccc;
-        background-color: #f9f9f9;
-    }
-
-    .product-item img {
-        width: 100%;
-        height: 250px; /* You can adjust this height as needed */
-        object-fit: cover; /* Ensures images maintain aspect ratio while covering the container */
-    }
-
-    .product-item h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .product-item .price {
-        font-size: 16px;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-
-    .product-item p {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 20px;
-        min-height: 120px;
-    }
-
-    .shop-now-btn {
-        background-color: #ae2d2a;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-top: auto;
-    }
-
-    .shop-now-btn a {
-        color: white;
-        text-decoration: none;
-    }
-
-    .shop-now-btn:hover {
-        background-color: #8a2323;
-    }
-        .price {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .footer {
-            padding: 20px;
-            text-align: center;
-            background-color: #ae2d2a;
-            color: white;
-        }
-
-        .additional-products, .blind-box-section {
-            text-align: center;
-            padding: 40px;
-            background-color: #f5f5f5;
-            margin-top: 40px;
-        }
-
-            .additional-products h2, .blind-box-section h2 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
-
-            .additional-products p, .blind-box-section p {
-                font-size: 16px;
-                color: #666;
-                margin-bottom: 20px;
-            }
-
-        .shop-now-btn, .blindbox-btn {
-            background-color: #0c9462;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-            .shop-now-btn:hover, .blindbox-btn:hover {
-                background-color: #14833b;
-            }
-
-            .shop-now-btn a, .blindbox-btn a {
-                color: white;
-                text-decoration: none;
-            }
-
-        .bottom-footer {
-            background-color: #e5e5e5;
-            border-top: 1px solid #ddd;
-            padding: 20px 40px;
-            margin: 0 -40px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>RECOMMENDED JUST FOR YOU</h1>
-            <p>Chào bạn! Sau khi tổng hợp ý kiến từ quiz, tôi rất vui được giới thiệu sản phẩm bạn đang tìm kiếm</p>
-        </div>
-        <div class="products">
-            <div class="product-item">
-                <h3>Tinh Dầu Thiên Nhiên</h3>
-                <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Tinh Dau">
-                <div class="price">560,000 VND</div>
-                <p>Tinh dầu thiên nhiên thư giãn. Được chiết xuất từ cây cỏ và hoa, sản phẩm này mang lại nhiều lợi ích cho sức khỏe và tinh thần. Với hương thơm tự nhiên, tinh dầu giúp xua tan căng thẳng, nâng cao tâm trạng và cải thiện giấc ngủ. Hãy để tinh dầu thiên nhiên mang lại sự thư giãn mà bạn xứng đáng!</p>
-                <button class="shop-now-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment", new { price= 560000, imgUrl= Url.Content("~/images/tinh-dau-thien-nhien.jpg"), title= "Tinh Dầu Thiên Nhiên"})'">Buy Now</a>
-                </button>
-            </div>
-            <div class="product-item">
-                <h3>Giày Chạy Bộ Adidas Ultrarun 5</h3>
-                <img src="~/images/giay-the-thao-adidas-ultra-boost.jpg" alt="giay ultrarun">
-                <div class="price">2,200,000 VND</div>
-                <p>Nhẹ nhàng chinh phục đường chạy sáng sớm và hoạt động buổi chiều với đôi giày chạy bộ adidas này. Lớp đệm Cloudfoam mang lại cảm giác mềm mại và thoải mái ngay khi vừa xỏ chân, cùng thân giày bằng vải lưới cho đôi chân thoáng mát. </p>
-                <button class="shop-now-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment", new { price= 2200000, imgUrl= Url.Content("~/images/giay-the-thao-adidas-ultra-boost.jpg"), title= "Giày Chạy Bộ Adidas Ultrarun 5"})'">Buy Now</a>
-                </button>
-            </div>
-            <div class="product-item">
-                <h3>Robot hút bụi Samsung Powerbot</h3>
-                <img src="~/images/vn-robot-vr05r5050wk-vr05r5050wk-sv-519428263.jpg" alt="robot hut bui">
-                <div class="price">4,990,000 VND</div>
-                <p>Robot hút bụi Samsung powerbot-E là sản phẩm đánh dấu sự kết hợp đột phá của công nghệ AI với sản phẩm làm sạch nhà cửa của ông lớn Samsung. Sự kết hợp này tạo ra chiếc robot hút bụi có thiết kế đẹp mắt nhỏ gọn và sang trọng nhưng công năng mạnh mẽ với các tính năng ưu việt và cực thông minh.</p>
-                <button class="shop-now-btn">
-                    <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("Checkout", "Payment", new { price= 4990000, imgUrl= Url.Content("~/images/vn-robot-vr05r5050wk-vr05r5050wk-sv-519428263.jpg"), title= "Robot hút bụi Samsung Powerbot" })'">Buy Now</a>
-                </button>
-            </div>
-        </div>
-
-        <div class="additional-products">
-            <h2>Nếu sản phẩm vừa rồi chưa phù hợp, hệ thống của tôi có nhiều lựa chọn khác cho bạn!</h2>
-            <p>Bạn có thể tham khảo qua các sản phẩm khác bên chúng tôi.</p>
-            <button class="shop-now-btn">
-                <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("BlindBoxGift", "Product")'">Shop Now</a>
-            </button>
-        </div>
-
+<div class="container">
         <div class="blind-box-section">
-            <h2>Ngoài ra cửa hàng của chúng tôi cũng đã chuẩn bị các sản phẩm Blind Box</h2>
-            <p>Mỗi hộp quà được chọn cẩn thận theo sở thích và nhu cầu của bạn, mang đến những trải nghiệm bất ngờ.</p>
-            <button class="blindbox-btn">
-                <a style="text-decoration: none; color: white;" onclick="window.location.href='@Url.Action("BlindBox", "Product")'">BlindBox Shop</a>
+            <h1>Các Sản Phẩm BlindBox</h1>
+            <p>Khám phá các hộp quà Blind Box độc đáo được thiết kế riêng để mang lại sự bất ngờ và thú vị cho bạn. Chọn Blind Box để trải nghiệm sự độc đáo mà chỉ chúng tôi mới có!</p>
+            <div class="blind-box-products">
+                @for (int i = 0; i < 2 && i < Model.Count; i++)
+                {
+                    var product = Model[i];
+                    <div class="blind-box-item">
+                        <h3>@product.Name</h3>
+                        <img src="@Url.Content("~/" + product.ImageUrl)" alt="@product.Name" style="height: 290px; object-fit: cover;"/>
+                        <div class="price">@product.Price.ToString("N0") VND</div>
+                        <p>@product.Description</p>
+                        <form action="@Url.Action("BlindBox", "Product")" method="post">
+                            <input type="hidden" name="Name" value="@product.Name" />
+                            <input type="hidden" name="Price" value="@product.Price" />
+                            <input type="hidden" name="ImageUrl" value="@Url.Content("~/" + product.ImageUrl)" />
+                            <input type="hidden" name="Description" value="@product.Description" />
+                            <button class="btn btn-sm btn-info" style="margin-top: 10px; background-color: #9fd4cd">
+                                Buy Now
+                            </button>
+                        </form>
+                        
+                    </div>
+                }
+            </div>
+            <button class="btn btn-primary">
+                <a style="text-decoration: none; color: black;" href="@Url.Action("BlindBoxGift", "Product")">Xem thêm các Blind Box</a>
             </button>
         </div>
 
+        <div class="recommended-section">
+            <h2>Gợi Ý Sản Phẩm Dành Cho Bạn</h2>
+            <p>Dựa trên kết quả từ quiz, chúng tôi đã chọn ra những sản phẩm từ Shopee có thể phù hợp với bạn.</p>
+            <div class="products">
+                <div class="product-item">
+                    <h3>Tinh Dầu Thiên Nhiên</h3>
+                    <img src="~/images/tinh-dau-thien-nhien.jpg" alt="Tinh Dau" style="height: 290px; object-fit: cover;">
+                    <div class="price">560,000 VND</div>
+                    <p>Tinh dầu thiên nhiên thư giãn. Được chiết xuất từ cây cỏ và hoa, sản phẩm này mang lại nhiều lợi ích cho sức khỏe và tinh thần.</p>
+                    <button class="shop-now-btn">
+                        <a style="text-decoration: none; color: white;" href="@Url.Action("Checkout", "Payment", new { price= 560000, imgUrl= Url.Content("~/images/tinh-dau-thien-nhien.jpg"), title= "Tinh Dầu Thiên Nhiên" })">Mua Ngay</a>
+                    </button>
+                </div>
+                <div class="product-item">
+                    <h3>Giày Chạy Bộ Adidas Ultrarun 5</h3>
+                    <img src="~/images/giay-the-thao-adidas-ultra-boost.jpg" alt="giay ultrarun" style="height: 290px; object-fit: cover;">
+                    <div class="price">2,200,000 VND</div>
+                    <p>Nhẹ nhàng chinh phục đường chạy sáng sớm và hoạt động buổi chiều với đôi giày chạy bộ adidas này.</p>
+                    <button class="shop-now-btn">
+                        <a style="text-decoration: none; color: white;" href="@Url.Action("Checkout", "Payment", new { price= 2200000, imgUrl= Url.Content("~/images/giay-the-thao-adidas-ultra-boost.jpg"), title= "Giày Chạy Bộ Adidas Ultrarun 5" })">Mua Ngay</a>
+                    </button>
+                </div>
+                <div class="product-item">
+                    <h3>Robot hút bụi Samsung Powerbot</h3>
+                    <img src="~/images/vn-robot-vr05r5050wk-vr05r5050wk-sv-519428263.jpg" alt="robot hut bui" style="height: 290px; object-fit: cover;">
+                    <div class="price">4,990,000 VND</div>
+                    <p>Robot hút bụi Samsung powerbot-E là sản phẩm kết hợp đột phá của công nghệ AI với khả năng làm sạch vượt trội.</p>
+                    <button class="shop-now-btn">
+                        <a style="text-decoration: none; color: white;" href="@Url.Action("Checkout", "Payment", new { price= 4990000, imgUrl= Url.Content("~/images/vn-robot-vr05r5050wk-vr05r5050wk-sv-519428263.jpg"), title= "Robot hút bụi Samsung Powerbot" })">Mua Ngay</a>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
