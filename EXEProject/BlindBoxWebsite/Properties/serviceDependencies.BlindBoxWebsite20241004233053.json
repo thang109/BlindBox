@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/BlindBoxWebsite20241004233053/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsBlindBox_1160972123",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/thienthang/databases/BlindBox",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:BlindBox",
+      "dynamicId": null
+    }
+  }
+}
