@@ -27,6 +27,13 @@
             border-bottom: 0.1px solid #0c8c5e;
             padding-bottom: 5px;
         }
+
+        .bottom-footer {
+            background-color: #e5e5e5;
+            border-top: 1px solid #ddd;
+            padding: 27px 40px;
+            margin: 0 -40px;
+        }
     </style>
 </head>
 <body>
@@ -79,13 +86,13 @@
                     <!-- Single Product Card -->
                     @foreach(var blindBox in Model)
                     {
+                        <p style="display: none">@blindBox.Description</p>
                         <div class="col-md-4 col-sm-6 mb-4">
                             <div class="card product-card">
                                 <img src="@Url.Content("~/" + blindBox.ImageUrl)" alt="@blindBox.Name" style="height: 290px; object-fit: cover;">
                                 <div class="card-body" style="padding-top: 0.5rem">
                                     <h5 class="card-title">@blindBox.Name</h5>
                                     <p class="card-text">@blindBox.Price.ToString("N0") VNĐ</p>
-                                    <p class="card-text">@blindBox.Description</p>
                                     <form action="@Url.Action("BlindBox", "Product")" method="post">
                                         <input type="hidden" name="Name" value="@blindBox.Name" />
                                         <input type="hidden" name="Price" value="@blindBox.Price" />

@@ -14,6 +14,13 @@
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
             width: 100%;
         }
+
+        .bottom-footer {
+            background-color: #e5e5e5;
+            border-top: 1px solid #ddd;
+            padding: 20px 40px;
+            margin: 0 -40px;
+        }
     </style>
 }
 @{
@@ -32,6 +39,7 @@
             <h2 class="discount">Save 20%</h2>
             <h1 class="product-title">@ViewBag.Name</h1>
             <p class="price">@ViewBag.RawPrice VNĐ</p>
+
             <form action="@Url.Action("CheckoutBlindBox", "Payment")" method="post">
                 <input type="hidden" name="Name" value="@ViewBag.Name" />
                 <input type="hidden" name="Price" value="@ViewBag.Price" />
@@ -75,8 +83,8 @@
                 Bạn muốn mua quà? Chúng tôi sẽ giúp bạn tìm được món quà phù hợp
             </p>
             <ul class="quiz-steps">
-                <li>→ Hãy trả lời 5 câu hỏi nhanh</li>
-                <li>→ Nhận các gợi ý về món quà của bạn</li>
+                <li> Hãy trả lời 5 câu hỏi nhanh</li>
+                <li> Nhận các gợi ý về món quà của bạn</li>
             </ul>
             <button class="quiz-button">
                 <a style="text-decoration: none; color: white" href="@Url.Action("Quiz","Quiz")">Take Our Quiz</a>

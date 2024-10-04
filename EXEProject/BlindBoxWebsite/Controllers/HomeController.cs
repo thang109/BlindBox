@@ -11,11 +11,13 @@ namespace BlindBoxWebsite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserRepository _userRepository;
+        private readonly BlindBoxContext _context;
 
-        public HomeController(ILogger<HomeController> logger, IUserRepository userRepository)
+        public HomeController(ILogger<HomeController> logger, IUserRepository userRepository, BlindBoxContext context)
         {
             _logger = logger;
             _userRepository = userRepository;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -45,7 +47,8 @@ namespace BlindBoxWebsite.Controllers
                 ViewBag.IsUserLoggedIn = false;
             }
 
-            return View();
+            var blindBoxGift = _context.BlindBoxes.ToList();
+            return View(blindBoxGift);
         }
 
 
