@@ -3,12 +3,6 @@ on:
   push:
     branches:
     - main
-env:
-  AZURE_WEBAPP_NAME: gbox
-  AZURE_WEBAPP_PACKAGE_PATH: BlindBoxWebsite\published
-  CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 8.0.x
-  WORKING_DIRECTORY: BlindBoxWebsite
 jobs:
   build:
     runs-on: windows-latest
