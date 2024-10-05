@@ -1,10 +1,10 @@
-name: Build and deploy .NET Core application to Web App BlindBoxWebsite20241004233053
+name: Build and deploy .NET Core application to Web App gbox
 on:
   push:
     branches:
     - main
 env:
-  AZURE_WEBAPP_NAME: BlindBoxWebsite20241004233053
+  AZURE_WEBAPP_NAME: gbox
   AZURE_WEBAPP_PACKAGE_PATH: BlindBoxWebsite\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.BlindBoxWebsite20241004233053_DB5B }}
+        publish-profile: ${{ secrets.gbox_DE84 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
