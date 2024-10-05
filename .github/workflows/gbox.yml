@@ -4,7 +4,12 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+env:
+  AZURE_WEBAPP_NAME: gbox
+  AZURE_WEBAPP_PACKAGE_PATH: EXEProject\published
+  CONFIGURATION: Release
+  DOTNET_CORE_VERSION: 8.0.x
+  WORKING_DIRECTORY: EXEProject
 
 jobs:
   build:
