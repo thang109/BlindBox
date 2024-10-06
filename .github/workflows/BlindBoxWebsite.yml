@@ -1,11 +1,16 @@
-
 name: Build and deploy ASP.Net Core app to Azure Web App - CICDTS
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+
+env:
+    AZURE_WEBAPP_NAME: BlindBoxWebsite
+    AZURE_WEBAPP_PACKAGE_PATH: EXEProject\published
+    CONFIGURATION: Release
+    DOTNET_CORE_VERSION: 8.0.x
+    WORKING_DIRECTORY: EXEProject
 
 jobs:
   build:
@@ -52,3 +57,4 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.BlindBoxWebsite_ACFF }}
+          
