@@ -55,8 +55,8 @@ namespace BlindBoxWebsite.Controllers
                 IsEmailConfirmed = false
             };
 
-            await _userRepository.CreateAsync(user);
-            await _userRepository.SaveChangesAsync();
+            await _context.AddAsync(user);
+            await _context.SaveChangesAsync();
 
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.UserId, message = "Email confirmed successfully, please log in." }, Request.Scheme);
 

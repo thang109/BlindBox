@@ -8,6 +8,6 @@ namespace BlindBoxWebsite.Interfaces
         bool UserExist(string email);
         User GetUserById(int id);
         bool IsAdmin(User user);
-        
+        Task<int> AddAccount(User user);
     }
 }

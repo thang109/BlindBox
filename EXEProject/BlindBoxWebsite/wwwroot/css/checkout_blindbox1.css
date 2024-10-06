@@ -36,7 +36,16 @@
 .product-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
+    width: 85%;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    text-align: center;
+    flex: 1;
+    overflow: hidden;
 }
 
     .product-item img {
@@ -128,3 +137,17 @@ button {
 .error-message {
     color: red;
 }
+
+button {
+    padding: 10px;
+    width: 100%;
+    background-color: #16a085;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+}
+
+    button:hover {
+        background-color: none;
+    }
