@@ -5,10 +5,10 @@ on:
     - main
 env:
   AZURE_WEBAPP_NAME: BlindBoxWebsite
-  AZURE_WEBAPP_PACKAGE_PATH: BlindBoxWebsite\published
+  AZURE_WEBAPP_PACKAGE_PATH: EXEProject\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
-  WORKING_DIRECTORY: BlindBoxWebsite
+  WORKING_DIRECTORY: EXEProject
 jobs:
   build:
     runs-on: windows-latest
