@@ -4,12 +4,11 @@ on:
     branches:
     - main
 env:
-  AZURE_WEBAPP_NAME: BlindBoxWebsite
+  AZURE_WEBAPP_NAME: EXEProject
   AZURE_WEBAPP_PACKAGE_PATH: EXEProject\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
   WORKING_DIRECTORY: EXEProject
-
 jobs:
   build:
     runs-on: windows-latest
@@ -45,7 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.BlindBoxWebsite_ACFF }}
+        publish-profile: ${{ secrets.BlindBoxWebsite_6E8B }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        slot-name: 'Production'
- 
