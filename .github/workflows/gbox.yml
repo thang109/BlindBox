@@ -51,6 +51,7 @@ jobs:
               "tenantId": "${{ secrets.AZURE_TENANT_ID }}",
               "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
             }
+
         enable-AzPSSession: false
         environment: azurecloud
         allow-no-subscriptions: false
