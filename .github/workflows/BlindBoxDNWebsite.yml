@@ -46,4 +46,4 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.BlindBoxDNWebsite_A2F7 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        slot-name: 'Product'
+        
