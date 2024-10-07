@@ -12,9 +12,8 @@
             <h1>Các Sản Phẩm BlindBox</h1>
             <p>Khám phá các hộp quà Blind Box độc đáo được thiết kế riêng để mang lại sự bất ngờ và thú vị cho bạn. Chọn Blind Box để trải nghiệm sự độc đáo mà chỉ chúng tôi mới có!</p>
             <div class="blind-box-products">
-                @for (int i = 0; i < 2 && i < Model.Count; i++)
+                @foreach (var product in Model)
                 {
-                    var product = Model[i];
                     <div class="blind-box-item">
                         <h3>@product.Name</h3>
                         <img src="@Url.Content("~/" + product.ImageUrl)" alt="@product.Name" style="height: 290px; object-fit: cover;"/>
@@ -29,7 +28,6 @@
                                 Chi Tiết
                             </button>
                         </form>
-                        
                     </div>
                 }
             </div>

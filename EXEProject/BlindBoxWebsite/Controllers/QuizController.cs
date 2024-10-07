@@ -1,5 +1,6 @@
 ﻿using BlindBoxWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace BlindBoxWebsite.Controllers
 {
@@ -32,8 +33,25 @@ namespace BlindBoxWebsite.Controllers
                 ViewBag.UserName = HttpContext.Session.GetString("UserName");
             }
 
-            var blindBoxGift = _context.BlindBoxes.ToList(); 
-            return View(blindBoxGift);
+            var randomProductsJson = HttpContext.Session.GetString("RandomProducts");
+
+            List<BlindBox> randomProducts = string.IsNullOrEmpty(randomProductsJson)
+                ? new List<BlindBox>()
+                : JsonConvert.DeserializeObject<List<BlindBox>>(randomProductsJson);
+
+            return View(randomProducts);
+        }
+
+        public IActionResult CompleteQuiz()
+        {
+            var allProducts = _context.BlindBoxes.ToList();
+
+            var random = new Random();
+            var randomProducts = allProducts.OrderBy(p => random.Next()).Take(2).ToList();
+
+            HttpContext.Session.SetString("RandomProducts", Newtonsoft.Json.JsonConvert.SerializeObject(randomProducts));
+
+            return RedirectToAction("GiftSuggest", "Quiz");
         }
     }
 }
