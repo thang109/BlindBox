@@ -54,13 +54,13 @@
                         <form asp-action="SignUp" method="post">
                             <div class="row gy-3 gy-md-4 overflow-hidden">
                                 <div class="col-12">
-                                    <label asp-for="UserName" class="form-label">Full Name <span class="text-danger">*</span></label>
-                                    <input asp-for="UserName" class="form-control" placeholder="Enter your full name">
+                                    <label asp-for="UserName" class="form-label">Username <span class="text-danger">*</span></label>
+                                    <input asp-for="UserName" class="form-control" placeholder="Enter your username">
                                     <span asp-validation-for="UserName" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
                                     <label asp-for="Email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input asp-for="Email" class="form-control" type="text" placeholder="abc@gmail.com">
+                                    <input asp-for="Email" class="form-control" type="text" placeholder="Enter your email">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
