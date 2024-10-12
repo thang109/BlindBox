@@ -76,6 +76,7 @@
                         </div>
                         <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
                         <div class="summary-totals">
+                            <p style="display:none">@ViewBag.BlindBoxId</p>
                             <p>Tổng cộng: <span>@ViewBag.RawPrice VND</span></p>
                             <p>Phí vận chuyển: <span>--</span></p>
                             <p>Thuế: <span>--</span></p>
@@ -86,7 +87,7 @@
                         <input type="hidden" asp-for="Amount" value="@ViewBag.Price" />
                         <input type="hidden" asp-for="OrderDescription" value="@ViewBag.Name" />
                         <input type="hidden" asp-for="OrderType" value="BlindBox Payment" />
-                        <input type="hidden" asp-for="BlindBoxId" value="1" />
+                        <input type="hidden" asp-for="BlindBoxId" value="@ViewBag.BlindBoxId" />
                         <input type="hidden" asp-for="CreateDate" value="@DateTime.Now" />
 
                         <button type="submit" class="continue-to-payment-btn" style="color: white">

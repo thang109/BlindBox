@@ -43,7 +43,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("ads");
 
-            entity.Property(e => e.AdId).HasColumnName("ad_id");
+            entity.Property(e => e.AdId)
+                .HasColumnName("ad_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -66,7 +68,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("blind_boxes");
 
-            entity.Property(e => e.BlindBoxId).HasColumnName("blind_box_id");
+            entity.Property(e => e.BlindBoxId)
+                .HasColumnName("blind_box_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -94,7 +98,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("commissions");
 
-            entity.Property(e => e.CommissionId).HasColumnName("commission_id");
+            entity.Property(e => e.CommissionId)
+                .HasColumnName("commission_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.CommissionAmount)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("commission_amount");
@@ -122,7 +128,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("orders");
 
-            entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.OrderId)
+                .HasColumnName("order_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -150,7 +158,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("order_items");
 
-            entity.Property(e => e.OrderItemId).HasColumnName("order_item_id");
+            entity.Property(e => e.OrderItemId)
+                .HasColumnName("order_item_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.BlindBoxId).HasColumnName("blind_box_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -181,7 +191,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("payments");
 
-            entity.Property(e => e.PaymentId).HasColumnName("payment_id");
+            entity.Property(e => e.PaymentId)
+                .HasColumnName("payment_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.Amount)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("amount");
@@ -212,7 +224,9 @@ public partial class BlindBoxContext : DbContext
 
             entity.ToTable("quizzes");
 
-            entity.Property(e => e.QuizId).HasColumnName("quiz_id");
+            entity.Property(e => e.QuizId)
+                .HasColumnName("quiz_id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

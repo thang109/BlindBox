@@ -126,7 +126,7 @@ namespace BlindBoxWebsite.Controllers
             HttpContext.Session.SetString("UserId", user.UserId.ToString());
             HttpContext.Session.SetString("UserName", user.Username);
 
-            TempData["LogInSuccess"] = "Welcome to my GBOX shop"; 
+            TempData["LogInSuccess"] = "Welcome to my GBOX shop";
 
             return RedirectToAction("Index", "Home");
         }

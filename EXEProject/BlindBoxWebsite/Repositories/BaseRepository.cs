@@ -37,6 +37,12 @@ namespace BlindBoxWebsite.Repositories
             return await _dbSet.FindAsync(id);
         }
 
+        public int GetNextId()
+        {
+            var maxId = _context.Set<T>().Max(e => EF.Property<int>(e, "Id"));
+            return maxId + 1;
+        }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

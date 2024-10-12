@@ -7,5 +7,6 @@
         Task UpdateAsync(T entity);
         Task DeleteAsync(object id);
         Task SaveChangesAsync();
+        int GetNextId();
     }
 }

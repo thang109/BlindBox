@@ -93,11 +93,13 @@
                                 <div class="card-body" style="padding-top: 0.5rem">
                                     <h5 class="card-title">@blindBox.Name</h5>
                                     <p class="card-text">@blindBox.Price.ToString("N0") VNĐ</p>
+                                    <p style="display: none">@blindBox.BlindBoxId</p>
                                     <form action="@Url.Action("BlindBox", "Product")" method="post">
                                         <input type="hidden" name="Name" value="@blindBox.Name" />
                                         <input type="hidden" name="Price" value="@blindBox.Price" />
                                         <input type="hidden" name="ImageUrl" value="@Url.Content("~/" + blindBox.ImageUrl)" />
                                         <input type="hidden" name="Description" value="@blindBox.Description" />
+                                        <input type="hidden" name="BlindBoxId" value="@blindBox.BlindBoxId" />
                                         <button class="btn btn-sm btn-info" style="margin-top: 10px; background-color: #0c8c5e; border-color: #0c8c6e">
                                             Details
                                         </button>

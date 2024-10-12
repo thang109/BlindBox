@@ -39,12 +39,13 @@
             <h2 class="discount">Save 20%</h2>
             <h1 class="product-title">@ViewBag.Name</h1>
             <p class="price">@ViewBag.RawPrice VNĐ</p>
-
+            <p style="display: none">@ViewBag.BlindBoxId</p>
             <form action="@Url.Action("CheckoutBlindBox", "Payment")" method="post">
                 <input type="hidden" name="Name" value="@ViewBag.Name" />
                 <input type="hidden" name="Price" value="@ViewBag.Price" />
                 <input type="hidden" name="ImageUrl" value="@Url.Content("~" + ViewBag.ImageUrl)" />
                 <input type="hidden" name="Description" value="@ViewBag.Description" />
+                <input type="hidden" name="BlindBoxId" value="@ViewBag.BlindBoxId" />
                 <button class="add-to-cart">
                     Add to Cart
                 </button>

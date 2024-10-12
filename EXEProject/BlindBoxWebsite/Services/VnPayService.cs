@@ -1,16 +1,20 @@
 ﻿using BlindBoxWebsite.Heplers;
 using BlindBoxWebsite.Interfaces;
+using BlindBoxWebsite.Models;
 using BlindBoxWebsite.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlindBoxWebsite.Services
 {
     public class VnPayService : IVnPayService
     {
         private readonly IConfiguration _configuration;
+        private readonly BlindBoxContext _context;
 
-        public VnPayService(IConfiguration config)
+        public VnPayService(IConfiguration config, BlindBoxContext context)
         {
             _configuration = config;
+            _context = context;
         }
 
         public string CreatePaymentUrl(HttpContext context, VnPayRequestModel model)
@@ -45,6 +49,54 @@ namespace BlindBoxWebsite.Services
             var pay = new VnPayLibrary();
             var response = pay.GetFullResponseData(collections, _configuration["Vnpay:HashSecret"]);
 
+            if (response.Success)
+            {
+                using (var context = new BlindBoxContext())
+                {
+                    int.TryParse(response.OrderId, out int orderId);
+
+                    var order = context.Orders.FirstOrDefault(o => o.OrderId == orderId);
+                    if (order != null)
+                    {
+                        order.Status = "Completed";
+                        context.Orders.Update(order);
+                    }
+
+                    var payment = context.Payments.FirstOrDefault(p => p.OrderId == orderId);
+                    if (payment != null)
+                    {
+                        payment.Status = "Success";
+                        payment.CreatedAt = DateTime.Now;
+                        context.Payments.Update(payment);
+                    }
+
+                    context.SaveChanges();
+                }
+            }
+            else
+            {
+                using (var context = new BlindBoxContext())
+                {
+                    int.TryParse(response.OrderId, out int orderId);
+
+                    var order = context.Orders.FirstOrDefault(o => o.OrderId == orderId);
+                    if (order != null)
+                    {
+                        order.Status = "Failed";
+                        context.Orders.Update(order);
+                    }
+
+                    var payment = context.Payments.FirstOrDefault(p => p.OrderId == orderId);
+                    if (payment != null)
+                    {
+                        payment.Status = "Failed";
+                        payment.CreatedAt = DateTime.Now;
+                        context.Payments.Update(payment);
+                    }
+
+                    context.SaveChanges();
+                }
+            }
             return response;
         }
     }
