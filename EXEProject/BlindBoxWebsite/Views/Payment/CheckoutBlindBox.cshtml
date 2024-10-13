@@ -1,26 +1,10 @@
 ﻿@model BlindBoxWebsite.ViewModels.VnPayRequestModel
-@section CheckoutBlindBoxes {
-    <link rel="stylesheet" href="~/css/checkout_blindbox1.css" />
-    <style>
-        .product-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            width: 85%;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            text-align: center;
-            flex: 1;
-            overflow: hidden;
-        }
-    </style>
-}
 @{
     ViewData["Title"] = "Checkout BlindBox";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section CheckoutBlindBoxes {
+    <link rel="stylesheet" href="~/css/checkout_blindbox1.css" />
 }
     <div class="checkout-container">
         <div class="checkout-content">
