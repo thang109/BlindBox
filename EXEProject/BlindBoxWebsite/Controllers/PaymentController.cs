@@ -88,6 +88,7 @@ namespace BlindBoxWebsite.Controllers
             {
                 ViewBag.UserName = HttpContext.Session.GetString("UserName");
             }
+
             return View(model);
         }
 
@@ -112,7 +113,6 @@ namespace BlindBoxWebsite.Controllers
                     TotalPrice = (decimal)model.Amount,
                     Status = "Pending",
                     CreatedAt = model.CreateDate,
-                    UpdatedAt = DateTime.Now,
                 };
 
                 newOrder.OrderId = await _productRepository.AddNewOrder(newOrder);
@@ -124,7 +124,6 @@ namespace BlindBoxWebsite.Controllers
                     Quantity = 1,
                     Price = (decimal)model.Amount,
                     CreatedAt = model.CreateDate,
-                    UpdatedAt = DateTime.Now,
                 };
                 await _productRepository.AddNewOrderItem(orderDetail);
 
@@ -135,11 +134,10 @@ namespace BlindBoxWebsite.Controllers
                     Amount = (decimal)model.Amount,
                     Status = "Pending",
                     CreatedAt = model.CreateDate,
-                    UpdatedAt = DateTime.Now,
                 };
                 await _productRepository.AddNewPayment(payment);
 
-                var url = _vnPayService.CreatePaymentUrl(HttpContext, model);
+                var url = _vnPayService.CreatePaymentUrl(HttpContext, model, newOrder.OrderId);
 
                 return Redirect(url);
             }

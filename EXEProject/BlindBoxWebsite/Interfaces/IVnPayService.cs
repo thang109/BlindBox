@@ -4,7 +4,7 @@ namespace BlindBoxWebsite.Interfaces
 {
     public interface IVnPayService
     {
-        string CreatePaymentUrl(HttpContext context, VnPayRequestModel model);
+        string CreatePaymentUrl(HttpContext context, VnPayRequestModel model, int orderId);
         VnPayResponseModel PaymentExecute(IQueryCollection collections);
     }
 }

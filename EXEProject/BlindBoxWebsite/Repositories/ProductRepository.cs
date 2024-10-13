@@ -48,5 +48,17 @@ namespace BlindBoxWebsite.Repositories
                 return payment.PaymentId;
             }
         }
+
+        public void UpdatePayment(Payment payment)
+        {
+            var existingPayment = _context.Payments.FirstOrDefault(p => p.PaymentId == payment.PaymentId);
+            if (existingPayment != null)
+            {
+                existingPayment.Status = payment.Status;
+                existingPayment.UpdatedAt = DateTime.Now;
+
+                _context.SaveChanges();
+            }
+        }
     }
 }

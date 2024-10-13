@@ -7,5 +7,6 @@ namespace BlindBoxWebsite.Interfaces
         Task<int> AddNewOrder(Order order);
         Task<int> AddNewOrderItem(OrderItem orderItem);
         Task<int> AddNewPayment(Payment payment);
+        void UpdatePayment(Payment payment);
     }
 }

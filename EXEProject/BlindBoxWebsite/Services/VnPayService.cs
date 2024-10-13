@@ -2,6 +2,7 @@
 using BlindBoxWebsite.Interfaces;
 using BlindBoxWebsite.Models;
 using BlindBoxWebsite.ViewModels;
+using MailKit.Search;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlindBoxWebsite.Services
@@ -10,21 +11,24 @@ namespace BlindBoxWebsite.Services
     {
         private readonly IConfiguration _configuration;
         private readonly BlindBoxContext _context;
+        private readonly IProductRepository _productRepository;
 
-        public VnPayService(IConfiguration config, BlindBoxContext context)
+        public VnPayService(IConfiguration config, BlindBoxContext context, IProductRepository productRepository)
         {
             _configuration = config;
             _context = context;
+            _productRepository = productRepository;
         }
 
-        public string CreatePaymentUrl(HttpContext context, VnPayRequestModel model)
+        public string CreatePaymentUrl(HttpContext context, VnPayRequestModel model, int orderId)
         {
             var timeZoneById = TimeZoneInfo.FindSystemTimeZoneById(_configuration["TimeZoneId"]);
             var tick = DateTime.Now.Ticks.ToString();
             var timeNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZoneById);
             var pay = new VnPayLibrary();
             var urlCallBack = _configuration["PaymentCallBack:ReturnUrl"];
-
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
+            
             pay.AddRequestData("vnp_Version", _configuration["Vnpay:Version"]);
             pay.AddRequestData("vnp_Command", _configuration["Vnpay:Command"]);
             pay.AddRequestData("vnp_TmnCode", _configuration["Vnpay:TmnCode"]);
@@ -36,7 +40,7 @@ namespace BlindBoxWebsite.Services
             pay.AddRequestData("vnp_OrderInfo", $"{model.FullName} {model.OrderDescription} {model.Amount}");
             pay.AddRequestData("vnp_OrderType", model.OrderType);
             pay.AddRequestData("vnp_ReturnUrl", urlCallBack);
-            pay.AddRequestData("vnp_TxnRef", tick);
+            pay.AddRequestData("vnp_TxnRef", order.OrderId.ToString());
 
             var paymentUrl =
                 pay.CreateRequestUrl(_configuration["Vnpay:BaseUrl"], _configuration["Vnpay:HashSecret"]);
@@ -48,53 +52,52 @@ namespace BlindBoxWebsite.Services
         {
             var pay = new VnPayLibrary();
             var response = pay.GetFullResponseData(collections, _configuration["Vnpay:HashSecret"]);
-
             if (response.Success)
             {
+                int.TryParse(response.OrderId, out int orderId);
                 using (var context = new BlindBoxContext())
                 {
-                    int.TryParse(response.OrderId, out int orderId);
-
-                    var order = context.Orders.FirstOrDefault(o => o.OrderId == orderId);
-                    if (order != null)
-                    {
-                        order.Status = "Completed";
-                        context.Orders.Update(order);
-                    }
-
-                    var payment = context.Payments.FirstOrDefault(p => p.OrderId == orderId);
+                    var payment = _context.Payments.FirstOrDefault(p => p.OrderId == orderId);
                     if (payment != null)
                     {
                         payment.Status = "Success";
-                        payment.CreatedAt = DateTime.Now;
-                        context.Payments.Update(payment);
+                        payment.UpdatedAt = DateTime.Now;
+                        _context.Payments.Update(payment);
                     }
 
-                    context.SaveChanges();
+                    var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
+                    if (order != null)
+                    {
+                        order.Status = "Completed";
+                        order.UpdatedAt = DateTime.Now;
+                        _context.Orders.Update(order);
+                    }
+
+                    _context.SaveChanges();
                 }
             }
             else
             {
+                int.TryParse(response.OrderId, out int orderId);
                 using (var context = new BlindBoxContext())
                 {
-                    int.TryParse(response.OrderId, out int orderId);
-
-                    var order = context.Orders.FirstOrDefault(o => o.OrderId == orderId);
-                    if (order != null)
-                    {
-                        order.Status = "Failed";
-                        context.Orders.Update(order);
-                    }
-
-                    var payment = context.Payments.FirstOrDefault(p => p.OrderId == orderId);
+                    var payment = _context.Payments.FirstOrDefault(p => p.OrderId == orderId);
                     if (payment != null)
                     {
-                        payment.Status = "Failed";
-                        payment.CreatedAt = DateTime.Now;
-                        context.Payments.Update(payment);
+                        payment.Status = "Fail";
+                        payment.UpdatedAt = DateTime.Now;
+                        _context.Payments.Update(payment);
                     }
 
-                    context.SaveChanges();
+                    var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
+                    if (order != null)
+                    {
+                        order.Status = "Fail";
+                        order.UpdatedAt = DateTime.Now;
+                        _context.Orders.Update(order);
+                    }
+
+                    _context.SaveChanges();
                 }
             }
             return response;
