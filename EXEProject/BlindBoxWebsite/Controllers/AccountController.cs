@@ -42,7 +42,7 @@ namespace BlindBoxWebsite.Controllers
             var existingUser = _userRepository.GetByEmail(signUpRequest.Email);
             if (existingUser != null)
             {
-                ModelState.AddModelError("Email", "Email is already in use.");
+                ModelState.AddModelError("Email", "Email đã được sử dụng!");
                 return View(signUpRequest);
             }
 
@@ -58,17 +58,76 @@ namespace BlindBoxWebsite.Controllers
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.UserId, message = "Email confirmed successfully, please log in." }, Request.Scheme);
+            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.UserId, message = "Xác nhận email thành công, vui lòng đăng nhập!" }, Request.Scheme);
 
             var emailContent = new DTO.MailDTOs.MailContent
             {
                 To = user.Email,
-                Subject = "Email Confirmation",
-                Body = $"<h1>Confirm Your Email</h1><p>Please click the link below to confirm your email address: <a href='{confirmationLink}'>Confirm Email</a></p>"
+                Subject = "Chào mừng bạn đến với GBOX, xác nhận tài khoản và chúc bạn có một trải nghiệm tốt",
+                Body = $@"
+                <html>
+                <head>
+                    <style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            margin: 0;
+                            padding: 20px;
+                        }}
+                        .container {{
+                            max-width: 600px;
+                            margin: auto;
+                            background: white;
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }}
+                        h1 {{
+                            color: #333;
+                            text-align: center;
+                        }}
+                        p {{
+                            font-size: 16px;
+                            color: #555;
+                            text-align: center; /* Căn giữa văn bản */
+                        }}
+                        .button {{
+                            display: inline-block;
+                            padding: 10px 20px;
+                            font-size: 16px;
+                            color: white;
+                            background-color: #28a745;
+                            text-decoration: none;
+                            border-radius: 5px;
+                            margin: 20px auto;
+                            text-align: center;
+                            display: block;
+                            width: 200px;
+                        }}
+                        .footer {{
+                            margin-top: 20px;
+                            font-size: 12px;
+                            color: #aaa;
+                            text-align: center;
+                        }}
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <h1>Xác Nhận Email</h1>
+                        <p>Để hoàn tất quá trình xác nhận tài khoản, vui lòng nhấn vào liên kết bên dưới. GBOX xin cảm ơn!</p>
+                        <a href='{confirmationLink}' class='button'>Xác Nhận Email</a>
+                        <div class='footer'>
+                            <p>Cảm ơn bạn!</p>
+                            <p>Đội ngũ hỗ trợ khách hàng GBOX</p>
+                        </div>
+                    </div>
+                </body>
+                </html>"
             };
             await _sendMailService.SendMail(emailContent);
 
-            TempData["ConfirmMessage"] = "Please check your email to confirm your account.";
+            TempData["ConfirmMessage"] = "Vui lòng kiểm tra email của bạn để xác nhận đăng ký";
 
             return RedirectToAction("SignIn", "Account");
         }
@@ -80,12 +139,12 @@ namespace BlindBoxWebsite.Controllers
 
             if (user == null)
             {
-                return NotFound("User not found.");
+                return NotFound("Không tìm thấy tài khoản!");
             }
 
             if (user.IsEmailConfirmed)
             {
-                return RedirectToAction("SignIn", new { message = "Your email is already confirmed." });
+                return RedirectToAction("SignIn", new { message = "Email của bạn đã được xác nhận, vui lòng đăng nhập!" });
             }
 
             user.IsEmailConfirmed = true;
@@ -114,19 +173,19 @@ namespace BlindBoxWebsite.Controllers
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(signInRequest.Password, user.Password))
             {
-                ModelState.AddModelError("Password", "Invalid email or password.");
+                ModelState.AddModelError("Password", "Sai thông tin tài khoản hoặc mật khẩu!");
                 return View(signInRequest);
             }
 
             if (!user.IsEmailConfirmed)
             {
-                ViewData["ErrorMessage"] = "Your account is not confirmed. Please check your email to confirm your account.";
+                ViewData["ErrorMessage"] = "Tài khoản của bạn chưa được xác nhận, vui lòng kiểm tra email để xác nhận tài khoản!";
                 return View(signInRequest);
             }
             HttpContext.Session.SetString("UserId", user.UserId.ToString());
             HttpContext.Session.SetString("UserName", user.Username);
 
-            TempData["LogInSuccess"] = "Welcome to my GBOX shop";
+            TempData["LogInSuccess"] = "Chào mừng bạn đến với GBOX Shop.";
 
             return RedirectToAction("Index", "Home");
         }
@@ -135,7 +194,7 @@ namespace BlindBoxWebsite.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            TempData["LogoutSuccess"] = "Thank you and see you soon";
+            TempData["LogoutSuccess"] = "Cảm ơn và hẹn gặp lại.";
             return RedirectToAction("Index", "Home");
         }
 
@@ -168,19 +227,19 @@ namespace BlindBoxWebsite.Controllers
             var user = await _userRepository.GetByIdAsync(int.Parse(userIdSession));
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "User not found.");
+                ModelState.AddModelError(string.Empty, "Không tìm thấy tài khoản.");
                 return View(changePasswordRequest);
             }
 
             if (!BCrypt.Net.BCrypt.Verify(changePasswordRequest.OldPassword, user.Password))
             {
-                ModelState.AddModelError(string.Empty, "Current password is incorrect.");
+                ModelState.AddModelError(string.Empty, "Sai mật khẩu.");
                 return View(changePasswordRequest);
             }
 
             if (changePasswordRequest.NewPassword != changePasswordRequest.ConfirmPassword)
             {
-                ModelState.AddModelError(string.Empty, "New password and confirmation do not match.");
+                ModelState.AddModelError(string.Empty, "Mật khẩu không khớp.");
                 return View(changePasswordRequest);
             }
 
@@ -209,7 +268,7 @@ namespace BlindBoxWebsite.Controllers
             var user = _userRepository.GetByEmail(forgotPasswordRequest.Email);
             if (user == null)
             {
-                ModelState.AddModelError("Email", "Email not found.");
+                ModelState.AddModelError("Email", "Không tìm thấy email!");
                 return View(forgotPasswordRequest);
             }
 
@@ -223,12 +282,72 @@ namespace BlindBoxWebsite.Controllers
             var emailContent = new DTO.MailDTOs.MailContent
             {
                 To = user.Email,
-                Subject = "Reset Your Password",
-                Body = $"<h1>Reset Your Password</h1><p>Click the link below to reset your password: <a href='{resetPasswordLink}'>Reset Password</a></p>"
+                Subject = "Đặt Lại Mật Khẩu Của Bạn",
+                Body = $@"
+                <html>
+                <head>
+                    <style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            margin: 0;
+                            padding: 20px;
+                        }}
+                        .container {{
+                            max-width: 600px;
+                            margin: auto;
+                            background: white;
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }}
+                        h1 {{
+                            color: #333;
+                        }}
+                        p {{
+                            font-size: 16px;
+                            color: #555;
+                            text-align: center;
+                        }}
+                        .button {{
+                            display: inline-block;
+                            padding: 10px 20px;
+                            font-size: 16px;
+                            color: white;
+                            background-color: #28a745;
+                            text-decoration: none;
+                            border-radius: 5px;
+                            margin: 20px auto;
+                            text-align: center;
+                            display: block;
+                            width: 200px;
+                        }}
+                        .footer {{
+                            margin-top: 20px;
+                            font-size: 12px;
+                            color: #aaa;
+                            text-align: center;
+                        }}
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <h1>Đặt lại Mật khẩu của bạn</h1>
+                        <p>Xin chào,</p>
+                        <p>Bạn đã yêu cầu đặt lại mật khẩu của mình. Vui lòng nhấp vào liên kết dưới đây để thiết lập mật khẩu mới:</p>
+                        <p><a href='{resetPasswordLink}' class='button'>Đặt lại Mật khẩu</a></p>
+                        <p>Nếu bạn không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.</p>
+                        <div class='footer'>
+                            <p>Cảm ơn bạn!</p>
+                            <p>Đội ngũ hỗ trợ khách hàng</p>
+                        </div>
+                    </div>
+                </body>
+                </html>"
             };
 
             await _sendMailService.SendMail(emailContent);
-            TempData["ResetMessage"] = "Please check your email for a link to reset your password.";
+            TempData["ResetMessage"] = "Vui lòng kiểm tra email để tạo lại mật khẩu của bạn.";
 
             return RedirectToAction("ForgotPassword", "Account");
         }
@@ -256,7 +375,7 @@ namespace BlindBoxWebsite.Controllers
             var user = _userRepository.GetByEmail(resetPasswordRequest.Email);
             if (user == null || user.ResetToken != resetPasswordRequest.Token)
             {
-                ModelState.AddModelError("NewPassword", "Token is already used");
+                ModelState.AddModelError("NewPassword", "Mã token đã được sử dụng");
                 return View(resetPasswordRequest);
             }
 
@@ -267,7 +386,7 @@ namespace BlindBoxWebsite.Controllers
             await _userRepository.UpdateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            TempData["ResetSuccess"] = "Password reset successfully, please sign in again";
+            TempData["ResetSuccess"] = "Cập nhật mật khẩu thành công, vui lòng đăng nhập.";
 
             return RedirectToAction("SignIn", "Account");
         }
@@ -332,7 +451,7 @@ namespace BlindBoxWebsite.Controllers
             await _userRepository.UpdateAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            TempData["UpdateSuccess"] = "Profile updated successfully!";
+            TempData["UpdateSuccess"] = "Cập nhập thông tin thành công!";
 
             return RedirectToAction("EditProfile", "Account");
         }

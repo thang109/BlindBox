@@ -54,13 +54,13 @@
                 <div class="row-container">
                     <!-- Contact and Shipping Info Section -->
                     <div class="contact-shipping-info">
-                        <h3>Contact information</h3>
+                        <h3>Thông tin liên hệ</h3>
                         <div class="mb-3">
                             <input asp-for="Email" class="form-control" placeholder="Email" />
                             <span asp-validation-for="Email" class="error-message"></span>
                         </div>
 
-                        <h3>Shipping Address</h3>
+                        <h3>Địa chỉ nhận hàng</h3>
                         <div class="mb-3">
                             <input asp-for="FullName" class="form-control" type="text" placeholder="Your Name" />
                             <span asp-validation-for="FullName" class="error-message"></span>
@@ -91,7 +91,7 @@
 
                     <!-- Order Summary Section -->
                     <div class="order-summary">
-                        <h2>Order summary</h2>
+                        <h2>Thông tin đơn hàng</h2>
                         <div class="product-item">
                             <img src="@Url.Content("~" + ViewBag.ImgUrl)" alt="@ViewBag.Name" />
                             <div class="product-details">
@@ -125,7 +125,7 @@
                         <input type="hidden" asp-for="CreateDate" value="@DateTime.Now" />
 
                         <button type="submit" class="continue-to-payment-btn" style="color: white">
-                            Continue payment
+                            Đặt Hàng
                         </button>
                     </div>
                 </div>
