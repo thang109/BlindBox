@@ -45,7 +45,7 @@ namespace BlindBoxWebsite.ViewModels
 
         public string OrderDescription { get; set; }
 
-        public string OrderType { get; set; }
+        public string PaymentType { get; set; }
 
         public int BlindBoxId { get; set; }
 

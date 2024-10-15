@@ -1,6 +1,47 @@
 ﻿@model BlindBoxWebsite.ViewModels.VnPayRequestModel
 @section CheckoutBlindBoxes {
     <link rel="stylesheet" href="~/css/checkout_blindbox1.css" />
+    <style>
+    .payment-type-select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        color: #333;
+        background-color: #f9f9f9;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        position: relative;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23777777' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        background-size: 10px;
+    }
+
+    .payment-type-select:hover {
+        border-color: #16a085;
+    }
+
+    .payment-type-select:focus {
+        border-color: #16a085;
+        box-shadow: 0 0 5px rgba(22, 160, 133, 0.5);
+        outline: none;
+    }
+
+    .payment-type-select option {
+        padding: 10px;
+        background-color: white;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .payment-type-select option:checked {
+        background-color: #16a085;
+        color: white;
+    }
+    </style>
 }
 @{
     ViewData["Title"] = "Checkout BlindBox";
@@ -61,16 +102,25 @@
                         <a href="#" class="discount-link">Có mã giảm giá? Nhập ngay tại đây ></a>
                         <div class="summary-totals">
                             <p style="display:none">@ViewBag.BlindBoxId</p>
-                            <p>Tổng cộng: <span>@ViewBag.RawPrice VND</span></p>
+                            <p style="justify-content: space-between">Tổng cộng: <span>@ViewBag.RawPrice VND</span></p>
                             <p>Phí vận chuyển: <span>--</span></p>
                             <p>Thuế: <span>--</span></p>
-                            <p class="total-amount">Tổng: <span>@ViewBag.RawPrice VND</span></p>
+                            <p>Tổng voucher giảm giá: -@ViewBag.Discount VND</p>
+                            <p class="total-amount">Tổng: <span>@ViewBag.TotalPrice VND</span></p>
+                        </div>
+
+                        <div class="mb-3" style="margin: 30px auto">
+                            <h3>Phương Thức Thanh Toán</h3>
+                            <select asp-for="PaymentType" class="form-control payment-type-select">
+                                <option value="VNPAY">VNPAY</option>
+                                <option value="COD">Cash on Delivery (COD)</option>
+                            </select>
+                            <span asp-validation-for="PaymentType" class="error-message"></span>
                         </div>
 
                         <!-- Hidden fields for order details -->
                         <input type="hidden" asp-for="Amount" value="@ViewBag.Price" />
                         <input type="hidden" asp-for="OrderDescription" value="@ViewBag.Name" />
-                        <input type="hidden" asp-for="OrderType" value="BlindBox Payment" />
                         <input type="hidden" asp-for="BlindBoxId" value="@ViewBag.BlindBoxId" />
                         <input type="hidden" asp-for="CreateDate" value="@DateTime.Now" />
 

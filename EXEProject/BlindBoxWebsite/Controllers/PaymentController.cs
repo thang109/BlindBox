@@ -50,6 +50,9 @@ namespace BlindBoxWebsite.Controllers
 
         public IActionResult CheckoutBlindBox(int blindBoxId, decimal price, string name, string imageUrl, string description)
         {
+            decimal discount = price * 2 / 100;
+            decimal totalPrice = price - discount;
+
             bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
             if (isUserLoggedIn)
@@ -62,8 +65,10 @@ namespace BlindBoxWebsite.Controllers
             }
 
             ViewBag.BlindBoxId = blindBoxId;
-            ViewBag.Price = price;
+            ViewBag.Price = totalPrice;
             ViewBag.RawPrice = string.Format("{0:N0}", price);
+            ViewBag.Discount = string.Format("{0:N0}", discount);
+            ViewBag.TotalPrice = string.Format("{0:N0}", totalPrice);
             ViewBag.ImgUrl = imageUrl;
             ViewBag.Name = name;
             ViewBag.Description = description;
@@ -138,12 +143,26 @@ namespace BlindBoxWebsite.Controllers
                 };
                 await _productRepository.AddNewPayment(payment);
 
-                var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
-                await _productRepository.AddNewOrderInfo(orderInfo);
+                if (model.PaymentType == "VNPAY")
+                {
+                    var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
+                    await _productRepository.AddNewOrderInfo(orderInfo);
 
-                var url = _vnPayService.CreatePaymentUrl(HttpContext, model, newOrder.OrderId);
+                    var url = _vnPayService.CreatePaymentUrl(HttpContext, model, newOrder.OrderId);
+                    return Redirect(url);
+                }
+                else if (model.PaymentType == "COD")
+                {
+                    var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
+                    await _productRepository.AddNewOrderInfo(orderInfo);
 
-                return Redirect(url);
+                    newOrder.Status = "Confirmed";
+                    _productRepository.UpdateOrder(newOrder);
+
+                    return RedirectToAction("PaymentSuccess");
+                }
+
+                return RedirectToAction("CheckoutBlindBox");
             }
             catch (Exception ex)
             {

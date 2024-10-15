@@ -38,7 +38,7 @@ namespace BlindBoxWebsite.Services
             pay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
             pay.AddRequestData("vnp_Locale", _configuration["Vnpay:Locale"]);
             pay.AddRequestData("vnp_OrderInfo", $"{model.FullName} {model.OrderDescription} {model.Amount}");
-            pay.AddRequestData("vnp_OrderType", model.OrderType);
+            pay.AddRequestData("vnp_OrderType", model.PaymentType);
             pay.AddRequestData("vnp_ReturnUrl", urlCallBack);
             pay.AddRequestData("vnp_TxnRef", order.OrderId.ToString());
 
@@ -60,7 +60,7 @@ namespace BlindBoxWebsite.Services
                     var payment = _context.Payments.FirstOrDefault(p => p.OrderId == orderId);
                     if (payment != null)
                     {
-                        payment.Status = "Success";
+                        payment.Status = "Paid";
                         payment.UpdatedAt = DateTime.Now;
                         _context.Payments.Update(payment);
                     }
@@ -68,7 +68,7 @@ namespace BlindBoxWebsite.Services
                     var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
                     if (order != null)
                     {
-                        order.Status = "Completed";
+                        order.Status = "Paid";
                         order.UpdatedAt = DateTime.Now;
                         _context.Orders.Update(order);
 

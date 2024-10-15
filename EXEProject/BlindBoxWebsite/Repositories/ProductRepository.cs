@@ -63,6 +63,18 @@ namespace BlindBoxWebsite.Repositories
                 _context.SaveChanges();
             }
         }
+        
+        public void UpdateOrder(Order order)
+        {
+            var existingOrder = _context.Orders.FirstOrDefault(p => p.OrderId == order.OrderId);
+            if (existingOrder != null)
+            {
+                existingOrder.Status = order.Status;
+                existingOrder.UpdatedAt = DateTime.Now;
+
+                _context.SaveChanges();
+            }
+        }
 
         public void UpdateStockBlindBox(int blindBoxId, int quantity)
         {
