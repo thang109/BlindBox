@@ -1,11 +1,13 @@
 ﻿using BlindBoxWebsite.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlindBoxWebsite.Models;
 
 public partial class User
 {
+    [Key]
     public int UserId { get; set; }
 
     public string Username { get; set; } = null!;
@@ -33,4 +35,5 @@ public partial class User
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual ICollection<Quiz> Quizzes { get; set; } = new List<Quiz>();
+
 }

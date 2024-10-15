@@ -8,7 +8,6 @@ namespace BlindBoxWebsite.Models;
 public partial class Order
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int OrderId { get; set; }
 
     public int UserId { get; set; }
@@ -27,5 +26,8 @@ public partial class Order
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
+    public virtual ICollection<OrderInfo> OrderInfos { get; set; } = new List<OrderInfo>();
+
     public virtual User User { get; set; } = null!;
+
 }

@@ -49,6 +49,19 @@ namespace BlindBoxWebsite.Repositories
             }
         }
 
+        public async Task<int> AddNewOrderInfo(OrderInfo orderInfo)
+        {
+            using (var context = new BlindBoxContext())
+            {
+                var lastOrderInfo = await context.OrderInfos.OrderByDescending(x => x.OrderInfoId).FirstOrDefaultAsync();
+                var lastId = lastOrderInfo.OrderInfoId + 1;
+                orderInfo.OrderInfoId = lastId;
+                await context.OrderInfos.AddAsync(orderInfo);
+                await context.SaveChangesAsync();
+                return orderInfo.OrderInfoId;
+            }
+        }
+
         public void UpdatePayment(Payment payment)
         {
             var existingPayment = _context.Payments.FirstOrDefault(p => p.PaymentId == payment.PaymentId);

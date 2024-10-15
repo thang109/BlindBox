@@ -4,6 +4,7 @@ using BlindBoxWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlindBoxWebsite.Migrations
 {
     [DbContext(typeof(BlindBoxContext))]
-    partial class BlindBoxContextModelSnapshot : ModelSnapshot
+    [Migration("20241015063737_CreateOrderInfo")]
+    partial class CreateOrderInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,48 +194,6 @@ namespace BlindBoxWebsite.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("orders", (string)null);
-                });
-
-            modelBuilder.Entity("BlindBoxWebsite.Models.OrderInfo", b =>
-                {
-                    b.Property<int>("OrderInfoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderInfoId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OrderInfoId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderInfos");
                 });
 
             modelBuilder.Entity("BlindBoxWebsite.Models.OrderItem", b =>
@@ -466,17 +427,6 @@ namespace BlindBoxWebsite.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BlindBoxWebsite.Models.OrderInfo", b =>
-                {
-                    b.HasOne("BlindBoxWebsite.Models.Order", "Order")
-                        .WithMany("OrderInfos")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("BlindBoxWebsite.Models.OrderItem", b =>
                 {
                     b.HasOne("BlindBoxWebsite.Models.BlindBox", "BlindBox")
@@ -530,8 +480,6 @@ namespace BlindBoxWebsite.Migrations
             modelBuilder.Entity("BlindBoxWebsite.Models.Order", b =>
                 {
                     b.Navigation("Commissions");
-
-                    b.Navigation("OrderInfos");
 
                     b.Navigation("OrderItems");
 

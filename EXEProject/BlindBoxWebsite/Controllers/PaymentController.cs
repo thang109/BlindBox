@@ -17,13 +17,15 @@ namespace BlindBoxWebsite.Controllers
         private readonly IVnPayService _vnPayService;
         private readonly ISendMailService _sendMailService;
         private readonly IProductRepository _productRepository;
+        private readonly CheckoutService _checkoutService;
 
-        public PaymentController(BlindBoxContext context, IVnPayService vnPayService, ISendMailService sendMailService, IProductRepository productRepository)
+        public PaymentController(BlindBoxContext context, IVnPayService vnPayService, ISendMailService sendMailService, IProductRepository productRepository, CheckoutService checkoutService)
         {
             _context = context;
             _vnPayService = vnPayService;
             _sendMailService = sendMailService;
             _productRepository = productRepository;
+            _checkoutService = checkoutService;
         }
         public IActionResult Index()
         {
@@ -114,7 +116,6 @@ namespace BlindBoxWebsite.Controllers
                     Status = "Pending",
                     CreatedAt = model.CreateDate,
                 };
-
                 newOrder.OrderId = await _productRepository.AddNewOrder(newOrder);
 
                 var orderDetail = new OrderItem()
@@ -136,6 +137,9 @@ namespace BlindBoxWebsite.Controllers
                     CreatedAt = model.CreateDate,
                 };
                 await _productRepository.AddNewPayment(payment);
+
+                var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
+                await _productRepository.AddNewOrderInfo(orderInfo);
 
                 var url = _vnPayService.CreatePaymentUrl(HttpContext, model, newOrder.OrderId);
 

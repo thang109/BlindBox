@@ -23,6 +23,8 @@ public partial class BlindBoxContext : DbContext
 
     public virtual DbSet<Order> Orders { get; set; }
 
+    public virtual DbSet<OrderInfo> OrderInfos { get; set; }
+    
     public virtual DbSet<OrderItem> OrderItems { get; set; }
 
     public virtual DbSet<Payment> Payments { get; set; }
@@ -37,6 +39,7 @@ public partial class BlindBoxContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         modelBuilder.Entity<Ad>(entity =>
         {
             entity.HasKey(e => e.AdId).HasName("PK__ads__CAA4A6275D91CCD6");
@@ -150,6 +153,11 @@ public partial class BlindBoxContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__orders__user_id__4222D4EF");
+
+            entity.HasMany(o => o.OrderInfos)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
