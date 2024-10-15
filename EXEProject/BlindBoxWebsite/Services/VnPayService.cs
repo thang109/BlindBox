@@ -71,6 +71,14 @@ namespace BlindBoxWebsite.Services
                         order.Status = "Completed";
                         order.UpdatedAt = DateTime.Now;
                         _context.Orders.Update(order);
+
+                        var orderItems = _context.OrderItems.Where(oi => oi.OrderId == orderId).ToList();
+
+                        foreach (var item in orderItems)
+                        {
+                            var blindBoxId = item.BlindBoxId;
+                            _productRepository.UpdateStockBlindBox(blindBoxId, item.Quantity);
+                        }
                     }
 
                     _context.SaveChanges();

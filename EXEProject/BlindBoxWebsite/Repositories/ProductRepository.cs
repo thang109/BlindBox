@@ -1,6 +1,7 @@
 ﻿using BlindBoxWebsite.Interfaces;
 using BlindBoxWebsite.Models;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.X9;
 
 namespace BlindBoxWebsite.Repositories
 {
@@ -12,54 +13,43 @@ namespace BlindBoxWebsite.Repositories
 
         public async Task<int> AddNewOrder(Order order)
         {
-            using (var context = new BlindBoxContext())
-            {
-                var lastOrder = await context.Orders.OrderByDescending(x => x.OrderId).FirstOrDefaultAsync();
-                var lastId = lastOrder.OrderId + 1;
-                order.OrderId = lastId;
-                await context.Orders.AddAsync(order);
-                await context.SaveChangesAsync();
-                return order.OrderId;
-            }
+            using var context = new BlindBoxContext();
+            var lastOrder = await context.Orders.OrderByDescending(x => x.OrderId).FirstOrDefaultAsync();
+            var lastId = lastOrder.OrderId + 1;
+            order.OrderId = lastId;
+            await context.Orders.AddAsync(order);
+            await context.SaveChangesAsync();
+            return order.OrderId;
         }
 
         public async Task<int> AddNewOrderItem(OrderItem orderItem)
         {
-            using (var context = new BlindBoxContext())
-            {
-                var lastOrderItem = await context.OrderItems.OrderByDescending(x => x.OrderItemId).FirstOrDefaultAsync();
-                var lastId = lastOrderItem.OrderItemId + 1;
-                orderItem.OrderItemId = lastId;
-                await context.OrderItems.AddAsync(orderItem);
-                await context.SaveChangesAsync();
-                return orderItem.OrderItemId;
-            }
+            var lastOrderItem = await _context.OrderItems.OrderByDescending(x => x.OrderItemId).FirstOrDefaultAsync();
+            var lastId = lastOrderItem.OrderItemId + 1;
+            orderItem.OrderItemId = lastId;
+            await _context.OrderItems.AddAsync(orderItem);
+            await _context.SaveChangesAsync();
+            return orderItem.OrderItemId;
         }
 
         public async Task<int> AddNewPayment(Payment payment)
         {
-            using (var context = new BlindBoxContext())
-            {
-                var lastPayment = await context.Payments.OrderByDescending(x => x.PaymentId).FirstOrDefaultAsync();
-                var lastId = lastPayment.PaymentId + 1;
-                payment.PaymentId = lastId;
-                await context.Payments.AddAsync(payment);
-                await context.SaveChangesAsync();
-                return payment.PaymentId;
-            }
+            var lastPayment = await _context.Payments.OrderByDescending(x => x.PaymentId).FirstOrDefaultAsync();
+            var lastId = lastPayment.PaymentId + 1;
+            payment.PaymentId = lastId;
+            await _context.Payments.AddAsync(payment);
+            await _context.SaveChangesAsync();
+            return payment.PaymentId;
         }
 
         public async Task<int> AddNewOrderInfo(OrderInfo orderInfo)
         {
-            using (var context = new BlindBoxContext())
-            {
-                var lastOrderInfo = await context.OrderInfos.OrderByDescending(x => x.OrderInfoId).FirstOrDefaultAsync();
-                var lastId = lastOrderInfo.OrderInfoId + 1;
-                orderInfo.OrderInfoId = lastId;
-                await context.OrderInfos.AddAsync(orderInfo);
-                await context.SaveChangesAsync();
-                return orderInfo.OrderInfoId;
-            }
+            var lastOrderInfo = await _context.OrderInfos.OrderByDescending(x => x.OrderInfoId).FirstOrDefaultAsync();
+            var lastId = lastOrderInfo.OrderInfoId + 1;
+            orderInfo.OrderInfoId = lastId;
+            await _context.OrderInfos.AddAsync(orderInfo);
+            await _context.SaveChangesAsync();
+            return orderInfo.OrderInfoId;
         }
 
         public void UpdatePayment(Payment payment)
@@ -70,6 +60,18 @@ namespace BlindBoxWebsite.Repositories
                 existingPayment.Status = payment.Status;
                 existingPayment.UpdatedAt = DateTime.Now;
 
+                _context.SaveChanges();
+            }
+        }
+
+        public void UpdateStockBlindBox(int blindBoxId, int quantity)
+        {
+            var blindBox = _context.BlindBoxes.FirstOrDefault(b => b.BlindBoxId == blindBoxId);
+
+            if(blindBox != null)
+            {
+                blindBox.Stock -= quantity;
+                _context.BlindBoxes.Update(blindBox);
                 _context.SaveChanges();
             }
         }
