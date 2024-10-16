@@ -34,15 +34,13 @@ namespace BlindBoxWebsite.Repositories
 
         public async Task<int> AddAccount(User user)
         {
-           using(var context = new BlindBoxContext())
-            {
-                var lastuser = await context.Users.OrderByDescending(x => x.UserId).FirstOrDefaultAsync();
-                var lastId = lastuser.UserId + 1;
-                user.UserId = lastId;
-                await context.Users.AddAsync(user);
-                await context.SaveChangesAsync();
-                return user.UserId;
-            }
+            using var context = new BlindBoxContext();
+            var lastuser = await context.Users.OrderByDescending(x => x.UserId).FirstOrDefaultAsync();
+            var lastId = lastuser.UserId + 1;
+            user.UserId = lastId;
+            await context.Users.AddAsync(user);
+            await context.SaveChangesAsync();
+            return user.UserId;
         }
     }
 }

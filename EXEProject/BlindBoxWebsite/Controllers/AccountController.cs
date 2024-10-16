@@ -55,8 +55,7 @@ namespace BlindBoxWebsite.Controllers
                 IsEmailConfirmed = false
             };
 
-            await _context.AddAsync(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddAccount(user);
 
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.UserId, message = "Xác nhận email thành công, vui lòng đăng nhập!" }, Request.Scheme);
 
