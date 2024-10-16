@@ -18,6 +18,7 @@
                         <h3>@product.Name</h3>
                         <img src="@Url.Content("~/" + product.ImageUrl)" alt="@product.Name" style="height: 290px; object-fit: cover;"/>
                         <div class="price">@product.Price.ToString("N0") VND</div>
+                        <div class="stock">@product.Stock</div>
                         <p>@product.Description</p>
                         <p style="display: none">@product.BlindBoxId</p>
                         <form action="@Url.Action("BlindBox", "Product")" method="post">
