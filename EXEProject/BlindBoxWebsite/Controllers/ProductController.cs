@@ -18,7 +18,7 @@ namespace BlindBoxWebsite.Controllers
             return View();
         }
 
-        public IActionResult BlindBox(int blindBoxId, string name, decimal price, string imageUrl, string description)
+        public IActionResult BlindBox(int blindBoxId, string name, decimal price, string imageUrl, string description, int stock)
         {
             bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
             ViewBag.IsUserLoggedIn = isUserLoggedIn;
@@ -33,6 +33,7 @@ namespace BlindBoxWebsite.Controllers
             ViewBag.RawPrice = string.Format("{0:N0}", price);
             ViewBag.ImageUrl = imageUrl;
             ViewBag.Description = description;
+            ViewBag.Stock = stock;
 
             return View();
         }

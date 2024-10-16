@@ -18,7 +18,7 @@
                         <h3>@product.Name</h3>
                         <img src="@Url.Content("~/" + product.ImageUrl)" alt="@product.Name" style="height: 290px; object-fit: cover;"/>
                         <div class="price">@product.Price.ToString("N0") VND</div>
-                        <div class="stock">@product.Stock</div>
+                        <div class="stock" style="display: none">@product.Stock</div>
                         <p>@product.Description</p>
                         <p style="display: none">@product.BlindBoxId</p>
                         <form action="@Url.Action("BlindBox", "Product")" method="post">
@@ -27,6 +27,7 @@
                             <input type="hidden" name="ImageUrl" value="@Url.Content("~/" + product.ImageUrl)" />
                             <input type="hidden" name="Description" value="@product.Description" />
                             <input type="hidden" name="BlindBoxId" value="@product.BlindBoxId" />
+                            <input type="hidden" name="Stock" value="@product.Stock" />
                             <button class="btn btn-sm btn-info" style="margin-top: 10px; background-color: #9fd4cd">
                                 Chi Tiết
                             </button>

@@ -41,11 +41,58 @@
         background-color: #16a085;
         color: white;
     }
+
+    .popup-message {
+            position: fixed;
+            top: 130px;
+            right: 20px;
+            background-color: #efefef;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            width: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .popup-message .error {
+                background-color: #dc3545;
+            }
+
+            .popup-message .icon {
+                font-size: 24px;
+                margin-right: 15px;
+            }
+
+            .popup-message .message-text {
+                flex: 1;
+                text-align: left;
+            }
+
+            .popup-message .close-btn {
+                margin-left: 10px;
+                font-size: 30px;
+                cursor: pointer;
+                color: #28a745;
+            }
+
     </style>
 }
 @{
     ViewData["Title"] = "Checkout BlindBox";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["OutOfStock"] != null)
+{
+    <div id="popup-success" class="popup-message error">
+        <div class="message-text">
+            <span>@TempData["OutOfStock"]</span>
+        </div>
+        <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
+    </div>
 }
     <div class="checkout-container">
         <div class="checkout-content">
@@ -132,7 +179,27 @@
             </form>
         </div>
     </div>
+    <style>
+        var errorPopup = document.getElementById('popup-error');
+        var successPopup = document.getElementById('popup-success');
+        if (errorPopup) {
+            errorPopup .style.display = 'flex';
+            setTimeout(function () {
+                                errorPopup.style.display = 'none';
+                            }, 5000);
+        }
 
+        if (successPopup) {
+            successPopup .style.display = 'flex';
+            setTimeout(function () {
+                                successPopup.style.display = 'none';
+                            }, 5000);
+        }
+
+        function closePopup(id) {
+            document .getElementById(id).style.display = 'none';
+        }
+    </style>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }

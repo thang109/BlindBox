@@ -76,16 +76,19 @@ namespace BlindBoxWebsite.Repositories
             }
         }
 
-        public void UpdateStockBlindBox(int blindBoxId, int quantity)
+        public bool UpdateStockBlindBox(int blindBoxId, int quantity)
         {
             var blindBox = _context.BlindBoxes.FirstOrDefault(b => b.BlindBoxId == blindBoxId);
 
-            if(blindBox != null)
+            if (blindBox == null || blindBox.Stock < quantity)
             {
-                blindBox.Stock -= quantity;
-                _context.BlindBoxes.Update(blindBox);
-                _context.SaveChanges();
+                return false;
             }
+
+            blindBox.Stock -= quantity;
+            _context.BlindBoxes.Update(blindBox);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

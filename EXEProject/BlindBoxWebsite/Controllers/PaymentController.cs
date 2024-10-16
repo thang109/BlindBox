@@ -50,7 +50,8 @@ namespace BlindBoxWebsite.Controllers
 
         public IActionResult CheckoutBlindBox(int blindBoxId, decimal price, string name, string imageUrl, string description)
         {
-            decimal discount = price * 2 / 100;
+
+            decimal discount = price * 10 / 100;
             decimal totalPrice = price - discount;
 
             bool isUserLoggedIn = HttpContext.Session.GetString("UserId") != null;
@@ -63,7 +64,7 @@ namespace BlindBoxWebsite.Controllers
             {
                 return RedirectToAction("SignIn", "Account");
             }
-
+            
             ViewBag.BlindBoxId = blindBoxId;
             ViewBag.Price = totalPrice;
             ViewBag.RawPrice = string.Format("{0:N0}", price);
@@ -73,6 +74,11 @@ namespace BlindBoxWebsite.Controllers
             ViewBag.Name = name;
             ViewBag.Description = description;
 
+            if (blindBoxId == null || price == null || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(imageUrl) || string.IsNullOrEmpty(description))
+            {
+                TempData["ItemCheckout"] = "Vui lòng chọn sản phẩm trước khi thanh toán!";
+                return RedirectToAction("BlindBoxGift", "Product");
+            }
             return View();
         }
 
@@ -120,6 +126,7 @@ namespace BlindBoxWebsite.Controllers
                     TotalPrice = (decimal)model.Amount,
                     Status = "Pending",
                     CreatedAt = model.CreateDate,
+                    UpdatedAt = DateTime.Now,
                 };
                 newOrder.OrderId = await _productRepository.AddNewOrder(newOrder);
 
@@ -130,34 +137,43 @@ namespace BlindBoxWebsite.Controllers
                     Quantity = 1,
                     Price = (decimal)model.Amount,
                     CreatedAt = model.CreateDate,
+                    UpdatedAt = DateTime.Now,
                 };
                 await _productRepository.AddNewOrderItem(orderDetail);
 
                 var payment = new Payment()
                 {
                     OrderId = newOrder.OrderId,
-                    PaymentMethod = "VNPAY",
+                    PaymentMethod = model.PaymentType,
                     Amount = (decimal)model.Amount,
                     Status = "Pending",
                     CreatedAt = model.CreateDate,
+                    UpdatedAt = DateTime.Now,
                 };
                 await _productRepository.AddNewPayment(payment);
 
+                var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
+                await _productRepository.AddNewOrderInfo(orderInfo);
+
                 if (model.PaymentType == "VNPAY")
                 {
-                    var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
-                    await _productRepository.AddNewOrderInfo(orderInfo);
-
                     var url = _vnPayService.CreatePaymentUrl(HttpContext, model, newOrder.OrderId);
                     return Redirect(url);
                 }
                 else if (model.PaymentType == "COD")
                 {
-                    var orderInfo = _checkoutService.MapToOrderInfo(model, newOrder.OrderId);
-                    await _productRepository.AddNewOrderInfo(orderInfo);
-
                     newOrder.Status = "Confirmed";
                     _productRepository.UpdateOrder(newOrder);
+
+                    payment.Status = "Paid";
+                    _productRepository.UpdatePayment(payment);
+
+                    var stockUpdated = _productRepository.UpdateStockBlindBox(orderDetail.BlindBoxId, orderDetail.Quantity);
+                    if (!stockUpdated)
+                    {
+                        TempData["OutOfStock"] = "Sản phẩm hiện hết hàng! Hãy tham khảo các mẫu khác.";
+                        return RedirectToAction("CheckoutBlindBox");
+                    }
 
                     return RedirectToAction("PaymentSuccess");
                 }

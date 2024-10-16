@@ -46,40 +46,55 @@
                 <input type="hidden" name="ImageUrl" value="@Url.Content("~" + ViewBag.ImageUrl)" />
                 <input type="hidden" name="Description" value="@ViewBag.Description" />
                 <input type="hidden" name="BlindBoxId" value="@ViewBag.BlindBoxId" />
-                <button class="add-to-cart">
-                    Add to Cart
+                <button class="add-to-cart" type="submit"
+                @if (ViewBag.Stock <= 0)
+                    {
+                        <text>disabled</text>
+                    }
+                        style="@if (ViewBag.Stock <= 0)
+                    {
+                        <text>opacity: 0.5; cursor: not-allowed;</text>
+                    }">
+                    Thanh Toán
                 </button>
+            @if (ViewBag.Stock <= 0)
+            {
+                <div class="out-of-stock">
+                    <p class="text-danger" style="color: red">Hết hàng</p>
+                </div>
+            }
             </form>
+            <h3>Kho: @ViewBag.Stock</h3>
             <ul class="extra-info">
                 <li>
-                    <i class="fas fa-tags"></i><strong> Unlock 10% discount for this order</strong>
+                    <i class="fas fa-tags"></i><strong> Giảm giá 10% với đơn hàng này</strong>
                 </li>
                 <li>
-                    <i class="fas fa-shield-alt"></i><strong> 30-day satisfaction guarantee</strong>
+                    <i class="fas fa-shield-alt"></i><strong> Hoàn trả trong vòng 10 ngày</strong>
                 </li>
             </ul>
             <details>
-                <summary>Description</summary>
+                <summary>Mô Tả</summary>
                 <p>@ViewBag.Description</p>
             </details>
             <details>
-                <summary>Gifts?</summary>
-                <p>Can be used as a gift.</p>
+                <summary>Quà</summary>
+                <p>Hộp quà này không chỉ mang lại niềm vui mà còn là món quà ý nghĩa dành cho người thân và bạn bè. Tặng món quà này là cách thể hiện sự quan tâm và chia sẻ những khoảnh khắc đáng nhớ.</p>
             </details>
             <details>
-                <summary>Our Commitment</summary>
-                <p>We offer the best quality products.</p>
+                <summary>Cam Kết</summary>
+                <p>Chúng tôi cam kết mang đến cho khách hàng những sản phẩm có chất lượng cao nhất, được lựa chọn cẩn thận từ những thương hiệu uy tín. Chất lượng là ưu tiên hàng đầu, và sự tin tưởng của bạn là nguồn động lực lớn lao cho chúng tôi.</p>
             </details>
             <details>
-                <summary>Free Shipping</summary>
-                <p>Applies to all orders.</p>
+                <summary>Miễn Phí Giao Hàng</summary>
+                <p>Chúng tôi tự hào cung cấp dịch vụ giao hàng miễn phí trên toàn quốc, áp dụng cho mọi đơn hàng bất kể giá trị. Bạn có thể hoàn toàn yên tâm rằng món quà của mình sẽ được giao đến tận nơi một cách an toàn và nhanh chóng, giúp tiết kiệm thời gian và chi phí.</p>
             </details>
         </div>
     </div>
 
     <div class="quiz-section">
         <div class="quiz-content">
-            <h1 class="quiz-title">Gift Guide Quiz</h1>
+            <h1 class="quiz-title">Khám Phá Món Quà Đặc Biệt Dành Cho Bạn</h1>
             <p class="quiz-subtitle">
                 Bạn muốn mua quà? Chúng tôi sẽ giúp bạn tìm được món quà phù hợp
             </p>
@@ -88,7 +103,7 @@
                 <li> Nhận các gợi ý về món quà của bạn</li>
             </ul>
             <button class="quiz-button">
-                <a style="text-decoration: none; color: white" href="@Url.Action("Quiz","Quiz")">Take Our Quiz</a>
+                <a style="text-decoration: none; color: white" href="@Url.Action("Quiz","Quiz")">Gợi Ý Quà Tặng</a>
             </button>
         </div>
         <div class="quiz-image">
