@@ -4,6 +4,7 @@ using BlindBoxWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlindBoxWebsite.Migrations
 {
     [DbContext(typeof(BlindBoxContext))]
-    partial class BlindBoxContextModelSnapshot : ModelSnapshot
+    [Migration("20241019041416_UpdateOrderDetails")]
+    partial class UpdateOrderDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,9 +263,6 @@ namespace BlindBoxWebsite.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int")

@@ -120,6 +120,13 @@ namespace BlindBoxWebsite.Controllers
                     return RedirectToAction("SignIn", "Account");
                 }
 
+                var blindBox = await _productRepository.GetBlindBoxById(model.BlindBoxId);
+                if (blindBox == null)
+                {
+                    TempData["ProductNotFound"] = "Sản phẩm không tồn tại!";
+                    return RedirectToAction("CheckoutBlindBox");
+                }
+
                 var newOrder = new Order()
                 {
                     UserId = userId,
@@ -134,6 +141,7 @@ namespace BlindBoxWebsite.Controllers
                 {
                     OrderId = newOrder.OrderId,
                     BlindBoxId = model.BlindBoxId,
+                    BlindBoxName = blindBox.Name,
                     Quantity = 1,
                     Price = (decimal)model.Amount,
                     CreatedAt = model.CreateDate,
@@ -174,6 +182,95 @@ namespace BlindBoxWebsite.Controllers
                         TempData["OutOfStock"] = "Sản phẩm hiện hết hàng! Hãy tham khảo các mẫu khác.";
                         return RedirectToAction("CheckoutBlindBox");
                     }
+
+                    var emailContent = new DTO.MailDTOs.MailContent
+                    {
+                        To = orderInfo.Email,
+                        Subject = "Đơn hàng của bạn đã được xác nhận",
+                        Body = $@"
+                        <html>
+                        <head>
+                            <style>
+                                body {{
+                                    font-family: Arial, sans-serif;
+                                    background-color: #f9f9f9;
+                                    margin: 0;
+                                    padding: 20px;
+                                }}
+                                .container {{
+                                    max-width: 600px;
+                                    margin: auto;
+                                    background-color: #ffffff;
+                                    padding: 20px;
+                                    border-radius: 8px;
+                                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                }}
+                                h2 {{
+                                    color: #333333;
+                                    text-align: center;
+                                }}
+                                .order-info {{
+                                    margin: 20px 0;
+                                    border-top: 1px solid #eeeeee;
+                                    border-bottom: 1px solid #eeeeee;
+                                    padding: 10px 0;
+                                }}
+                                .order-info p {{
+                                    font-size: 16px;
+                                    color: #555555;
+                                    line-height: 1.5;
+                                }}
+                                .product-image {{
+                                        width: 100%;
+                                        height: auto;
+                                        max-width: 200px;
+                                        display: block;
+                                        margin: 20px auto;
+                                        border: 1px solid #eeeeee;
+                                        border-radius: 8px;
+                                }}
+                                .footer {{
+                                    margin-top: 20px;
+                                    font-size: 14px;
+                                    color: #aaaaaa;
+                                    text-align: center;
+                                }}
+                                .highlight {{
+                                    font-weight: bold;
+                                    color: #28a745;
+                                }}
+                            </style>
+                        </head>
+                        <body>
+                            <div class='container'>
+                                <h2>Đơn hàng đã được xác nhận!</h2>
+                                <p>Xin chào <strong>{orderInfo.FullName}</strong>,</p>
+                                <p>Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi! Dưới đây là thông tin đơn hàng của bạn:</p>
+
+                                 <img src='@Url.Content(""~"" + {orderDetail.ImageUrl})' alt='{orderDetail.BlindBoxName}' class='product-image' />
+
+                                <div class='order-info'>
+                                    <p><strong>Mã đơn hàng:</strong> {newOrder.OrderId}</p>
+                                    <p><strong>Tên sản phẩm:</strong> {orderDetail.BlindBoxName}</p>
+                                    <p><strong>Số lượng:</strong> {orderDetail.Quantity}</p>
+                                    <p><strong>Tổng giá:</strong> {orderDetail.Price:N0} VND</p>
+                                    <p><strong>Ngày đặt:</strong> {newOrder.CreatedAt:dd/MM/yyyy}</p>
+                                    <p><strong>Phương thức thanh toán:</strong> {model.PaymentType}</p>
+                                </div>
+
+                                <p>Đơn hàng của bạn sẽ được giao trong thời gian sớm nhất. Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của chúng tôi!</p>
+                                <p class='highlight'>Trân trọng,<br />Đội ngũ bán hàng GBOX</p>
+
+                                <div class='footer'>
+                                    <p>Liên hệ: thien.thangg03@gmail.com</p>
+                                    <p>© 2024 GBOX Store. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </body>
+                        </html>"
+                    };
+                
+                    await _sendMailService.SendMail(emailContent);
 
                     return RedirectToAction("PaymentSuccess");
                 }

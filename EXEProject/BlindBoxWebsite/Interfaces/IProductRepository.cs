@@ -11,5 +11,6 @@ namespace BlindBoxWebsite.Interfaces
         void UpdatePayment(Payment payment);
         void UpdateOrder(Order order);
         bool UpdateStockBlindBox(int blindBoxId, int quantity);
+        Task<BlindBox> GetBlindBoxById(int blindBoxId);
     }
 }

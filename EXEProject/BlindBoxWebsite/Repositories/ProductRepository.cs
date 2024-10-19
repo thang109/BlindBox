@@ -90,5 +90,10 @@ namespace BlindBoxWebsite.Repositories
             _context.SaveChanges();
             return true;
         }
+
+        public async Task<BlindBox> GetBlindBoxById(int blindBoxId)
+        {
+            return await _context.BlindBoxes.FindAsync(blindBoxId);
+        }
     }
 }

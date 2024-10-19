@@ -94,6 +94,15 @@
         <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
     </div>
 }
+@if (TempData["ProductNotFound"] != null)
+{
+    <div id="popup-success" class="popup-message error">
+        <div class="message-text">
+            <span>@TempData["ProductNotFound"]</span>
+        </div>
+        <span class="close-btn" onclick="closePopup('popup-success')">&times;</span>
+    </div>
+}
     <div class="checkout-container">
         <div class="checkout-content">
             <span style="display: none">@ViewBag.Username</span>

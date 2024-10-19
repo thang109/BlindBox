@@ -117,8 +117,8 @@ namespace BlindBoxWebsite.Controllers
                         <p>Để hoàn tất quá trình xác nhận tài khoản, vui lòng nhấn vào liên kết bên dưới. GBOX xin cảm ơn!</p>
                         <a href='{confirmationLink}' class='button'>Xác Nhận Email</a>
                         <div class='footer'>
-                            <p>Cảm ơn bạn!</p>
-                            <p>Đội ngũ hỗ trợ khách hàng GBOX</p>
+                            <p>Liên hệ: thien.thangg03@gmail.com</p>
+                            <p>© 2024 GBOX Store. All rights reserved.</p>
                         </div>
                     </div>
                 </body>
@@ -337,8 +337,8 @@ namespace BlindBoxWebsite.Controllers
                         <p><a href='{resetPasswordLink}' class='button'>Đặt lại Mật khẩu</a></p>
                         <p>Nếu bạn không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.</p>
                         <div class='footer'>
-                            <p>Cảm ơn bạn!</p>
-                            <p>Đội ngũ hỗ trợ khách hàng</p>
+                            <p>Liên hệ: thien.thangg03@gmail.com</p>
+                            <p>© 2024 GBOX Store. All rights reserved.</p>
                         </div>
                     </div>
                 </body>
