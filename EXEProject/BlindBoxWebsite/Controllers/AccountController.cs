@@ -109,6 +109,10 @@ namespace BlindBoxWebsite.Controllers
                             color: #aaa;
                             text-align: center;
                         }}
+                        .highlight {{
+                            font-weight: bold;
+                            color: #28a745;
+                        }}
                     </style>
                 </head>
                 <body>
@@ -116,6 +120,8 @@ namespace BlindBoxWebsite.Controllers
                         <h1>Xác Nhận Email</h1>
                         <p>Để hoàn tất quá trình xác nhận tài khoản, vui lòng nhấn vào liên kết bên dưới. GBOX xin cảm ơn!</p>
                         <a href='{confirmationLink}' class='button'>Xác Nhận Email</a>
+                        <p class='highlight'>Trân trọng,<br />Đội ngũ hỗ trợ khách hàng</p>
+
                         <div class='footer'>
                             <p>Liên hệ: thien.thangg03@gmail.com</p>
                             <p>© 2024 GBOX Store. All rights reserved.</p>
@@ -327,6 +333,10 @@ namespace BlindBoxWebsite.Controllers
                             color: #aaa;
                             text-align: center;
                         }}
+                        .highlight {{
+                            font-weight: bold;
+                            color: #28a745;
+                        }}
                     </style>
                 </head>
                 <body>
@@ -336,6 +346,8 @@ namespace BlindBoxWebsite.Controllers
                         <p>Bạn đã yêu cầu đặt lại mật khẩu của mình. Vui lòng nhấp vào liên kết dưới đây để thiết lập mật khẩu mới:</p>
                         <p><a href='{resetPasswordLink}' class='button'>Đặt lại Mật khẩu</a></p>
                         <p>Nếu bạn không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.</p>
+                        <p class='highlight'>Trân trọng,<br />Đội ngũ hỗ trợ khách hàng</p>
+
                         <div class='footer'>
                             <p>Liên hệ: thien.thangg03@gmail.com</p>
                             <p>© 2024 GBOX Store. All rights reserved.</p>

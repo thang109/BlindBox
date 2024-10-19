@@ -186,7 +186,7 @@ namespace BlindBoxWebsite.Controllers
                     var emailContent = new DTO.MailDTOs.MailContent
                     {
                         To = orderInfo.Email,
-                        Subject = "Đơn hàng của bạn đã được xác nhận",
+                        Subject = $"Đơn hàng #{newOrder.OrderId} đã được xác nhận",
                         Body = $@"
                         <html>
                         <head>
@@ -246,8 +246,6 @@ namespace BlindBoxWebsite.Controllers
                                 <h2>Đơn hàng đã được xác nhận!</h2>
                                 <p>Xin chào <strong>{orderInfo.FullName}</strong>,</p>
                                 <p>Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi! Dưới đây là thông tin đơn hàng của bạn:</p>
-
-                                 <img src='@Url.Content(""~"" + {orderDetail.ImageUrl})' alt='{orderDetail.BlindBoxName}' class='product-image' />
 
                                 <div class='order-info'>
                                     <p><strong>Mã đơn hàng:</strong> {newOrder.OrderId}</p>
