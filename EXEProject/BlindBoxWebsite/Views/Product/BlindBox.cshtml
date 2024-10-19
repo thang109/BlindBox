@@ -78,9 +78,21 @@
                 <p>@ViewBag.Description</p>
             </details>
             <details>
-                <summary>Quà</summary>
-                <p>Hộp quà này không chỉ mang lại niềm vui mà còn là món quà ý nghĩa dành cho người thân và bạn bè. Tặng món quà này là cách thể hiện sự quan tâm và chia sẻ những khoảnh khắc đáng nhớ.</p>
-            </details>
+                <summary>Sản Phẩm</summary>
+                @if (!string.IsNullOrEmpty(ViewBag.Product))
+                {
+                    <ul>
+                        @foreach (var product in ViewBag.Product.Split(';'))
+                        {
+                            <li>@product.Trim()</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>Chưa có sản phẩm cụ thể.</p>
+                }
+        </details>
             <details>
                 <summary>Cam Kết</summary>
                 <p>Chúng tôi cam kết mang đến cho khách hàng những sản phẩm có chất lượng cao nhất, được lựa chọn cẩn thận từ những thương hiệu uy tín. Chất lượng là ưu tiên hàng đầu, và sự tin tưởng của bạn là nguồn động lực lớn lao cho chúng tôi.</p>

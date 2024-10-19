@@ -129,7 +129,7 @@
                 <h4 class="mb-4">Sản phẩm</h4>
                 <div class="row product-list">
                     <!-- Single Product Card -->
-                    @foreach(var blindBox in Model)
+                    @foreach (var blindBox in Model)
                     {
                         <p style="display: none">@blindBox.Description</p>
                         <div class="col-md-4 col-sm-6 mb-4">
@@ -140,6 +140,7 @@
                                     <p class="card-text">@blindBox.Price.ToString("N0") VNĐ</p>
                                     <div class="stock" style="display: none">@blindBox.Stock</div>
                                     <p style="display: none">@blindBox.BlindBoxId</p>
+                                    <p style="display: none">@blindBox.Product</p>
                                     <form action="@Url.Action("BlindBox", "Product")" method="post">
                                         <input type="hidden" name="Name" value="@blindBox.Name" />
                                         <input type="hidden" name="Price" value="@blindBox.Price" />
@@ -147,6 +148,7 @@
                                         <input type="hidden" name="Description" value="@blindBox.Description" />
                                         <input type="hidden" name="BlindBoxId" value="@blindBox.BlindBoxId" />
                                         <input type="hidden" name="Stock" value="@blindBox.Stock" />
+                                        <input type="hidden" name="Product" value="@blindBox.Product" />
                                         <button class="btn btn-sm btn-info" style="margin-top: 10px; background-color: #0c8c5e; border-color: #0c8c6e">
                                             Details
                                         </button>
@@ -155,11 +157,12 @@
                             </div>
                         </div>
                     }
+                    
                 </div>
             </div>
         </div>
     </div>
-    <style>
+@*     <style>
         var errorPopup = document.getElementById('popup-error');
         var successPopup = document.getElementById('popup-success');
         if (errorPopup) {
@@ -179,7 +182,7 @@
         function closePopup(id) {
             document .getElementById(id).style.display = 'none';
         }
-    </style>
+    </style> *@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

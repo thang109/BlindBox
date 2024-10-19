@@ -15,6 +15,8 @@ public partial class BlindBox
 
     public string? Description { get; set; }
 
+    public string? Product { get; set; }
+
     public decimal Price { get; set; }
 
     public int Stock { get; set; }
@@ -26,4 +28,16 @@ public partial class BlindBox
     public DateTime? UpdatedAt { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+    public List<string> GetProductList()
+    {
+        if (string.IsNullOrEmpty(Product))
+        {
+            return new List<string>();
+        }
+
+        return Product.Split(';')
+                      .Select(x => x.Trim())
+                      .ToList();
+    }
 }

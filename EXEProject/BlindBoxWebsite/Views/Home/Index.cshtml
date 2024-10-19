@@ -100,6 +100,7 @@
                 <div class="price" style="display: none">@product.Price.ToString("N0") VND</div>
                 <p style="display: none">@product.Description</p>
                 <p style="display: none">@product.BlindBoxId</p>
+                <p style="display: none">@product.Product</p>
                 <div class="stock" style="display: none">@product.Stock</div>
                 <form action="@Url.Action("BlindBox", "Product")" method="post">
                     <input type="hidden" name="Name" value="@product.Name" />
@@ -108,6 +109,7 @@
                     <input type="hidden" name="Description" value="@product.Description" />
                     <input type="hidden" name="BlindBoxId" value="@product.BlindBoxId" />
                     <input type="hidden" name="Stock" value="@product.Stock" />
+                    <input type="hidden" name="Product" value="@product.Product" />
                     <button class="btn btn-sm btn-info" style="margin-top: 10px; background-color: #21c087; color: white">
                         Chi Tiết
                     </button>
