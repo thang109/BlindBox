@@ -113,6 +113,7 @@ namespace BlindBoxWebsite.Controllers
                             font-weight: bold;
                             color: #28a745;
                         }}
+
                     </style>
                 </head>
                 <body>
