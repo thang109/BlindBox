@@ -70,20 +70,20 @@ body {
 }
 
 .submit-btn {
-  background-color: #027f51;
-  color: #fff;
-  border: none;
-  padding: 15px;
-  font-size: 16px;
-  width: 100%;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #027f51;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
-  background-color: #00a86b;
-}
+    .submit-btn:hover {
+        background-color: #00a86b;
+    }
 
 .right-section {
   width: 50%;
