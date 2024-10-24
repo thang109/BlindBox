@@ -4,7 +4,7 @@
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@model BlindBoxWebsite.Models.User
+@model List<BlindBoxWebsite.Models.User>
 
 <div class="user-management">
     <h2>User Management</h2>
@@ -14,42 +14,29 @@
                 <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>FullName</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>john_doe</td>
-                <td>john.doe@example.com</td>
-                <td>Admin</td>
-                <td>Active</td>
-                <td class="action-buttons">
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="delete-btn">
-                        <i class="fas fa-trash-alt"></i> Delete
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>jane_smith</td>
-                <td>jane.smith@example.com</td>
-                <td>User</td>
-                <td>Active</td>
-                <td class="action-buttons">
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="delete-btn">
-                        <i class="fas fa-trash-alt"></i> Delete
-                    </button>
-                </td>
-            </tr>
+            @foreach(var user in Model)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.FullName</td>
+                    <td>@user.Address</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>
+                        <a href="/Admin/EditUser/@user.UserId" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/Admin/DeleteUser/@user.UserId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

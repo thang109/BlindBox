@@ -4,7 +4,7 @@
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@model BlindBoxWebsite.Models.BlindBox
+@model List<BlindBoxWebsite.Models.BlindBox>
 
 <div class="product-management">
     <h2>Product Management</h2>
@@ -14,45 +14,32 @@
     <table class="product-table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Category</th>
+                <th>BlindBox ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>List Products</th>
                 <th>Price</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>Stock</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Smartphone XYZ</td>
-                <td>Electronics</td>
-                <td>$499</td>
-                <td>In Stock</td>
-                <td class="action-buttons">
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="delete-btn">
-                        <i class="fas fa-trash-alt"></i> Delete
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Running Shoes</td>
-                <td>Sports</td>
-                <td>$89</td>
-                <td>Out of Stock</td>
-                <td class="action-buttons">
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="delete-btn">
-                        <i class="fas fa-trash-alt"></i> Delete
-                    </button>
-                </td>
-            </tr>
+            @foreach(var product in Model)
+            {
+                <tr>
+                    <td>@product.BlindBoxId</td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Product</td>
+                    <td>@product.Price.ToString("N0") VNĐ</td>
+                    <td>@product.Stock</td>
+                    <td>
+                        <a href="/Admin/EditBlindBoxes/@product.BlindBoxId" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/Admin/DeleteBlindBoxes/@product.BlindBoxId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

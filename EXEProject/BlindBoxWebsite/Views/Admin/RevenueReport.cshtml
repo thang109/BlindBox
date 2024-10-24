@@ -1,0 +1,89 @@
+﻿@model BlindBoxWebsite.ViewModels.RevenueReportViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/admin_revenue.css"/>
+}
+
+<div class="revenue-report-container">
+    <h2>Revenue Report</h2>
+
+    <div class="revenue-details">
+        <h3>Total Revenue: @Model.TotalRevenue.ToString("N0") VNĐ</h3>
+        <h3>Total Orders: @Model.TotalOrders</h3>
+    </div>
+
+    <div>
+        <h4>Revenue by Month:</h4>
+        <ul class="revenue-list">
+            @foreach (var monthRevenue in Model.MonthlyRevenue)
+            {
+                <li>Month @monthRevenue.Month: @monthRevenue.TotalRevenue.ToString("N0") VNĐ</li>
+            }
+        </ul>
+    </div>
+
+    <div>
+        <h4>Revenue by City:</h4>
+        <ul class="revenue-list">
+            @foreach (var cityRevenue in Model.RevenueByCity)
+            {
+                <li>City: @cityRevenue.City - @cityRevenue.TotalRevenue.ToString("N0") VNĐ</li>
+            }
+        </ul>
+    </div>
+
+    <h4>Order Details</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>OrderInfo ID</th>
+                <th>Email</th>
+                <th>FullName</th>
+                <th>City</th>
+                <th>District</th>
+                <th>Address</th>
+                <th>PhoneNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderInfo in Model.OrderInfo)
+            {
+                <tr>
+                    <td>@orderInfo.OrderInfoId</td>
+                    <td>@orderInfo.Email</td>
+                    <td>@orderInfo.FullName</td>
+                    <td>@orderInfo.City</td>
+                    <td>@orderInfo.District</td>
+                    <td>@orderInfo.Address</td>
+                    <td>@orderInfo.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <h4>Orders</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User ID</th>
+                <th>ToTalPrice</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderInfo in Model.Order)
+            {
+                <tr>
+                    <td>@orderInfo.OrderId</td>
+                    <td>@orderInfo.UserId</td>
+                    <td>@orderInfo.TotalPrice.ToString("N0")</td>
+                    <td>@orderInfo.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
