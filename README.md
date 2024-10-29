@@ -29,8 +29,8 @@ Blind Box E-commerce Website is an innovative platform that combines the thrill 
   - **Dev Tools**
     - Visual Studio 2022 & Visual Studio Code: Development environment.
   - **Hosting & Deployment**
-    - Hosting Windows & domain: gbox.io.vn **(currently under maintenance)**
-    - Hosting Azure & domain: gbox.azurewebsites.net
+    - [gbox.io.vn](http://gbox.io.vn) - Main Domain (currently under maintenance)
+    - [gbox.azurewebsites.net](https://gbox.azurewebsites.net) - Azure Hosting
 ##  Value Proposition for Customers
   - **Fresh Experience**
   - **Personalized Product Recommendations**
